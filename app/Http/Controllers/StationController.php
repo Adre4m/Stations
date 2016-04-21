@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\DataTables\StationDataTable;
 use App\Http\Requests\StationRequest;
+use App\Models\Contributor;
 use App\Models\Station;
 
 use App\Http\Requests;
+use App\Models\StationLog;
 
 class StationController extends Controller
 {
@@ -29,7 +31,8 @@ class StationController extends Controller
      */
     public function create()
     {
-        return view('stations.create');
+        $contributors = Contributor::all();
+        return view('stations.create', ['contributors' => $contributors]);
     }
 
     /**
@@ -63,7 +66,8 @@ class StationController extends Controller
      */
     public function edit(Station $station)
     {
-        return view('stations.edit', ['station' => $station]);
+        $contributors = Contributor::all();
+        return view('stations.edit', ['station' => $station, 'contributors' => $contributors,]);
     }
 
     /**
@@ -76,7 +80,7 @@ class StationController extends Controller
     public function update(StationRequest $request, Station $station)
     {
         $request->persist($station);
-        redirect()->route('stations.index');
+        return redirect()->route('stations.index');
     }
 
     /**
@@ -87,7 +91,12 @@ class StationController extends Controller
      */
     public function destroy(Station $station)
     {
+        $logs = StationLog::whereStationId($station->code)->get();
+        foreach ($logs as $log)
+        {
+            $log->delete();
+        }
         $station->delete();
-        redirect()->route('stations.index');
+        return redirect()->route('stations.index');
     }
 }

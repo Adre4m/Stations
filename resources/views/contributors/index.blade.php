@@ -5,11 +5,11 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ trans('stations.title') }}</div>
+                    <div class="panel-heading">{{ trans('contributors.title') }}</div>
                     <div class="panel-body">
-                        <a href="{{ route('stations.create') }}">
+                        <a href="{{ route('contributors.create') }}">
                             <button class="btn btn-primary">
-                                <i class="fa fa-btn fa-plus"></i>{{ trans('stations.add') }}
+                                <i class="fa fa-btn fa-plus"></i>{{ trans('contributors.add') }}
                             </button>
                         </a>
                         {!! $dataTable->table() !!}

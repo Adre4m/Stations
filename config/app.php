@@ -166,6 +166,11 @@ return [
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
+        /*
+         * Forms & HTML LaravelCollective
+         */
+        Collective\Html\HtmlServiceProvider::class,
+
     ],
 
     /*
@@ -220,7 +225,11 @@ return [
          */
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 
-
+        /*
+         * Forms & HTML LaravelCollective
+         */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

@@ -27,7 +27,6 @@ class StationRequest extends FormRequest
             'name'  => 'required|max:255',
             'x'     => 'required',
             'y'     => 'required',
-            'id'    => 'required|exists:contributors',
         ];
     }
 
@@ -41,13 +40,13 @@ class StationRequest extends FormRequest
         $station->name = $this->input('name');
         $station->x = $this->input('x');
         $station->y = $this->input('y');
-        $station->contributor_id = $this->input('id');
+        $station->contributor_id = $this->input('contributor_id');
         $station->save();
         $log = new StationLog;
         $log->station_id = $station->code;
         if($is_new)
         {
-            $log->msg = 'Creation of a new station';
+            $log->msg = 'Creation of a new station, code: ' . $station->code;
         }
         else
         {

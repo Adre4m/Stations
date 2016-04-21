@@ -7,6 +7,8 @@
           <resourceRoots>
             <path value="file://$PROJECT_DIR$/database" />
             <path value="file://$PROJECT_DIR$/resources" />
+            <path value="file://$PROJECT_DIR$/resources/views" />
+            <path value="file://$PROJECT_DIR$/resources/lang" />
           </resourceRoots>
         </entryData>
       </entry>

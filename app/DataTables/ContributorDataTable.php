@@ -2,11 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Models\Station;
-use App\User;
+use App\Models\Contributor;
 use Yajra\Datatables\Services\DataTable;
 
-class StationDataTable extends DataTable
+class ContributorDataTable extends DataTable
 {
 
     /**
@@ -18,15 +17,15 @@ class StationDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn("action", function($station) {
-                return '<a href="/stations/edit' . $station->code . '">
+            ->addColumn("action", function($contributor) {
+                return '<a href="/contributors/edit' . $contributor->id . '">
                             <button class="btn btn-warning" type="button"><i class="fa fa-btn fa-edit"></i>' .
-                trans('stations.edit').
+                trans('contributors.edit').
                 '</button>
                         </a>
-                        <a href="/stations/destroy' . $station->code . '">
+                        <a href="/contributors/destroy' . $contributor->id . '">
                             <button class="btn btn-danger" type="button"><i class="fa fa-btn fa-trash"></i>'.
-                trans('stations.destroy').
+                trans('contributors.destroy').
                 '</button>
                         </a>';
             })
@@ -40,8 +39,8 @@ class StationDataTable extends DataTable
      */
     public function query()
     {
-        $stations = Station::query();
-        return $this->applyScopes($stations);
+        $contributors = Contributor::query();
+        return $this->applyScopes($contributors);
     }
 
     /**
@@ -66,11 +65,9 @@ class StationDataTable extends DataTable
     private function getColumns()
     {
         return [
-            ['data' => 'code', 'title' => trans('stations.code'), 'visible' => false],
-            ['data' => 'name', 'title' => trans('stations.name')],
-            ['data' => 'x', 'title' => trans('stations.x')],
-            ['data' => 'y', 'title' => trans('stations.y')],
-            ['data' => 'msg', 'title' => trans('stations.log')],
+            ['data' => 'id', 'title' => trans('contributors.id'), 'visible' => false],
+            ['data' => 'name', 'title' => trans('contributors.name')],
+            ['data' => 'last_name', 'title' => trans('contributors.last_name')],
         ];
     }
 
@@ -81,6 +78,6 @@ class StationDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'stations';
+        return 'contributors';
     }
 }

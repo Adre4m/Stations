@@ -7,7 +7,7 @@
  */
 
 return [
-    'display' => 'Stations',
+    'title' => 'Stations',
     'add' => 'Create a station',
     'set_name' => 'Name of the station',
     'set_x' => 'Abscissa',
@@ -18,5 +18,7 @@ return [
     'y' => 'Ordinate',
     'edit' => 'Edit',
     'destroy' => 'Destroy',
-    'log' => 'Message'
+    'log' => 'Message',
+    'agree' => 'Confirm',
+    'cancel' => '&laquo; Back to stations',
 ];

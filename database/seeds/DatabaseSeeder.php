@@ -18,7 +18,13 @@ class DatabaseSeeder extends Seeder
     {
         factory(User::class, 50)->create();
         factory(Contributor::class, 50)->create();
-        factory(Station::class, 500)->create();
-
+        factory(Station::class, 5000)->create();
+        foreach (Station::all() as $station)
+        {
+            $log = new StationLog;
+            $log->msg = 'Creation of a new station, code: ' . $station->code ;
+            $log->station_id = $station->code;
+            $log->save();
+        }
     }
 }

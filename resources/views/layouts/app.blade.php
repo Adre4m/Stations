@@ -49,7 +49,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ route('home') }}">{{ trans('pagination.home') }}</a></li>
                     <li><a href="{{ route('stations.index') }}">{{ trans('pagination.stations') }}</a></li>
-                    <li><a href="{{ url('contributors/index') }}">{{ trans('pagination.contributors') }}</a></li>
+                    <li><a href="{{ route('contributors.index') }}">{{ trans('pagination.contributors') }}</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
