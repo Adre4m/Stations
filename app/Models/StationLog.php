@@ -14,4 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 class StationLog extends Model
 {
 
+    protected $relations = [
+      'stations',
+    ];
 }

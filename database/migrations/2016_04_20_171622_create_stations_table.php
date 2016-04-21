@@ -18,10 +18,10 @@ class CreateStationsTable extends Migration
             $table->string('name');
             $table->double('x');
             $table->double('y');
-            $table->integer('id_contributor')->unsigned();
+            $table->integer('contributor_id')->unsigned();
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
-            $table->foreign('id_contributor')->references('id')->on('contributors');
+            $table->foreign('contributor_id')->references('id')->on('contributors');
         });
     }
 

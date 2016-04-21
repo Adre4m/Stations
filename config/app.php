@@ -156,6 +156,16 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * DataTables
+         */
+        Yajra\Datatables\DatatablesServiceProvider::class,
+
+        /*
+         * Ide-helper
+         */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
     ],
 
     /*
@@ -204,6 +214,12 @@ return [
         'Contributor' => App\Models\Contributor::class,
         'Station' => App\Models\Station::class,
         'StationLog' => App\Models\StationLog::class,
+
+        /*
+         * DataTables
+         */
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+
 
     ],
 

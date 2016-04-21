@@ -16,9 +16,9 @@ class CreateStationLogsTable extends Migration
         Schema::create('station_logs', function(Blueprint $table) {
             $table->increments('id');
             $table->longText('msg')->nullable();
-            $table->integer('code_station')->unsigned();
-            $table->timestamp('created_at');
-            $table->foreign('code_station')->references('code')->on('stations');
+            $table->integer('station_id')->unsigned();
+            $table->timestamps();
+            $table->foreign('station_id')->references('code')->on('stations');
         });
     }
 
