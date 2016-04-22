@@ -216,9 +216,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Contributor' => App\Models\Contributor::class,
-        'Station' => App\Models\Station::class,
-        'StationLog' => App\Models\StationLog::class,
 
         /*
          * DataTables

@@ -19,7 +19,7 @@ return [
     'edit' => 'Edit',
     'destroy' => 'Destroy',
     'log' => 'Message',
-    'agree' => 'Confirm',
+    'confirm' => 'Confirm',
     'cancel' => '&laquo; Back to stations',
     'code' => 'Code',
 ];

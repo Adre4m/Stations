@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b2f54bf062635f7e93f1fd0e79cb8daf",
+    "hash": "9278eedc0ccee830f17f34c302a45bdf",
     "content-hash": "e5ae06e45fbb046dd56ea6a3dee1a8c1",
     "packages": [
         {
@@ -997,16 +997,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.20",
+            "version": "1.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a"
+                "reference": "35a83cf67d80d7040f306c77b0a84b9fbcc4fbfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
-                "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/35a83cf67d80d7040f306c77b0a84b9fbcc4fbfb",
+                "reference": "35a83cf67d80d7040f306c77b0a84b9fbcc4fbfb",
                 "shasum": ""
             },
             "require": {
@@ -1076,7 +1076,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2016-03-14 21:54:11"
+            "time": "2016-04-22 10:56:25"
         },
         {
             "name": "league/fractal",

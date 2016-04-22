@@ -28,6 +28,12 @@ class Contributor extends Model
     ];
 
 
+    public function getFullnameAttribute()
+    {
+        return "{$this->name} {$this->last_name}";
+    }
+
+
     public static function query()
     {
         return Contributor::select(['id', 'name', 'last_name'])->newQuery();
