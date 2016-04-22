@@ -66,11 +66,14 @@ class StationDataTable extends DataTable
     private function getColumns()
     {
         return [
-            ['data' => 'code', 'title' => trans('stations.code'), 'visible' => false],
-            ['data' => 'name', 'title' => trans('stations.name')],
+            ['data' => 'contributor_id', 'title' => trans('contributors.id'), 'visible' => false,],
+            ['data' => 'contributor_name', 'title' => trans('contributors.full_name')],
+            ['data' => 'last_name', 'title' => trans('stations.contributor'), 'visible' => false,],
+            ['data' => 'code', 'title' => trans('stations.code'),],
+            ['data' => 'station_name', 'title' => trans('stations.name'),],
             ['data' => 'x', 'title' => trans('stations.x')],
             ['data' => 'y', 'title' => trans('stations.y')],
-            ['data' => 'msg', 'title' => trans('stations.log')],
+//            ['data' => 'msg', 'title' => trans('stations.log')],
         ];
     }
 

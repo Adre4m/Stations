@@ -23,10 +23,10 @@ Route::get('/stations', 'StationController@index')->name('stations.index');
 Route::get('stations/show{station}', 'StationController@show')->name('stations.show');
 Route::get('/contributors', 'ContributorController@index')->name('contributors.index');
 Route::get('contributors/show{contributor}', 'ContributorController@show')->name('contributors.show');
-Route::get('/stations/form', function() {
-    $contributors = Contributor::all();
-    return view('stations.form', ['contributors' => $contributors]);
-});
+//Route::get('/stations/form', function() {
+//    $contributors = Contributor::all();
+//    return view('stations.form', ['contributors' => $contributors]);
+//});
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/stations/create', 'StationController@create')->name('stations.create');

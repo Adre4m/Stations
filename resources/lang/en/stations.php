@@ -21,4 +21,5 @@ return [
     'log' => 'Message',
     'agree' => 'Confirm',
     'cancel' => '&laquo; Back to stations',
+    'code' => 'Code',
 ];
