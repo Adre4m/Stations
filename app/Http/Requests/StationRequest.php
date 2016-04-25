@@ -25,8 +25,8 @@ class StationRequest extends FormRequest
     {
         return [
             'name'  => 'required|max:255',
-            'x'     => 'required|digits:7',
-            'y'     => 'required|digits:7',
+            'x'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"',
+            'y'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"',
         ];
     }
 

@@ -1,5 +1,5 @@
 
-<a href="/stations/edit{{$station->code}}">
+<a href="{{route('stations.edit', $station->code)}}">
     <button class="btn btn-warning" type="button"><i class="fa fa-btn fa-edit"></i>{{trans('stations.edit')}}</button>
 </a>
 @can('destroy', $station)

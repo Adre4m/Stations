@@ -24,6 +24,9 @@ class StationDataTable extends DataTable
             ->addColumn('fullname', function($station){
                 return $station->contributor->fullname;
             })
+            ->addColumn('position', function($station){
+                return $station->position;
+            })
             ->make(true);
     }
 
@@ -62,11 +65,9 @@ class StationDataTable extends DataTable
         return [
             ['data' => 'contributor.id', 'title' => trans('contributors.id'), 'visible' => false,],
             ['data' => 'fullname', 'title' => trans('contributors.full_name')],
-            ['data' => 'contributor.last_name', 'title' => trans('stations.contributor'), 'visible' => false,],
             ['data' => 'code', 'title' => trans('stations.code'),],
             ['data' => 'name', 'title' => trans('stations.name'),],
-            ['data' => 'x', 'title' => trans('stations.x')],
-            ['data' => 'y', 'title' => trans('stations.y')],
+            ['data' => 'position', 'title' => trans('stations.position')],
 //            ['data' => 'msg', 'title' => trans('stations.log')],
         ];
     }

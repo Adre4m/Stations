@@ -31,7 +31,6 @@ Route::group(['middleware' => 'auth'], function() {
         return view('stations.create', ['contributors' => $contributors])->with('station', new App\Models\Station());
     })->name('stations.create');
 
-//    Route::get('/stations/create', 'StationController@create')->name('stations.create');
     Route::post('/stations/store', 'StationController@store')->name('stations.store');
     Route::get('/stations/edit{station}', 'StationController@edit')->name('stations.edit');
     Route::post('/stations/update{station}', 'StationController@update')->name('stations.update');

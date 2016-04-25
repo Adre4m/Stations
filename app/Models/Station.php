@@ -48,19 +48,10 @@ class Station extends Model
     public static function query()
     {
         return Station::with('contributor');
-//        return Contributor::select([
-//            'contributors.id as contributor_id',
-//            'contributors.name as contributor_name',
-//            'contributors.last_name as last_name',
-//            'stations.code as code',
-//            'stations.name as station_name',
-//            'stations.x as x',
-//            'stations.y as y',
-//        ])
-//            ->leftJoin('stations', 'contributor_id', '=', 'contributors.id')
-//            ->newQuery();
-//        return Station::select(['code', 'name', 'x', 'y', 'station_logs.msg as msg'])
-//            ->leftJoin('station_logs', 'station_id', '=', 'stations.code')
-//            ->newQuery();
+    }
+
+    public function getPositionAttribute()
+    {
+        return "({$this->x}, {$this->y})";
     }
 }

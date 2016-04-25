@@ -14,8 +14,8 @@
 $factory->define(App\Models\Station::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
-        'x' => $faker->latitude,
-        'y' => $faker->longitude,
+        'x' => $faker->randomFloat(3, -200, 200),
+        'y' => $faker->randomFloat(3, -200, 200),
         'contributor_id' => App\Models\Contributor::all()->random()->id,
     ];
 });
