@@ -19,7 +19,7 @@ class ContributorController extends Controller
 
     public function create()
     {
-        return view('contributors.create');
+        return view('contributors.create')->with('contributor', new Contributor);
     }
 
     public function store(ContributorRequest $request)

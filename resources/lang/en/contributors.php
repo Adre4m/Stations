@@ -18,4 +18,6 @@ return [
     'set_name' => 'First name:',
     'set_last_name' => 'Last name:',
     'full_name' => 'Contributor\'s full name',
+    'manager' => 'Manager',
+    'owner' => 'Owner',
 ];

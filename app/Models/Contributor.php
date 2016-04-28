@@ -4,15 +4,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Created by PhpStorm.
- * 
- * User: Adrien
- * Date: 20/04/2016
- * Time: 17:34
+ * App\Models\Contributor
  *
  * @property integer $id
  * @property string $name
  * @property string $last_name
+ * @property-read mixed $fullname
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereLastName($value)

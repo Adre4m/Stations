@@ -21,8 +21,11 @@ class StationDataTable extends DataTable
             ->addColumn("action", function ($station){
                 return view('stations.actions')->with('station', $station);
             })
-            ->addColumn('fullname', function($station){
-                return $station->contributor->fullname;
+            ->addColumn('manager', function($station){
+                return $station->manager->fullname;
+            })
+            ->addColumn('owner', function($station){
+                return $station->owner->fullname;
             })
             ->addColumn('position', function($station){
                 return $station->position;
@@ -51,7 +54,7 @@ class StationDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '155px'])
+                    ->addAction(['width' => '151.1px'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -63,8 +66,10 @@ class StationDataTable extends DataTable
     private function getColumns()
     {
         return [
-            ['data' => 'contributor.id', 'title' => trans('contributors.id'), 'visible' => false,],
-            ['data' => 'fullname', 'title' => trans('contributors.full_name')],
+//            ['data' => 'manager.id', 'title' => trans('contributors.id'), 'visible' => false,],
+//            ['data' => 'owner.id', 'title' => trans('contributors.id'), 'visible' => false,],
+            ['data' => 'manager', 'title' => trans('contributors.manager')],
+            ['data' => 'owner', 'title' => trans('contributors.owner')],
             ['data' => 'code', 'title' => trans('stations.code'),],
             ['data' => 'name', 'title' => trans('stations.name'),],
             ['data' => 'position', 'title' => trans('stations.position')],

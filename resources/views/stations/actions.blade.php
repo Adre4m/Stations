@@ -1,9 +1,20 @@
 
-<a href="{{route('stations.edit', $station->code)}}">
-    <button class="btn btn-warning" type="button"><i class="fa fa-btn fa-edit"></i>{{trans('stations.edit')}}</button>
-</a>
+@can('edit', $station)
+    <a href="{{route('stations.edit', $station->code)}}">
+        <button class="btn btn-warning" type="button"><i class="fa fa-btn fa-edit"></i>{{trans('stations.edit')}}</button>
+    </a>
+@endcan
+
+@cannot('edit', $station)
+        <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e" type="button"><i class="fa fa-btn fa-edit"></i>{{trans('stations.edit')}}</button>
+@endcannot
+
 @can('destroy', $station)
-    <a href="/stations/destroy{{$station->code}}">
+    <a href="{{route('stations.destroy', $station->code)}}">
         <button class="btn btn-danger" type="button"><i class="fa fa-btn fa-trash"></i>{{trans('stations.destroy')}}</button>
     </a>
 @endcan
+
+@cannot('destroy', $station)
+        <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e" type="button"><i class="fa fa-btn fa-trash"></i>{{trans('stations.destroy')}}</button>
+@endcannot

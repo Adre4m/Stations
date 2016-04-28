@@ -7,11 +7,18 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{{ trans('contributors.title') }}</div>
                     <div class="panel-body">
-                        <a href="{{ route('contributors.create') }}">
-                            <button class="btn btn-primary">
+                        @can('add', new App\Models\Contributor)
+                            <a href="{{ route('contributors.create') }}">
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-btn fa-plus"></i>{{ trans('contributors.add') }}
+                                </button>
+                            </a>
+                        @endcan
+                        @cannot('add', new App\Models\Contributor)
+                            <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
                                 <i class="fa fa-btn fa-plus"></i>{{ trans('contributors.add') }}
                             </button>
-                        </a>
+                        @endcannot
                         {!! $dataTable->table() !!}
                     </div>
                 </div>

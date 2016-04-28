@@ -11,12 +11,9 @@
 |
 */
 
-$factory->define(App\Models\Station::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Belong::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'x' => $faker->randomFloat(3, -999, 999),
-        'y' => $faker->randomFloat(3, -999, 999),
-        'manager_id' => $faker->numberBetween(1, 50),
-        'owner_id' => $faker->numberBetween(1, 50),
+        'station_id' => $faker->numberBetween(1, 500),
+        'sample_site_id' => $faker->numberBetween(1, 500),
     ];
 });

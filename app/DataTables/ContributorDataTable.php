@@ -17,17 +17,8 @@ class ContributorDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn("action", function($contributor) {
-                return '<a href="/contributors/edit' . $contributor->id . '">
-                            <button class="btn btn-warning" type="button"><i class="fa fa-btn fa-edit"></i>' .
-                trans('contributors.edit').
-                '</button>
-                        </a>
-                        <a href="/contributors/destroy' . $contributor->id . '">
-                            <button class="btn btn-danger" type="button"><i class="fa fa-btn fa-trash"></i>'.
-                trans('contributors.destroy').
-                '</button>
-                        </a>';
+            ->addColumn("action", function ($contributor){
+                return view('contributors.actions')->with('contributor', $contributor);
             })
             ->make(true);
     }

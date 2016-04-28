@@ -7,11 +7,18 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{{ trans('stations.title') }}</div>
                     <div class="panel-body">
-                        <a href="{{ route('stations.create') }}">
-                            <button class="btn btn-primary">
+                        @can('add', new App\Models\Station)
+                            <a href="{{ route('stations.create') }}">
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-btn fa-plus"></i>{{ trans('stations.add') }}
+                                </button>
+                            </a>
+                        @endcan
+                        @cannot('add', new App\Models\Station)
+                            <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
                                 <i class="fa fa-btn fa-plus"></i>{{ trans('stations.add') }}
                             </button>
-                        </a>
+                        @endcannot
                         {!! $dataTable->table() !!}
                     </div>
                 </div>

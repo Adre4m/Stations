@@ -2,25 +2,25 @@
 
 namespace App\Policies;
 
-use App\Models\Station;
+use App\Models\Contributor;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class StationPolicy
+class ContributorPolicy
 {
     use HandlesAuthorization;
 
-    public function destroy(User $user, Station $station)
+    public function destroy(User $user, Contributor $contributor)
     {
         return !auth()->guest();
     }
 
-    public function edit(User $user, Station $station)
+    public function edit(User $user, Contributor $contributor)
     {
         return !auth()->guest();
     }
 
-    public function add(User $user, Station $station)
+    public function add(User $user, Contributor $contributor)
     {
         return !auth()->guest();
     }

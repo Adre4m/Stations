@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Belong;
 use App\Models\Contributor;
+use App\Models\SampleSite;
 use App\Models\Station;
 use App\Models\StationLog;
 use App\User;
@@ -18,7 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         factory(User::class, 50)->create();
         factory(Contributor::class, 50)->create();
-        factory(Station::class, 5000)->create();
+        factory(Station::class, 500)->create();
         foreach (Station::all() as $station)
         {
             $log = new StationLog;
@@ -26,5 +28,7 @@ class DatabaseSeeder extends Seeder
             $log->station_id = $station->code;
             $log->save();
         }
+        factory(SampleSite::class, 500)->create();
+        factory(Belong::class, 14)->create();
     }
 }
