@@ -50,6 +50,7 @@
                     <li><a href="{{ route('home') }}">{{ trans('pagination.home') }}</a></li>
                     <li><a href="{{ route('stations.index') }}">{{ trans('pagination.stations') }}</a></li>
                     <li><a href="{{ route('contributors.index') }}">{{ trans('pagination.contributors') }}</a></li>
+                    <li><a href="{{ route('sample_sites.index') }}">{{ trans('pagination.sample_sites') }}</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

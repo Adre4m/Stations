@@ -8,7 +8,7 @@
 
 return [
     'title' => 'Contributors',
-    'agree' => 'Confirm',
+    'confirm' => 'Confirm',
     'cancel' => '&laquo; Back to contributors',
     'name' => 'Contributor\'s first name',
     'last_name' => 'Contributor\'s last name',

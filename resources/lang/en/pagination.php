@@ -18,6 +18,7 @@ return [
     'home'          => 'Home',
     'contributors'  => 'Contributors',
     'stations'      => 'Stations',
+    'sample_sites'  => 'Sample sites',
     'login'         => 'Login',
     'register'      => 'Register',
     'logout'        => 'Logout'
