@@ -22,6 +22,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $uuid
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereUuid($value)
  */
 class User extends Authenticatable
 {

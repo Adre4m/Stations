@@ -15,10 +15,11 @@ class CreateBelongsTable extends Migration
     {
         Schema::create('belongs', function(Blueprint $table) {
             $table->increments('id');
+            $table->uuid('uuid');
             $table->integer('station_id')->unsigned();
-            $table->integer('sample_site_id')->unsigned();
+            $table->integer('measurement_network_id')->unsigned();
             $table->foreign('station_id')->references('code')->on('stations');
-            $table->foreign('sample_site_id')->references('id')->on('sample_sites');
+            $table->foreign('measurement_network_id')->references('id')->on('measurement_networks');
             $table->timestamps();
         });
     }

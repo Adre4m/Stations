@@ -2,6 +2,7 @@
 
 use App\Models\Belong;
 use App\Models\Contributor;
+use App\Models\MeasurementNetwork;
 use App\Models\SampleSite;
 use App\Models\Station;
 use App\Models\StationLog;
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
             $log->save();
         }
         factory(SampleSite::class, 500)->create();
+        factory(MeasurementNetwork::class, 500)->create();
         factory(Belong::class, 14)->create();
     }
 }

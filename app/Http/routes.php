@@ -23,6 +23,8 @@ Route::get('/stations', 'StationController@index')->name('stations.index');
 Route::get('stations/show{station}', 'StationController@show')->name('stations.show');
 Route::get('/contributors', 'ContributorController@index')->name('contributors.index');
 Route::get('contributors/show{contributor}', 'ContributorController@show')->name('contributors.show');
+Route::get('/sample_sites', 'SampleSiteController@index')->name('sample_sites.index');
+Route::get('/sample_sites/show{sample_site}', 'SampleSiteController@show')->name('sample_sites.show');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/stations/create', 'StationController@create')->name('stations.create');
@@ -36,4 +38,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/contributors/edit{contributor}', 'ContributorController@edit')->name('contributors.edit');
     Route::get('/contributors/update{contributor}', 'ContributorController@update')->name('contributors.update');
     Route::get('/contributors/destroy{contributor}', 'ContributorController@destroy')->name('contributors.destroy');
+
+    Route::get('/sample_sites/create', 'SampleSiteController@create')->name('sample_sites.create');
+    Route::post('/sample_sites/store', 'SampleSiteController@store')->name('sample_sites.store');
+    Route::get('/sample_sites/edit{sample_site}', 'SampleSiteController@edit')->name('sample_sites.edit');
+    Route::post('/sample_sites/update{sample_site}', 'SampleSiteController@update')->name('sample_sites.update');
+    Route::get('/sample_sites/destroy{sample_site}', 'SampleSiteController@destroy')->name('sample_sites.destroy');
 });

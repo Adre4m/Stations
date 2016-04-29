@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Contributor;
+use App\Models\SampleSite;
 use App\Models\Station;
 use App\Policies\ContributorPolicy;
+use App\Policies\SampleSitePolicy;
 use App\Policies\StationPolicy;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -19,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Station::class => StationPolicy::class,
         Contributor::class => ContributorPolicy::class,
+        SampleSite::class => SampleSitePolicy::class,
     ];
 
     /**

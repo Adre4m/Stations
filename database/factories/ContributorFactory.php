@@ -13,6 +13,7 @@
 
 $factory->define(App\Models\Contributor::class, function (Faker\Generator $faker) {
     return [
+        'uuid' => $faker->uuid,
         'name' => $faker->firstName,
         'last_name' => $faker->lastName,
     ];

@@ -10,6 +10,7 @@ class CreateContributorsTable extends Migration
     {
         Schema::create('contributors', function(Blueprint $table) {
             $table->increments('id');
+            $table->uuid('uuid');
             $table->string('name');
             $table->string('last_name');
         });

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * App\Models\Station
  *
  * @property integer $code
+ * @property string $uuid
  * @property string $name
  * @property float $x
  * @property float $y
@@ -18,10 +19,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property-read \App\Models\Contributor $manager
  * @property-read \App\Models\Contributor $owner
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Belong[] $sample_sites
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StationLog[] $stationLogs
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SampleSite[] $sample_sites
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Belong[] $measurement_networks
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StationLog[] $station_logs
  * @property-read mixed $position
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUuid($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereX($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereY($value)
@@ -48,10 +51,15 @@ class Station extends Model
 
     public function sample_sites()
     {
+        return $this->hasMany(SampleSite::class);
+    }
+
+    public function measurement_networks()
+    {
         return $this->hasMany(Belong::class);
     }
 
-    public function stationLogs()
+    public function station_logs()
     {
         return $this->hasMany(StationLog::class);
     }

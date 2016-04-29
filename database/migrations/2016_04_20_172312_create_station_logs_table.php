@@ -15,6 +15,7 @@ class CreateStationLogsTable extends Migration
     {
         Schema::create('station_logs', function(Blueprint $table) {
             $table->increments('id');
+            $table->uuid('uuid');
             $table->longText('msg')->nullable();
             $table->integer('station_id')->unsigned();
             $table->timestamps();

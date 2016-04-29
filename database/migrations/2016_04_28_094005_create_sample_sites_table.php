@@ -9,10 +9,13 @@ class CreateSampleSitesTable extends Migration
     {
         Schema::create('sample_sites', function(Blueprint $table) {
             $table->increments('id');
+            $table->uuid('uuid');
             $table->string('name');
             $table->double('x');
             $table->double('y');
+            $table->integer('station_id')->unsigned();
             $table->timestamps();
+            $table->foreign('station_id')->references('code')->on('stations');
         });
     }
 

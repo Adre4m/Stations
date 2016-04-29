@@ -31,12 +31,22 @@
     @endif
 </div>
 
-<div class="form-group{{ $errors->has('contributor_id') ? ' has-error' : '' }}">
-    {!! Form::label('contributor_id', trans('stations.set_contributor')) !!}
-    {!! Form::select('contributor_id', $contributors->pluck('fullname', 'id')) !!}<br>
-    @if ($errors->has('contributor_id'))
+<div class="form-group{{ $errors->has('manager_id') ? ' has-error' : '' }}">
+    {!! Form::label('manager_id', trans('stations.set_manager')) !!}
+    {!! Form::select('manager_id', $contributors->pluck('fullname', 'id')) !!}<br>
+    @if ($errors->has('manager_id'))
         <span class="help-block">
-            <strong>{{ $errors->first('contributor_id') }}</strong>
+            <strong>{{ $errors->first('manager_id') }}</strong>
+        </span>
+    @endif
+</div>
+
+<div class="form-group{{ $errors->has('owner_id') ? ' has-error' : '' }}">
+    {!! Form::label('owner_id', trans('stations.set_owner')) !!}
+    {!! Form::select('owner_id', $contributors->pluck('fullname', 'id')) !!}<br>
+    @if ($errors->has('owner_id'))
+        <span class="help-block">
+            <strong>{{ $errors->first('owner_id') }}</strong>
         </span>
     @endif
 </div>

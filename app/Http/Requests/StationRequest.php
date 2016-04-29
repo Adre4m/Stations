@@ -12,6 +12,7 @@ namespace App\Http\Requests;
 use App\Models\Station;
 use App\Models\StationLog;
 use Illuminate\Foundation\Http\FormRequest;
+use Webpatser\Uuid\Uuid;
 
 class StationRequest extends FormRequest
 {
@@ -36,11 +37,13 @@ class StationRequest extends FormRequest
         if($is_new)
         {
             $station = new Station;
+            $station->uuid = Uuid::generate(4);
         }
         $station->name = $this->input('name');
         $station->x = $this->input('x');
         $station->y = $this->input('y');
-        $station->contributor_id = $this->input('contributor_id');
+        $station->manager_id = $this->input('manager_id');
+        $station->owner_id = $this->input('owner_id');
         $station->save();
         $log = new StationLog;
         $log->station_id = $station->code;
