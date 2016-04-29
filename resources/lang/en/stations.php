@@ -7,7 +7,7 @@ return [
     'set_x' => 'Abscissa',
     'set_y' => 'Ordinate',
     'set_manager' => 'Select the manager',
-    'set_owner' => 'Select the manager',
+    'set_owner' => 'Select the owner',
     'name' => 'Station\'s name',
     'position' => 'Station\'s position',
     'edit' => 'Edit',

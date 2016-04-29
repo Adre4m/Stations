@@ -19,7 +19,7 @@
                                 <i class="fa fa-btn fa-plus"></i>{{ trans('stations.add') }}
                             </button>
                         @endcannot
-                        {!! $dataTable->table() !!}
+                        {!! $dataTable->table(['id' => 'stations']) !!}
                     </div>
                 </div>
             </div>
@@ -31,5 +31,15 @@
     <!--DataTables-->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" type="text/css">
     <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#stations');
+            var dataTable = table.DataTable();
+            table.find('tbody').on('click', 'tr', function() {
+                var data = dataTable.row(this).data();
+                alert('AFFICHER DETAILS SI POSSIBLE');
+            });
+        });
+    </script>
     {!! $dataTable->scripts() !!}
 @endpush

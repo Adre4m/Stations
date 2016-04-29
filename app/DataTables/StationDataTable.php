@@ -54,7 +54,7 @@ class StationDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '151.1px'])
+                    ->addAction(['width' => '180.7px'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -66,14 +66,11 @@ class StationDataTable extends DataTable
     private function getColumns()
     {
         return [
-//            ['data' => 'manager.id', 'title' => trans('contributors.id'), 'visible' => false,],
-//            ['data' => 'owner.id', 'title' => trans('contributors.id'), 'visible' => false,],
             ['data' => 'manager', 'title' => trans('contributors.manager')],
             ['data' => 'owner', 'title' => trans('contributors.owner')],
             ['data' => 'code', 'title' => trans('stations.code'),],
             ['data' => 'name', 'title' => trans('stations.name'),],
             ['data' => 'position', 'title' => trans('stations.position')],
-//            ['data' => 'msg', 'title' => trans('stations.log')],
         ];
     }
 

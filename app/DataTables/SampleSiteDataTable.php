@@ -49,7 +49,7 @@ class SampleSiteDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '151.1px'])
+                    ->addAction(['width' => '180.5px'])
                     ->parameters($this->getBuilderParameters());
     }
 

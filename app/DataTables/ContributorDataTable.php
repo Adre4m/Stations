@@ -44,7 +44,7 @@ class ContributorDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '155px'])
+                    ->addAction(['width' => '180.5px'])
                     ->parameters($this->getBuilderParameters());
     }
 
