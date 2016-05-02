@@ -42,4 +42,9 @@ class StationNetwork extends Model
         return $this->belongsTo(Network::class);
     }
 
+    public static function query()
+    {
+        return StationNetwork::select('station_id', 'network_id', 'began_at')->with('station', 'network')->newQuery();
+    }
+
 }

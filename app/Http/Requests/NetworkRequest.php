@@ -29,13 +29,15 @@ class NetworkRequest extends FormRequest
         ];
     }
 
-    public function persist($measurement_network = null)
+    public function persist($network = null)
     {
-        if($measurement_network == null)
+        if($network == null)
         {
-            $measurement_network = new Network;
-            $measurement_network->uuid = Uuid::generate(4);
+            $network = new Network;
+            $network->uuid = Uuid::generate(4);
         }
-        return $measurement_network->save();
+        $network->code = $this->input('code');
+        $network->name = $this->input('name');
+        return $network->save();
     }
 }

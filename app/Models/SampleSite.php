@@ -38,7 +38,7 @@ class SampleSite extends Model
 
     public static function query()
     {
-        return SampleSite::select(['code', 'name', 'x', 'y',])->with('station');
+        return SampleSite::select(['code', 'name', 'x', 'y',])->with('station')->newQuery();
     }
 
     public function getPositionAttribute()
