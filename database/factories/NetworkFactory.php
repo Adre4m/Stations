@@ -15,6 +15,6 @@ $factory->define(App\Models\Network::class, function (Faker\Generator $faker) {
     return [
         'uuid' => $faker->unique()->uuid,
         'code' => $faker->unique()->randomNumber(),
-        'name' => $faker->name,
+        'name' => $faker->company,
     ];
 });

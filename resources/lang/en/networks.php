@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'title' => 'Measurement networks',
-    'add' => 'Create a measurement network',
+    'title' => 'Networks',
+    'add' => 'Create a network',
     'edit' => 'Edit',
     'destroy' => 'Destroy',
     'confirm' => 'Confirm',
-    'cancel' => '&laquo; Back to measurement networks',
-    'id' => 'ID',
-    'uuid' => 'UUID',
+    'cancel' => '&laquo; Back to networks',
+    'code' => 'Code',
+    'name' => 'Name'
 ];

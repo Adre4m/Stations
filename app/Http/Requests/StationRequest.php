@@ -25,10 +25,10 @@ class StationRequest extends FormRequest
     public function rules()
     {
         return [
-            'code'  => 'required|unique',
+            'code'  => 'required|unique:stations',
             'name'  => 'required|max:255',
-            'x'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"' ,
-            'y'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"',
+            'x'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"|unique:stations,x,NULL,id,y,'. $this->input('y'),
+            'y'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"|unique:stations,y,NULL,id,x,'. $this->input('x'),
         ];
     }
 

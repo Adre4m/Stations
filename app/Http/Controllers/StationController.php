@@ -19,7 +19,6 @@ class StationController extends Controller
      */
     public function index(StationDataTable $dataTable)
     {
-//        return view('stations.index');
         return $dataTable->render('stations.index');
     }
 

@@ -1,6 +1,18 @@
 {!! Form::model($station, ['route' => ($station->exists) ? ["stations.update", $station->code] :  'stations.store']) !!}
 {!! Form::token() !!}
 
+<div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
+    {!! Form::label('code', trans('stations.set_code')) !!}
+    <div class="col-md-6">
+        {!! Form::text('code') !!}<br>
+        @if ($errors->has('code'))
+            <span class="help-block">
+                <strong>{{ $errors->first('code') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
     {!! Form::label('name', trans('stations.set_name')) !!}
     <div class="col-md-6">
