@@ -20,4 +20,6 @@ return [
     'full_name' => 'Nom complet de l\'intervenant',
     'manager' => 'Gestionnaire',
     'owner' => 'Propriétaire',
+    'code' => 'Code',
+    'siret' => 'Siret',
 ];

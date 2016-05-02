@@ -9,22 +9,22 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateMeasurementNetworksTable extends Migration
+class CreateNetworksTable extends Migration
 {
 
     public function up()
     {
-        Schema::create('measurement_networks', function(Blueprint $table) {
+        Schema::create('networks', function(Blueprint $table) {
             $table->increments('id');
-            $table->uuid('uuid');
+            $table->uuid('uuid')->unique();
+            $table->integer('code')->unique();
+            $table->string('name');
             $table->timestamps();
-            $table->dateTime('began_at');
-            $table->dateTime('end_at')->nullable();
         });
     }
 
     public function down()
     {
-        Schema::drop('measurement_networks');
+        Schema::drop('networks');
     }
 }

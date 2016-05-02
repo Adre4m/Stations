@@ -32,10 +32,16 @@ class Contributor extends Model
         return "{$this->name} {$this->last_name}";
     }
 
+    public function stations()
+    {
+        return $this->hasMany(Station::class, 'manager_id', 'owner_id');
+    }
+
 
     public static function query()
     {
-        return Contributor::select(['id', 'name', 'last_name'])->newQuery();
+//        return Contributor::with('stations');
+            return Contributor::select(['code', 'name', 'last_name', 'siret'])->with('stations');
     }
 
 }

@@ -11,10 +11,10 @@
 |
 */
 
-$factory->define(App\Models\Belong::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Network::class, function (Faker\Generator $faker) {
     return [
-        'uuid' => $faker->uuid,
-        'station_id' => $faker->numberBetween(1, 500),
-        'measurement_network_id' => $faker->numberBetween(1, 500),
+        'uuid' => $faker->unique()->uuid,
+        'code' => $faker->unique()->randomNumber(),
+        'name' => $faker->name,
     ];
 });

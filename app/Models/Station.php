@@ -20,8 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Contributor $manager
  * @property-read \App\Models\Contributor $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SampleSite[] $sample_sites
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Belong[] $measurement_networks
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StationLog[] $station_logs
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StationNetwork[] $measurement_networks
  * @property-read mixed $position
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUuid($value)
@@ -36,8 +35,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Station extends Model
 {
-
-    protected $primaryKey = 'code';
 
     public function manager()
     {
@@ -54,19 +51,15 @@ class Station extends Model
         return $this->hasMany(SampleSite::class);
     }
 
-    public function measurement_networks()
+    public function networks()
     {
-        return $this->hasMany(Belong::class);
-    }
-
-    public function station_logs()
-    {
-        return $this->hasMany(StationLog::class);
+        return $this->hasMany(StationNetwork::class);
     }
 
     public static function query()
     {
-        return Station::with('manager', 'owner', 'sample_sites');
+        return Station::select(['code', 'name', 'x', 'y', 'manager_id', 'owner_id',])
+            ->with('manager', 'owner', 'sample_sites');
     }
 
     public function getPositionAttribute()

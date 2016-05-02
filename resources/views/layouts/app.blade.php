@@ -23,6 +23,59 @@
         .fa-btn {
             margin-right: 6px;
         }
+
+        .dataTable  {
+            border: solid 1px #d5d5d5;
+        }
+
+        .dataTable .odd {
+            background-color: #f5f5f5;
+        }
+
+        .dataTable .odd :hover:not(.btn){
+            background-color: #f0f0f0;
+        }
+
+        .dataTable .even {
+            background-color: #e5e5e5;
+        }
+
+        .dataTable .even :hover:not(.btn) {
+            background-color: #e0e0e0;
+        }
+
+        .navbar {
+            background-color: #61addd;
+        }
+
+        .navbar .navbar-brand,
+        .navbar-default .navbar-nav > li > a {
+            color: #ffffff;
+        }
+
+        .navbar .navbar-brand:hover,
+        .navbar-default .navbar-nav > li > a:hover {
+            color: #ffffff;
+            background-color:#509ccc;
+        }
+
+        .navbar-default .navbar-nav > .open > a,
+        .navbar-default .navbar-nav > .open > a:focus,
+        .navbar-default .navbar-nav > .open > a:hover
+        {
+            color:#ffffff;
+            background-color:#509ccc;
+        }
+
+        .dropdown-menu > li > a{
+            color:#61addd;
+        }
+
+        .dropdown-menu > li > a:hover {
+            color:#509ccc;
+            background-color: inherit;
+        }
+
     </style>
 </head>
 <body id="app-layout">
@@ -51,6 +104,7 @@
                     <li><a href="{{ route('stations.index') }}">{{ trans('pagination.stations') }}</a></li>
                     <li><a href="{{ route('contributors.index') }}">{{ trans('pagination.contributors') }}</a></li>
                     <li><a href="{{ route('sample_sites.index') }}">{{ trans('pagination.sample_sites') }}</a></li>
+                    <li><a href="{{ route('networks.index') }}">{{ trans('pagination.networks') }}</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

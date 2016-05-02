@@ -2,11 +2,12 @@
 
 namespace App\DataTables;
 
+use App\Models\Network;
 use App\Models\Station;
 use App\User;
 use Yajra\Datatables\Services\DataTable;
 
-class StationDataTable extends DataTable
+class NetworkDataTable extends DataTable
 {
 
     /**
@@ -18,17 +19,8 @@ class StationDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn("action", function ($station){
-                return view('stations.actions')->with('station', $station);
-            })
-            ->addColumn('manager', function($station){
-                return $station->manager->fullname;
-            })
-            ->addColumn('owner', function($station){
-                return $station->owner->fullname;
-            })
-            ->addColumn('position', function($station){
-                return $station->position;
+            ->addColumn("action", function ($network){
+                return view('networks.actions')->with('network', $network);
             })
             ->make(true);
     }
@@ -40,7 +32,7 @@ class StationDataTable extends DataTable
      */
     public function query()
     {
-        return $this->applyScopes(Station::query());
+        return $this->applyScopes(Network::query());
     }
 
     /**
@@ -53,7 +45,7 @@ class StationDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '180.7px'])
+                    ->addAction(['width' => '180.5px'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -65,13 +57,8 @@ class StationDataTable extends DataTable
     private function getColumns()
     {
         return [
-            ['data' => 'code', 'title' => trans('stations.code'),],
-            ['data' => 'name', 'title' => trans('stations.name'),],
-            ['data' => 'position', 'title' => trans('stations.position')],
-            ['data' => 'manager_id', 'visible' => false],
-            ['data' => 'manager', 'title' => trans('contributors.manager')],
-            ['data' => 'owner_id', 'visible' => false],
-            ['data' => 'owner', 'title' => trans('contributors.owner')],
+            ['data' => 'code', 'title' => trans('networks.code')],
+            ['data' => 'name', 'title' => trans('networks.name')],
         ];
     }
 
@@ -82,6 +69,6 @@ class StationDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'stations';
+        return 'networks';
     }
 }

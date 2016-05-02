@@ -30,8 +30,7 @@ class ContributorDataTable extends DataTable
      */
     public function query()
     {
-        $contributors = Contributor::query();
-        return $this->applyScopes($contributors);
+        return $this->applyScopes(Contributor::query());
     }
 
     /**
@@ -56,9 +55,10 @@ class ContributorDataTable extends DataTable
     private function getColumns()
     {
         return [
-            ['data' => 'id', 'title' => trans('contributors.id'), 'visible' => false],
-            ['data' => 'name', 'title' => trans('contributors.name')],
-            ['data' => 'last_name', 'title' => trans('contributors.last_name')],
+            ['data' => 'code', 'title' => trans('contributors.code')],
+            ['data' => 'name', 'title' => trans('contributors.name'),],
+            ['data' => 'last_name', 'title' => trans('contributors.last_name'),],
+            ['data' => 'siret', 'title' => trans('contributors.siret'),],
         ];
     }
 

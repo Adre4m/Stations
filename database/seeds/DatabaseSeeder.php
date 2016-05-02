@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Belong;
+use App\Models\StationNetwork;
 use App\Models\Contributor;
-use App\Models\MeasurementNetwork;
+use App\Models\Network;
 use App\Models\SampleSite;
 use App\Models\Station;
 use App\Models\StationLog;
@@ -22,15 +22,8 @@ class DatabaseSeeder extends Seeder
         factory(User::class, 50)->create();
         factory(Contributor::class, 50)->create();
         factory(Station::class, 500)->create();
-        foreach (Station::all() as $station)
-        {
-            $log = new StationLog;
-            $log->msg = 'Creation of a new station, code: ' . $station->code ;
-            $log->station_id = $station->code;
-            $log->save();
-        }
         factory(SampleSite::class, 500)->create();
-        factory(MeasurementNetwork::class, 500)->create();
-        factory(Belong::class, 14)->create();
+        factory(Network::class, 500)->create();
+        factory(StationNetwork::class, 14)->create();
     }
 }

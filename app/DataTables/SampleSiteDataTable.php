@@ -61,7 +61,7 @@ class SampleSiteDataTable extends DataTable
     private function getColumns()
     {
         return [
-            ['data' => 'id', 'title' => trans('sample_sites.id'),],
+            ['data' => 'code', 'title' => trans('sample_sites.code'),],
             ['data' => 'name', 'title' => trans('sample_sites.name'),],
             ['data' => 'position', 'title' => trans('sample_sites.position')],
         ];

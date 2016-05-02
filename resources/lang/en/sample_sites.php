@@ -13,5 +13,5 @@ return [
     'destroy' => 'Destroy',
     'confirm' => 'Confirm',
     'cancel' => '&laquo; Back to sample sites',
-    'id' => 'ID',
+    'code' => 'Code',
 ];

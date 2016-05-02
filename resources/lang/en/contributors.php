@@ -20,4 +20,6 @@ return [
     'full_name' => 'Contributor\'s full name',
     'manager' => 'Manager',
     'owner' => 'Owner',
+    'code' => 'Code',
+    'siret' => 'Siret',
 ];

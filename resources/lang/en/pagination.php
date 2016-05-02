@@ -19,6 +19,7 @@ return [
     'contributors'  => 'Contributors',
     'stations'      => 'Stations',
     'sample_sites'  => 'Sample sites',
+    'networks'      => 'Networks',
     'login'         => 'Login',
     'register'      => 'Register',
     'logout'        => 'Logout'
