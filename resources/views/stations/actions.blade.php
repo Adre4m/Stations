@@ -1,6 +1,6 @@
 
 @can('edit', $station)
-    <a href="{{route('stations.edit', $station->code)}}">
+    <a href="{{route('stations.edit', $station->id)}}">
         <button class="btn btn-warning" type="button"><i class="fa fa-btn fa-edit"></i>{{trans('stations.edit')}}</button>
     </a>
 @endcan
@@ -10,7 +10,7 @@
 @endcannot
 
 @can('destroy', $station)
-    <a href="{{route('stations.destroy', $station->code)}}">
+    <a href="{{route('stations.destroy', $station->id)}}">
         <button class="btn btn-danger" type="button"><i class="fa fa-btn fa-trash"></i>{{trans('stations.destroy')}}</button>
     </a>
 @endcan

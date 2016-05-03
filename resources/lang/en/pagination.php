@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'title'         => 'Station manager',
     'previous'      => '&laquo; Previous',
     'next'          => 'Next &raquo;',
     'home'          => 'Home',
@@ -20,6 +21,7 @@ return [
     'stations'      => 'Stations',
     'sample_sites'  => 'Sample sites',
     'networks'      => 'Networks',
+    'station_networks'      => 'Stations networks',
     'login'         => 'Login',
     'register'      => 'Register',
     'logout'        => 'Logout'

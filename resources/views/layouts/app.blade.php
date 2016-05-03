@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>{{trans('pagination.title')}}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -93,7 +93,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    {{trans('pagination.title')}}
                 </a>
             </div>
 
@@ -105,6 +105,7 @@
                     <li><a href="{{ route('contributors.index') }}">{{ trans('pagination.contributors') }}</a></li>
                     <li><a href="{{ route('sample_sites.index') }}">{{ trans('pagination.sample_sites') }}</a></li>
                     <li><a href="{{ route('networks.index') }}">{{ trans('pagination.networks') }}</a></li>
+                    <li><a href="{{ route('station_networks.index') }}">{{ trans('pagination.station_networks') }}</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

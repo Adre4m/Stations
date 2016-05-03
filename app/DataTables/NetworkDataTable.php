@@ -19,9 +19,9 @@ class NetworkDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-//            ->addColumn("action", function ($network){
-//                return view('networks.actions')->with('network', $network);
-//            })
+            ->addColumn("action", function ($network){
+                return view('networks.actions')->with('network', $network);
+            })
             ->make(true);
     }
 

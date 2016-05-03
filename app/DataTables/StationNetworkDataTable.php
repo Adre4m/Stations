@@ -20,8 +20,14 @@ class StationNetworkDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn("action", function ($network){
-                return view('networks.actions')->with('network', $network);
+            ->addColumn("action", function ($station_network){
+                return view('station_networks.actions')->with('station_network', $station_network);
+            })
+            ->addColumn('station', function($station_network) {
+                return $station_network->station->code;
+            })
+            ->addColumn('network', function($station_network) {
+                return $station_network->network->code;
             })
             ->make(true);
     }
@@ -58,9 +64,12 @@ class StationNetworkDataTable extends DataTable
     private function getColumns()
     {
         return [
+            ['data' => 'station_id', 'visible' => false],
+            ['data' => 'network_id', 'visible' => false],
+            ['data' => 'began_at', 'title' => trans('station_networks.began_at')],
+            ['data' => 'end_at', 'title' => trans('station_networks.end_at')],
             ['data' => 'station', 'title' => trans('station_networks.station')],
             ['data' => 'network', 'title' => trans('station_networks.network')],
-            ['data' => 'began_at', 'title' => trans('station_networks.began_at')],
         ];
     }
 

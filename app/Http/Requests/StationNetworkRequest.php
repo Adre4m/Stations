@@ -10,6 +10,7 @@ namespace App\Http\Requests;
 
 
 use App\Models\Network;
+use App\Models\StationNetwork;
 use Doctrine\Common\Cache\ZendDataCache;
 use Illuminate\Foundation\Http\FormRequest;
 use Webpatser\Uuid\Uuid;
@@ -32,13 +33,17 @@ class StationNetworkRequest extends FormRequest
         ];
     }
 
-    public function persist($measurement_network = null)
+    public function persist($station_network = null)
     {
-        if($measurement_network == null)
+        if($station_network == null)
         {
-            $measurement_network = new Network;
-            $measurement_network->uuid = Uuid::generate(4);
+            $station_network = new StationNetwork;
+            $station_network->uuid = Uuid::generate(4);
         }
-        return $measurement_network->save();
+        $station_network->station_id = $this->input('station_id');
+        $station_network->network_id = $this->input('network_id');
+        $station_network->began_at = $this->input('began_at');
+        $station_network->end_at = $this->input('end_at');
+        return $station_network->save();
     }
 }

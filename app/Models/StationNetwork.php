@@ -44,7 +44,19 @@ class StationNetwork extends Model
 
     public static function query()
     {
-        return StationNetwork::select('station_id', 'network_id', 'began_at')->with('station', 'network')->newQuery();
+        return StationNetwork::select(['station_id', 'network_id', 'began_at', 'end_at'])->with('station', 'network')->newQuery();
     }
+
+    /*public function getStationAttribute()
+    {
+        $station = Station::findOrFail($this->station_id);
+        return "{$station->code}";
+    }
+
+    public function getNetworkAttribute()
+    {
+        $network = Network::findOrFail($this->network_id);
+        return "{$network->code}";
+    }*/
 
 }

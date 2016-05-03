@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{ trans('station_networks.title') }}</div>
                 <div class="panel-body">
-                    @include('station_networks.form', ['station_network' => $station_network])
+                    @include('station_networks.form', ['station_network' => new \App\Models\StationNetwork])
                 </div>
             </div>
         </div>

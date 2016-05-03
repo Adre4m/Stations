@@ -1,49 +1,49 @@
-{!! Form::model($station_network, ['route' => ($station_network->exists) ? ["station_networks.update", $station_network->id] :  'station_networks.create']) !!}
+{!! Form::model($station_network, ['route' => ($station_network->exists) ? ["station_networks.update", $station_network->id] :  'station_networks.store']) !!}
 {!! Form::token() !!}
-
-<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-    {!! Form::label('name', trans('station_networks.set_name')) !!}
-    <div class="col-md-6">
-        {!! Form::text('name') !!}<br>
-        @if ($errors->has('name'))
-            <span class="help-block">
-                <strong>{{ $errors->first('name') }}</strong>
-            </span>
-        @endif
-    </div>
-</div>
-
-<div class="form-group{{ $errors->has('x') ? ' has-error' : '' }}">
-    {!! Form::label('x', trans('station_networks.set_x')) !!}
-    <div class="col-md-6">
-        {!! Form::text('x') !!}<br>
-        @if ($errors->has('x'))
-            <span class="help-block">
-                <strong>{{ $errors->first('x') }}</strong>
-            </span>
-        @endif
-    </div>
-</div>
-
-<div class="form-group{{ $errors->has('y') ? ' has-error' : '' }}">
-    {!! Form::label('y', trans('station_networks.set_y')) !!}
-    <div class="col-md-6">
-        {!! Form::text('y') !!}<br>
-        @if ($errors->has('y'))
-            <span class="help-block">
-                <strong>{{ $errors->first('y') }}</strong>
-            </span>
-        @endif
-    </div>
-</div>
 
 <div class="form-group{{ $errors->has('station_id') ? ' has-error' : '' }}">
     {!! Form::label('station_id', trans('station_networks.set_station')) !!}
     <div class="col-md-6">
-        {!! Form::select('station_id', $stations->pluck('name', 'code')) !!}<br>
+        {!! Form::select('station_id', $stations->pluck('name', 'id')) !!}<br>
         @if ($errors->has('station_id'))
             <span class="help-block">
                 <strong>{{ $errors->first('station_id') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
+<div class="form-group{{ $errors->has('network_id') ? ' has-error' : '' }}">
+    {!! Form::label('network_id', trans('station_networks.set_network')) !!}
+    <div class="col-md-6">
+        {!! Form::select('network_id', $networks->pluck('name', 'id')) !!}<br>
+        @if ($errors->has('network_id'))
+            <span class="help-block">
+                <strong>{{ $errors->first('network_id') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
+<div class="form-group{{ $errors->has('began_at') ? ' has-error' : '' }}">
+    {!! Form::label('began_at', trans('station_networks.set_began')) !!}
+    <div class="col-md-6">
+        {!! Form::date('began_at', \Carbon\Carbon::now()) !!}<br>
+        @if ($errors->has('began_at'))
+            <span class="help-block">
+                <strong>{{ $errors->first('began_at') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
+<div class="form-group{{ $errors->has('end_at') ? ' has-error' : '' }}">
+    {!! Form::label('end_at', trans('station_networks.set_end')) !!}
+    <div class="col-md-6">
+        {!! Form::date('end_at') !!}<br>
+        @if ($errors->has('end_at'))
+            <span class="help-block">
+                <strong>{{ $errors->first('end_at') }}</strong>
             </span>
         @endif
     </div>
