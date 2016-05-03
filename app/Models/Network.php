@@ -28,6 +28,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereBeganAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereEndAt($value)
  * @mixin \Eloquent
+ * @property integer $code
+ * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StationNetwork[] $stationNetworks
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereName($value)
  */
 class Network extends Model
 {

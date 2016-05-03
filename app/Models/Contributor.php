@@ -16,6 +16,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereLastName($value)
  * @mixin \Eloquent
+ * @property integer $code
+ * @property string $siret
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Station[] $stations
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereSiret($value)
  */
 class Contributor extends Model
 {

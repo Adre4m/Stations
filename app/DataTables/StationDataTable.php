@@ -53,7 +53,7 @@ class StationDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '180.7px'])
+                    ->addAction(['width' => '180.8px'])
                     ->parameters($this->getBuilderParameters());
     }
 

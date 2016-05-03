@@ -29,6 +29,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\StationNetwork whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\StationNetwork whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property integer $network_id
+ * @property string $began_at
+ * @property string $end_at
+ * @property-read \App\Models\Network $network
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\StationNetwork whereBeganAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\StationNetwork whereEndAt($value)
  */
 class StationNetwork extends Model
 {

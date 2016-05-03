@@ -32,6 +32,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property integer $id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StationNetwork[] $networks
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereId($value)
  */
 class Station extends Model
 {

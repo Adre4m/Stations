@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property integer $code
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereCode($value)
  */
 class SampleSite extends Model
 {
