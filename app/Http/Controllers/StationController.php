@@ -91,12 +91,6 @@ class StationController extends Controller
     public function destroy(Station $station)
     {
         $this->authorize('destroy', $station);
-
-        $logs = StationLog::whereStationId($station->code)->get();
-        foreach ($logs as $log)
-        {
-            $log->delete();
-        }
         $station->delete();
         return redirect()->route('stations.index');
     }
