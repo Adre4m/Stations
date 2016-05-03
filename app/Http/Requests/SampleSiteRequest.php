@@ -23,10 +23,13 @@ class SampleSiteRequest extends FormRequest
 
     public function rules()
     {
+        $sample_site = $this->sample_site;
+        $id = ($sample_site == null) ? null : $sample_site->id;
         return [
+            'code'  => 'required|unique:sample_sites,code,'.$id.',id',
             'name'  => 'required|max:255',
-            'x'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"',
-            'y'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"',
+            'x'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"|unique:sample_sites,x,'.$id.',id,y,'. $this->y,
+            'y'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"|unique:sample_sites,y,'.$id.',id,x,'. $this->x,
         ];
     }
 
@@ -37,10 +40,11 @@ class SampleSiteRequest extends FormRequest
             $sample_site = new SampleSite;
             $sample_site->uuid = Uuid::generate(4);
         }
-        $sample_site->name = $this->input('name');
-        $sample_site->x = $this->input('x');
-        $sample_site->y = $this->input('y');
-        $sample_site->station_id = $this->input('station_id');
+        $sample_site->code = $this->code;
+        $sample_site->name = $this->name;
+        $sample_site->x = $this->x;
+        $sample_site->y = $this->y;
+        $sample_site->station_id = $this->station_id;
         return $sample_site->save();
     }
 }

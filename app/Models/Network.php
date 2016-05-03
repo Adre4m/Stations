@@ -40,7 +40,7 @@ class Network extends Model
 
     public static function query()
     {
-        return Network::select(['code', 'name'])->newQuery();
+        return Network::select(['id', 'code', 'name'])->newQuery();
     }
 
 }

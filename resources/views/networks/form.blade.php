@@ -1,4 +1,4 @@
-{!! Form::model($network, ['route' => ($network->exists) ? ["networks.update", $network->id] :  'networks.create']) !!}
+{!! Form::model($network, ['route' => ($network->exists) ? ["networks.update", $network->id] :  'networks.store']) !!}
 {!! Form::token() !!}
 
 <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">

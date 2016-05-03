@@ -40,7 +40,7 @@ class Contributor extends Model
 
     public static function query()
     {
-            return Contributor::select(['code', 'name', 'last_name', 'siret'])->with('stations')->newQuery();
+            return Contributor::select(['id', 'code', 'name', 'last_name', 'siret'])->with('stations')->newQuery();
     }
 
 }

@@ -24,11 +24,13 @@ class StationRequest extends FormRequest
 
     public function rules()
     {
+        $station = $this->station;
+        $id = ($station == null) ? null : $station->id;
         return [
-            'code'  => 'required|unique:stations',
+            'code'  => 'required|unique:stations,code,'.$id.',id',
             'name'  => 'required|max:255',
-            'x'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"|unique:stations,x,NULL,id,y,'. $this->input('y'),
-            'y'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"|unique:stations,y,NULL,id,x,'. $this->input('x'),
+            'x'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"|unique:stations,x,'.$id.',id,y,'. $this->input('y'),
+            'y'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"|unique:stations,y,'.$id.',id,x,'. $this->input('x'),
         ];
     }
 

@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/contributors/create', 'ContributorController@create')->name('contributors.create');
     Route::post('/contributors/store', 'ContributorController@store')->name('contributors.store');
     Route::get('/contributors/edit{contributor}', 'ContributorController@edit')->name('contributors.edit');
-    Route::get('/contributors/update{contributor}', 'ContributorController@update')->name('contributors.update');
+    Route::post('/contributors/update{contributor}', 'ContributorController@update')->name('contributors.update');
     Route::get('/contributors/destroy{contributor}', 'ContributorController@destroy')->name('contributors.destroy');
 
     Route::get('/sample_sites/create', 'SampleSiteController@create')->name('sample_sites.create');

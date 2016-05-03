@@ -21,9 +21,8 @@ class CreateStationNetworksTable extends Migration
             $table->foreign('station_id')->references('id')->on('stations');
             $table->foreign('network_id')->references('id')->on('networks');
             $table->timestamps();
-            $table->dateTime('began_at');
-            $table->dateTime('end_at')->nullable();
-            $table->unique(['station_id', 'began_at', 'network_id']);
+            $table->string('began_at');
+            $table->string('end_at')->nullable();
         });
     }
 

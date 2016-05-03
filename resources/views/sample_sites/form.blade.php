@@ -52,7 +52,7 @@
 <div class="form-group{{ $errors->has('station_id') ? ' has-error' : '' }}">
     {!! Form::label('station_id', trans('sample_sites.set_station')) !!}
     <div class="col-md-6">
-        {!! Form::select('station_id', $stations->pluck('name', 'code')) !!}<br>
+        {!! Form::select('station_id', $stations->pluck('name', 'id')) !!}<br>
         @if ($errors->has('station_id'))
             <span class="help-block">
                 <strong>{{ $errors->first('station_id') }}</strong>

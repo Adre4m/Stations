@@ -14,8 +14,8 @@
 $factory->define(App\Models\StationNetwork::class, function (Faker\Generator $faker) {
     return [
         'uuid' => $faker->uuid,
-        'station_id' => $faker->numberBetween(1, 500),
-        'network_id' => $faker->numberBetween(1, 500),
+        'station_id' => $faker->numberBetween(1, 50),
+        'network_id' => $faker->numberBetween(1, 50),
         'began_at' => $faker->dateTime,
         'end_at' => $faker->dateTime,
     ];

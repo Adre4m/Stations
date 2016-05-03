@@ -58,7 +58,7 @@ class Station extends Model
 
     public static function query()
     {
-        return Station::select(['code', 'name', 'x', 'y', 'manager_id', 'owner_id',])
+        return Station::select(['id', 'code', 'name', 'x', 'y', 'manager_id', 'owner_id',])
             ->with('manager', 'owner', 'sample_sites')->newQuery();
     }
 

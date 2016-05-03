@@ -25,10 +25,12 @@ class StationNetworkRequest extends FormRequest
 
     public function rules()
     {
+        $station_network = $this->station_network;
+        $id = ($station_network == null) ? null : $station_network->id;
         return [
-            'station_id' => 'unique:station_networks,station_id,NULL,id,network_id,' . $this->input('network_id') . ',began_at,' . $this->input('began_at'),
-            'network_id' => 'unique:station_networks,network_id,NULL,id,station_id,' . $this->input('station_id') . ',began_at,' . $this->input('began_at'),
-            'began_at' => 'required|date|unique:station_networks,began_at,NULL,id,station_id,' . $this->input('station_id') . ',network_id,' . $this->input('network_id'),
+            'station_id' => 'unique:station_networks,station_id,'.$id.',id,network_id,' . $this->input('network_id') . ',began_at,' . $this->input('began_at'),
+            'network_id' => 'unique:station_networks,network_id,'.$id.',id,station_id,' . $this->input('station_id') . ',began_at,' . $this->input('began_at'),
+            'began_at' => 'required|date|unique:station_networks,began_at,'.$id.',id,station_id,' . $this->input('station_id') . ',network_id,' . $this->input('network_id'),
             'end_at' => 'date|after:began_at',
         ];
     }

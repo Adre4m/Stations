@@ -23,8 +23,10 @@ class NetworkRequest extends FormRequest
 
     public function rules()
     {
+        $network = $this->network;
+        $id = ($network == null) ? null : $network->id;
         return [
-            'code' => 'required|unique',
+            'code' => 'required|unique:networks,code,'.$id.',id',
             'name'  => 'required|max:255',
         ];
     }
