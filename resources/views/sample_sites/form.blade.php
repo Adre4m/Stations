@@ -1,6 +1,18 @@
 {!! Form::model($sample_site, ['route' => ($sample_site->exists) ? ["sample_sites.update", $sample_site->id] :  'sample_sites.store']) !!}
 {!! Form::token() !!}
 
+<div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
+    {!! Form::label('code', trans('sample_sites.set_code')) !!}
+    <div class="col-md-6">
+        {!! Form::text('code') !!}<br>
+        @if ($errors->has('code'))
+            <span class="help-block">
+                <strong>{{ $errors->first('code') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
     {!! Form::label('name', trans('sample_sites.set_name')) !!}
     <div class="col-md-6">

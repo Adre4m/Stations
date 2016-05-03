@@ -16,4 +16,5 @@ return [
     'confirm' => 'Confirm',
     'cancel' => '&laquo; Back to stations',
     'code' => 'Code',
+    'set_code' => 'Code',
 ];

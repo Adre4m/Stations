@@ -14,4 +14,5 @@ return [
     'confirm' => 'Confirm',
     'cancel' => '&laquo; Back to sample sites',
     'code' => 'Code',
+    'set_code' => 'Code',
 ];

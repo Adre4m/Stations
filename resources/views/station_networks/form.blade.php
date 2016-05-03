@@ -28,7 +28,7 @@
 <div class="form-group{{ $errors->has('began_at') ? ' has-error' : '' }}">
     {!! Form::label('began_at', trans('station_networks.set_began')) !!}
     <div class="col-md-6">
-        {!! Form::date('began_at', \Carbon\Carbon::now()) !!}<br>
+        {!! Form::dateTime('began_at', \Carbon\Carbon::now('Europe/Paris')) !!}<br>
         @if ($errors->has('began_at'))
             <span class="help-block">
                 <strong>{{ $errors->first('began_at') }}</strong>

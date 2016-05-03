@@ -8,5 +8,7 @@ return [
     'confirm' => 'Confirm',
     'cancel' => '&laquo; Back to networks',
     'code' => 'Code',
-    'name' => 'Name'
+    'name' => 'Name',
+    'set_code' => 'Code',
+    'set_name' => 'Name',
 ];

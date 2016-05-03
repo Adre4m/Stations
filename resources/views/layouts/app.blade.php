@@ -99,7 +99,7 @@
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-left">
                     <li><a href="{{ route('home') }}">{{ trans('pagination.home') }}</a></li>
                     <li><a href="{{ route('stations.index') }}">{{ trans('pagination.stations') }}</a></li>
                     <li><a href="{{ route('contributors.index') }}">{{ trans('pagination.contributors') }}</a></li>
@@ -107,7 +107,6 @@
                     <li><a href="{{ route('networks.index') }}">{{ trans('pagination.networks') }}</a></li>
                     <li><a href="{{ route('station_networks.index') }}">{{ trans('pagination.station_networks') }}</a></li>
                 </ul>
-
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->

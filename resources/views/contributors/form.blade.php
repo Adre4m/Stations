@@ -1,6 +1,18 @@
 {!! Form::model($contributor, ['route' => ($contributor->exists) ? ["contributors.update", $contributor->id] :  'contributors.store']) !!}
 {!! Form::token() !!}
 
+<div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
+    {!! Form::label('code', trans('contributors.set_code')) !!}
+    <div class="col-md-6">
+        {!! Form::text('code') !!}<br>
+        @if ($errors->has('code'))
+            <span class="help-block">
+                <strong>{{ $errors->first('code') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
     {!! Form::label('name', trans('contributors.set_name')) !!}
     <div class="col-md-6">
@@ -20,6 +32,18 @@
         @if ($errors->has('last_name'))
             <span class="help-block">
                 <strong>{{ $errors->first('last_name') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
+<div class="form-group{{ $errors->has('siret') ? ' has-error' : '' }}">
+    {!! Form::label('siret', trans('contributors.set_siret')) !!}
+    <div class="col-md-6">
+        {!! Form::text('siret') !!}<br>
+        @if ($errors->has('siret'))
+            <span class="help-block">
+                <strong>{{ $errors->first('siret') }}</strong>
             </span>
         @endif
     </div>

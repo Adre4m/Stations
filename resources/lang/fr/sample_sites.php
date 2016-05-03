@@ -13,5 +13,6 @@ return [
     'destroy' => 'Supprimer',
     'confirm' => 'Confirmer',
     'cancel' => '&laquo; Retour aux sites',
-    'id' => 'ID',
+    'code' => 'Code',
+    'set_code' => 'Code',
 ];
