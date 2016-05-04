@@ -22,10 +22,10 @@ class StationDataTable extends DataTable
                 return view('stations.actions')->with('station', $station);
             })
             ->addColumn('manager', function($station){
-                return $station->manager->fullname;
+                return "{$station->manager->fullname}";
             })
             ->addColumn('owner', function($station){
-                return $station->owner->fullname;
+                return "{$station->owner->fullname}";
             })
             ->addColumn('position', function($station){
                 return $station->position;
@@ -65,7 +65,7 @@ class StationDataTable extends DataTable
     private function getColumns()
     {
         return [
-            ['data' => 'id', 'visible' => false,],
+            ['data' => 'id', 'visible' => false],
             ['data' => 'code', 'title' => trans('stations.code'),],
             ['data' => 'name', 'title' => trans('stations.name'),],
             ['data' => 'position', 'title' => trans('stations.position')],

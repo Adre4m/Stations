@@ -9,6 +9,8 @@
 namespace App\Models;
 
 
+use Carbon\Carbon;
+use Faker\Provider\DateTime;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -51,6 +53,16 @@ class StationNetwork extends Model
     public static function query()
     {
         return StationNetwork::select(['id', 'station_id', 'network_id', 'began_at', 'end_at'])->with('station', 'network')->newQuery();
+    }
+
+    public function getBeginAttribute()
+    {
+        return Carbon::parse($this->began_at)->format('d/m/Y H:i:s');
+    }
+
+    public function getEndAttribute()
+    {
+        return Carbon::parse($this->end_at)->format('d/m/Y H:i:s');
     }
 
     /*public function getStationAttribute()

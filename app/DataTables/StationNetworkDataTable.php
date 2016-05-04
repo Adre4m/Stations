@@ -29,6 +29,12 @@ class StationNetworkDataTable extends DataTable
             ->addColumn('network', function($station_network) {
                 return $station_network->network->code;
             })
+            ->addColumn('begin', function($station_network) {
+                return $station_network->begin;
+            })
+            ->addColumn('end', function($station_network) {
+                return $station_network->end;
+            })
             ->make(true);
     }
 
@@ -64,12 +70,10 @@ class StationNetworkDataTable extends DataTable
     private function getColumns()
     {
         return [
-            ['data' => 'station_id', 'visible' => false],
-            ['data' => 'network_id', 'visible' => false],
-            ['data' => 'began_at', 'title' => trans('station_networks.began_at')],
-            ['data' => 'end_at', 'title' => trans('station_networks.end_at')],
+            ['data' => 'begin', 'title' => trans('station_networks.began_at'),],
+            ['data' => 'end', 'title' => trans('station_networks.end_at'),],
             ['data' => 'station', 'title' => trans('station_networks.station')],
-            ['data' => 'network', 'title' => trans('station_networks.network')],
+            ['data' => 'network', 'title' => trans('station_networks.network'),],
         ];
     }
 

@@ -34,7 +34,7 @@ class Contributor extends Model
 
     public function getFullnameAttribute()
     {
-        return "({$this->code}){$this->name} {$this->last_name}";
+        return "{$this->name} {$this->last_name}";
     }
 
     public function stations()
