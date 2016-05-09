@@ -10,7 +10,6 @@ namespace App\Http\Requests;
 
 
 use App\Models\Station;
-use App\Models\StationLog;
 use Illuminate\Foundation\Http\FormRequest;
 use Webpatser\Uuid\Uuid;
 
@@ -27,10 +26,24 @@ class StationRequest extends FormRequest
         $station = $this->station;
         $id = ($station == null) ? null : $station->id;
         return [
-            'code'  => 'required|unique:stations,code,'.$id.',id',
-            'name'  => 'required|max:255',
-            'x'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"|unique:stations,x,'.$id.',id,y,'. $this->input('y'),
-            'y'     => 'required|regex:"[-]?[0-9]{1,3}([.][0-9]{0,3})?"|unique:stations,y,'.$id.',id,x,'. $this->input('x'),
+            'code'  => [
+                'required',
+                "unique:stations,code,{$id},id",
+            ],
+            'name'  => [
+                'required',
+                'max:255'
+            ],
+            'x'     => [
+                'required',
+                'numeric',
+                "unique:stations,x,{$id},id,y,{$this->y}",
+            ],
+            'y'     => [
+                'required',
+                'numeric',
+                "unique:stations,y,{$id},id,x,{$this->x}",
+            ],
         ];
     }
 

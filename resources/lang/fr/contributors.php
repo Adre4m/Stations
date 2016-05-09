@@ -21,7 +21,7 @@ return [
     'manager' => 'Gestionnaire',
     'owner' => 'Propriétaire',
     'code' => 'Code',
-    'siret' => 'Siret',
+    'siret' => 'SIRET',
     'set_code' => 'Code',
     'set_siret' => 'Siret',
 ];

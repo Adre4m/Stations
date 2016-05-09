@@ -110,4 +110,6 @@ return [
 
     'attributes' => [],
 
+    'siret' => 'The SIRET number does not respect the correct format',
+
 ];

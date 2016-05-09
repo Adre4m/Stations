@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\DataTables\StationDataTable;
 use App\Http\Requests\StationRequest;
 use App\Models\Contributor;
+use App\Models\SampleSite;
 use App\Models\Station;
 
 use App\Http\Requests;
-use App\Models\StationLog;
+use Datatables;
 
 class StationController extends Controller
 {
@@ -54,7 +55,12 @@ class StationController extends Controller
      */
     public function show(Station $station)
     {
-        return view('stations.show', ['station' => $station]);
+        $sampleTable = new Datatables();
+        $sampleTable->of(SampleSite::whereStationId($station));
+        $html = $sampleTable->getHtmlBuilder()
+            ->addColumn(['data' => 'code', 'name' => 'id', 'title' => 'ID']);
+
+        return view('stations.show', ['station' => $station,]);
     }
 
     /**

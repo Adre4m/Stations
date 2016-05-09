@@ -26,10 +26,22 @@ class ContributorRequest extends FormRequest
         $contributor = $this->contributor;
         $id = ($contributor == null) ? null : $contributor->id;
         return [
-            'code' => 'required|unique:contributors,code,'. $id . ',id',
-            'name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-            'siret' => 'siret|unique:contributors,siret,'. $id . ',id',
+            'code' => [
+                'required',
+                "unique:contributors,code,{$id},id",
+            ],
+            'name' => [
+                'required',
+                'max:255',
+            ],
+            'last_name' => [
+                'required',
+                'max:255',
+            ],
+            'siret' => [
+                'siret',
+                "nique:contributors,siret,{$id},id",
+            ],
         ];
     }
 

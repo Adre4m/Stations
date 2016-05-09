@@ -16,7 +16,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Validator::extend('siret', function($attribute, $value, $parameters, $validator)
         {
-            $validator->setCustomMessages(['siren' => 'Invalid format']);
             $value = preg_replace('/\D/', '', $value);
             $number_length = strlen($value);
             if($number_length <> 14)

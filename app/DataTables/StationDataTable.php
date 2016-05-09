@@ -30,6 +30,9 @@ class StationDataTable extends DataTable
             ->addColumn('position', function($station){
                 return $station->position;
             })
+            ->editColumn('code', function($station) {
+                return "<a href=\"" . route('stations.show', $station) . "\">{$station->code}</a>";
+            })
             ->make(true);
     }
 

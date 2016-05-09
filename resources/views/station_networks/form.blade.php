@@ -4,11 +4,13 @@
 <div class="form-group{{ $errors->has('station_id') ? ' has-error' : '' }}">
     {!! Form::label('station_id', trans('station_networks.set_station')) !!}
     <div class="col-md-6">
-        {!! Form::select('station_id', $stations->pluck('name', 'id')) !!}<br>
+        {!! Form::select('station_id', $stations->pluck('name', 'id')) !!}
         @if ($errors->has('station_id'))
-            <span class="help-block">
-                <strong>{{ $errors->first('station_id') }}</strong>
-            </span>
+            <div class="alert alert-danger">
+                @foreach($errors->get('station_id') as $error)
+                    <strong>{{ $error }}</strong><br>
+                @endforeach
+            </div>
         @endif
     </div>
 </div>
@@ -16,11 +18,13 @@
 <div class="form-group{{ $errors->has('network_id') ? ' has-error' : '' }}">
     {!! Form::label('network_id', trans('station_networks.set_network')) !!}
     <div class="col-md-6">
-        {!! Form::select('network_id', $networks->pluck('name', 'id')) !!}<br>
+        {!! Form::select('network_id', $networks->pluck('name', 'id')) !!}
         @if ($errors->has('network_id'))
-            <span class="help-block">
-                <strong>{{ $errors->first('network_id') }}</strong>
-            </span>
+            <div class="alert alert-danger">
+                @foreach($errors->get('network_id') as $error)
+                    <strong>{{ $error }}</strong><br>
+                @endforeach
+            </div>
         @endif
     </div>
 </div>
@@ -28,11 +32,13 @@
 <div class="form-group{{ $errors->has('began_at') ? ' has-error' : '' }}">
     {!! Form::label('began_at', trans('station_networks.set_began')) !!}
     <div class="col-md-6">
-        {!! Form::dateTime('began_at', \Carbon\Carbon::now('Europe/Paris')) !!}<br>
+        {!! Form::dateTime('began_at', \Carbon\Carbon::now('Europe/Paris')) !!}
         @if ($errors->has('began_at'))
-            <span class="help-block">
-                <strong>{{ $errors->first('began_at') }}</strong>
-            </span>
+            <div class="alert alert-danger">
+                @foreach($errors->get('began_at') as $error)
+                    <strong>{{ $error }}</strong><br>
+                @endforeach
+            </div>
         @endif
     </div>
 </div>
@@ -40,11 +46,13 @@
 <div class="form-group{{ $errors->has('end_at') ? ' has-error' : '' }}">
     {!! Form::label('end_at', trans('station_networks.set_end')) !!}
     <div class="col-md-6">
-        {!! Form::date('end_at') !!}<br>
+        {!! Form::date('end_at') !!}
         @if ($errors->has('end_at'))
-            <span class="help-block">
-                <strong>{{ $errors->first('end_at') }}</strong>
-            </span>
+            <div class="alert alert-danger">
+                @foreach($errors->get('end_at') as $error)
+                    <strong>{{ $error }}</strong><br>
+                @endforeach
+            </div>
         @endif
     </div>
 </div>

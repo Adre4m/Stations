@@ -4,11 +4,13 @@
 <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
     {!! Form::label('code', trans('sample_sites.set_code')) !!}
     <div class="col-md-6">
-        {!! Form::text('code') !!}<br>
+        {!! Form::text('code') !!}
         @if ($errors->has('code'))
-            <span class="help-block">
-                <strong>{{ $errors->first('code') }}</strong>
-            </span>
+            <div class="alert alert-danger">
+                @foreach($errors->get('code') as $error)
+                    <strong>{{ $error }}</strong><br>
+                @endforeach
+            </div>
         @endif
     </div>
 </div>
@@ -16,11 +18,13 @@
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
     {!! Form::label('name', trans('sample_sites.set_name')) !!}
     <div class="col-md-6">
-        {!! Form::text('name') !!}<br>
+        {!! Form::text('name') !!}
         @if ($errors->has('name'))
-            <span class="help-block">
-                <strong>{{ $errors->first('name') }}</strong>
-            </span>
+            <div class="alert alert-danger">
+                @foreach($errors->get('name') as $error)
+                    <strong>{{ $error }}</strong><br>
+                @endforeach
+            </div>
         @endif
     </div>
 </div>
@@ -28,11 +32,13 @@
 <div class="form-group{{ $errors->has('x') ? ' has-error' : '' }}">
     {!! Form::label('x', trans('sample_sites.set_x')) !!}
     <div class="col-md-6">
-        {!! Form::text('x') !!}<br>
+        {!! Form::text('x') !!}
         @if ($errors->has('x'))
-            <span class="help-block">
-                <strong>{{ $errors->first('x') }}</strong>
-            </span>
+            <div class="alert alert-danger">
+                @foreach($errors->get('x') as $error)
+                    <strong>{{ $error }}</strong><br>
+                @endforeach
+            </div>
         @endif
     </div>
 </div>
@@ -40,11 +46,13 @@
 <div class="form-group{{ $errors->has('y') ? ' has-error' : '' }}">
     {!! Form::label('y', trans('sample_sites.set_y')) !!}
     <div class="col-md-6">
-        {!! Form::text('y') !!}<br>
+        {!! Form::text('y') !!}
         @if ($errors->has('y'))
-            <span class="help-block">
-                <strong>{{ $errors->first('y') }}</strong>
-            </span>
+            <div class="alert alert-danger">
+                @foreach($errors->get('y') as $error)
+                    <strong>{{ $error }}</strong><br>
+                @endforeach
+            </div>
         @endif
     </div>
 </div>
@@ -52,11 +60,13 @@
 <div class="form-group{{ $errors->has('station_id') ? ' has-error' : '' }}">
     {!! Form::label('station_id', trans('sample_sites.set_station')) !!}
     <div class="col-md-6">
-        {!! Form::select('station_id', $stations->pluck('name', 'id')) !!}<br>
+        {!! Form::select('station_id', $stations->pluck('name', 'id')) !!}
         @if ($errors->has('station_id'))
-            <span class="help-block">
-                <strong>{{ $errors->first('station_id') }}</strong>
-            </span>
+            <div class="alert alert-danger">
+                @foreach($errors->get('station_id') as $error)
+                    <strong>{{ $error }}</strong><br>
+                @endforeach
+            </div>
         @endif
     </div>
 </div>
