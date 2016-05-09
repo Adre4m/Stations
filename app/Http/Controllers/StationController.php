@@ -55,11 +55,6 @@ class StationController extends Controller
      */
     public function show(Station $station)
     {
-        $sampleTable = new Datatables();
-        $sampleTable->of(SampleSite::whereStationId($station));
-        $html = $sampleTable->getHtmlBuilder()
-            ->addColumn(['data' => 'code', 'name' => 'id', 'title' => 'ID']);
-
         return view('stations.show', ['station' => $station,]);
     }
 

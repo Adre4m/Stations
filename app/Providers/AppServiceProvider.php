@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Form;
 use Illuminate\Support\ServiceProvider;
 use Validator;
 
@@ -18,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
         {
             $value = preg_replace('/\D/', '', $value);
             $number_length = strlen($value);
-            if($number_length <> 14)
+            if($number_length != 14)
             {
                 return false;
             }
@@ -39,6 +40,9 @@ class AppServiceProvider extends ServiceProvider
             }
             return ($sum % 10 === 0);
         });
+
+        Form::component('stationText', 'stations.fields.text',['name', 'value' => '', 'attributes' => [],]);
+        Form::component('stationSelect','stations.fields.select', ['name', 'value' => '', 'attributes' =>[],]);
     }
 
     /**

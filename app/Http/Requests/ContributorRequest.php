@@ -40,7 +40,7 @@ class ContributorRequest extends FormRequest
             ],
             'siret' => [
                 'siret',
-                "nique:contributors,siret,{$id},id",
+                "unique:contributors,siret,{$id},id",
             ],
         ];
     }
