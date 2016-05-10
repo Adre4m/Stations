@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Form;
+use Illuminate\Support\MessageBag;
 use Illuminate\Support\ServiceProvider;
 use Validator;
 
@@ -41,8 +42,10 @@ class AppServiceProvider extends ServiceProvider
             return ($sum % 10 === 0);
         });
 
-        Form::component('stationText', 'stations.fields.text',['name', 'value' => '', 'attributes' => [],]);
-        Form::component('stationSelect','stations.fields.select', ['name', 'value' => '', 'attributes' =>[],]);
+        Form::component('buttons', 'form.buttons', ['name', 'value', 'attributes' => [],]);
+        Form::component('globalText', 'form.text',['name', 'value', 'attributes' => [],]);
+        Form::component('globalDate', 'form.date', ['name', 'value', 'attributes' => [],]);
+        Form::component('globalSelect', 'form.select', ['name', 'options', 'value', 'attributes' => [],]);
     }
 
     /**

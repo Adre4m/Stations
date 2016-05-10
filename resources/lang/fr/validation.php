@@ -108,7 +108,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'station-name' => 'Nom',
+        'station-code' => 'Code',
+        'station-x' => 'Abscisse',
+        'station-y' => 'Ordonnée',
+        'station-manager_id' => 'Séléctionnez le gestionnaire',
+        'station-owner_id' => 'Séléctionnez le propriétaire',
+    ],
 
     'siret' => 'Le numéro SIRET est invalide',
 

@@ -9,8 +9,9 @@
 namespace App\Models;
 
 
+use App\GenerateUuid;
+use App\HasBusinessKey;
 use Carbon\Carbon;
-use Faker\Provider\DateTime;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -40,6 +41,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class StationNetwork extends Model
 {
+
+    use HasBusinessKey, GenerateUuid;
 
     public function station()
     {

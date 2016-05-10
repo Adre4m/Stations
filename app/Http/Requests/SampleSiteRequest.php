@@ -26,20 +26,20 @@ class SampleSiteRequest extends FormRequest
         $sample_site = $this->sample_site;
         $id = ($sample_site == null) ? null : $sample_site->id;
         return [
-            'code'  => [
+            'sample_site-code'  => [
                 'required',
                 "unique:sample_sites,code,{$id},id",
             ],
-            'name'  => [
+            'sample_site-name'  => [
                 'required',
                 'max:255',
             ],
-            'x'     => [
+            'sample_site-x'     => [
                 'required',
                 'numeric',
                 "unique:sample_sites,x,{$id},id,y,{$this->y}",
             ],
-            'y'     => [
+            'sample_site-y'     => [
                 'required',
                 'numeric',
                 "unique:sample_sites,y,{$id},id,x,{$this->x}",
@@ -52,13 +52,12 @@ class SampleSiteRequest extends FormRequest
         if($sample_site == null)
         {
             $sample_site = new SampleSite;
-            $sample_site->uuid = Uuid::generate(4);
         }
-        $sample_site->code = $this->code;
-        $sample_site->name = $this->name;
-        $sample_site->x = $this->x;
-        $sample_site->y = $this->y;
-        $sample_site->station_id = $this->station_id;
+        $sample_site->code = $this->input('sample_site-code');
+        $sample_site->name = $this->input('sample_site-name');
+        $sample_site->x = $this->input('sample_site-x');
+        $sample_site->y = $this->input('sample_site-y');
+        $sample_site->station_id = $this->input('sample_site-station_id');
         return $sample_site->save();
     }
 }

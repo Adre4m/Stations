@@ -3,6 +3,8 @@
 namespace App\Models;
 
 
+use App\GenerateUuid;
+use App\HasBusinessKey;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -38,6 +40,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Station extends Model
 {
+
+    use HasBusinessKey, GenerateUuid;
+
+    protected $rules = [
+
+    ];
+
+    protected $business = 'id';
 
     public function manager()
     {

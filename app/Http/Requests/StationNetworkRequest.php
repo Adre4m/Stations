@@ -31,18 +31,18 @@ class StationNetworkRequest extends FormRequest
         $network_id = $this->network_id;
         $began_at = $this->began_at;
         return [
-            'station_id' => [
+            'station_networks-station_id' => [
                 "unique:station_networks,station_id,{$id},id,network_id,{$network_id},began_at,{$began_at}",
             ],
-            'network_id' => [
+            'station_networks-network_id' => [
                 "unique:station_networks,network_id,{$id},id,station_id,{$station_id},began_at,{$began_at}",
             ],
-            'began_at' => [
+            'station_networks-began_at' => [
                 'required',
                 'date',
                 "unique:station_networks,began_at,{$id},id,station_id,{$station_id},network_id,{$network_id}",
             ],
-            'end_at' => [
+            'station_networks-end_at' => [
                 'date',
                 'after:began_at',
             ],
@@ -54,12 +54,11 @@ class StationNetworkRequest extends FormRequest
         if($station_network == null)
         {
             $station_network = new StationNetwork;
-            $station_network->uuid = Uuid::generate(4);
         }
-        $station_network->station_id = $this->input('station_id');
-        $station_network->network_id = $this->input('network_id');
-        $station_network->began_at = $this->input('began_at');
-        $station_network->end_at = $this->input('end_at');
+        $station_network->station_id = $this->input('station_networks-station_id');
+        $station_network->network_id = $this->input('station_networks-network_id');
+        $station_network->began_at = $this->input('station_networks-began_at');
+        $station_network->end_at = $this->input('station_networks-end_at');
         return $station_network->save();
     }
 }

@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Models;
+
+use App\GenerateUuid;
+use App\HasBusinessKey;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,10 +28,12 @@ use Illuminate\Database\Eloquent\Model;
 class Contributor extends Model
 {
 
+    use HasBusinessKey, GenerateUuid;
+
     public $timestamps = false;
 
     public $fillable = [
-      'name', 'last_name',
+        'name', 'last_name',
     ];
 
 
@@ -45,7 +50,7 @@ class Contributor extends Model
 
     public static function query()
     {
-            return Contributor::select(['id', 'code', 'name', 'last_name', 'siret'])->with('stations')->newQuery();
+        return Contributor::select(['id', 'code', 'name', 'last_name', 'siret'])->with('stations')->newQuery();
     }
 
 }

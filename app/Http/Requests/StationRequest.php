@@ -26,20 +26,20 @@ class StationRequest extends FormRequest
         $station = $this->station;
         $id = ($station == null) ? null : $station->id;
         return [
-            'code'  => [
+            'station-code'  => [
                 'required',
                 "unique:stations,code,{$id},id",
             ],
-            'name'  => [
+            'station-name'  => [
                 'required',
                 'max:255'
             ],
-            'x'     => [
+            'station-x'     => [
                 'required',
                 'numeric',
                 "unique:stations,x,{$id},id,y,{$this->y}",
             ],
-            'y'     => [
+            'station-y'     => [
                 'required',
                 'numeric',
                 "unique:stations,y,{$id},id,x,{$this->x}",
@@ -52,14 +52,13 @@ class StationRequest extends FormRequest
         if($station == null)
         {
             $station = new Station;
-            $station->uuid = Uuid::generate(4);
         }
-        $station->code = $this->input('code');
-        $station->name = $this->input('name');
-        $station->x = $this->input('x');
-        $station->y = $this->input('y');
-        $station->manager_id = $this->input('manager_id');
-        $station->owner_id = $this->input('owner_id');
+        $station->code = $this->input('station-code');
+        $station->name = $this->input('station-name');
+        $station->x = $this->input('station-x');
+        $station->y = $this->input('station-y');
+        $station->manager_id = $this->input('station-manager_id');
+        $station->owner_id = $this->input('station-owner_id');
         return  $station->save();
     }
 }

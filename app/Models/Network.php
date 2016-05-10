@@ -9,6 +9,8 @@
 namespace App\Models;
 
 
+use App\GenerateUuid;
+use App\HasBusinessKey;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -37,6 +39,7 @@ use Illuminate\Database\Eloquent\Model;
 class Network extends Model
 {
 
+    use HasBusinessKey, GenerateUuid;
 
     public function stationNetworks()
     {

@@ -28,8 +28,8 @@
 @endsection
 
 @push('scripts')
-    <!--DataTables-->
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" type="text/css">
-    <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" type="text/javascript"></script>
-    {!! $dataTable->scripts() !!}
+<!--DataTables-->
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" type="text/css">
+<script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" type="text/javascript"></script>
+{!! $dataTable->scripts() !!}
 @endpush

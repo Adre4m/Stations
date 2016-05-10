@@ -26,11 +26,11 @@ class NetworkRequest extends FormRequest
         $network = $this->network;
         $id = ($network == null) ? null : $network->id;
         return [
-            'code' => [
+            'network-code' => [
                 'required',
                 "unique:networks,code,{$id},id",
             ],
-            'name'  => [
+            'network-name'  => [
                 'required',
                 'max:255',
             ],
@@ -42,10 +42,9 @@ class NetworkRequest extends FormRequest
         if($network == null)
         {
             $network = new Network;
-            $network->uuid = Uuid::generate(4);
         }
-        $network->code = $this->input('code');
-        $network->name = $this->input('name');
+        $network->code = $this->input('network-code');
+        $network->name = $this->input('network-name');
         return $network->save();
     }
 }
