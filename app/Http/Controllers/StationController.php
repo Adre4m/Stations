@@ -56,7 +56,6 @@ class StationController extends Controller
      */
     public function show(Station $station)
     {
-        return dd(Carbon::createFromTimestamp($station->networks->first()->pivot->began_at));
         return view('stations.show', ['station' => $station,]);
     }
 

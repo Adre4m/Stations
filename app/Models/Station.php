@@ -43,27 +43,25 @@ class Station extends Model
 
     use HasBusinessKey, GenerateUuid;
 
-    protected $rules = [
-
-    ];
-
-    protected $business = 'id';
-
+    // Relation un à plusieurs sur Intervenant, côté "un"
     public function manager()
     {
         return $this->belongsTo(Contributor::class);
     }
 
+    // Relation un à plusieurs sur Intervenant, côté "un"
     public function owner()
     {
         return $this->belongsTo(Contributor::class);
     }
 
+    // Relation un à plusieurs sur Site de prélèvement, côté "plusieurs"
     public function sample_sites()
     {
         return $this->hasMany(SampleSite::class);
     }
 
+    // Relation plusieurs à plusieurs sur Réseau.
     public function networks()
     {
         return $this->belongsToMany(Network::class)->withPivot('began_at', 'end_at');

@@ -5,18 +5,18 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ trans('station_networks.title') }}</div>
+                    <div class="panel-heading">{{ trans('network_station.title') }}</div>
                     <div class="panel-body">
                         @can('add', new App\Models\SampleSite)
-                            <a href="{{ route('station_networks.create') }}">
+                            <a href="{{ route('network_station.create') }}">
                                 <button class="btn btn-primary">
-                                    <i class="fa fa-btn fa-plus"></i>{{ trans('station_networks.add') }}
+                                    <i class="fa fa-btn fa-plus"></i>{{ trans('network_station.add') }}
                                 </button>
                             </a>
                         @endcan
                         @cannot('add', new App\Models\SampleSite)
                             <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
-                                <i class="fa fa-btn fa-plus"></i>{{ trans('station_networks.add') }}
+                                <i class="fa fa-btn fa-plus"></i>{{ trans('network_station.add') }}
                             </button>
                         @endcannot
                         {!! $dataTable->table() !!}

@@ -70,16 +70,4 @@ class NetworkStation extends Model
         return Carbon::parse($this->end_at)->format('d/m/Y H:i:s');
     }
 
-    /*public function getStationAttribute()
-    {
-        $station = Station::findOrFail($this->station_id);
-        return "{$station->code}";
-    }
-
-    public function getNetworkAttribute()
-    {
-        $network = Network::findOrFail($this->network_id);
-        return "{$network->code}";
-    }*/
-
 }

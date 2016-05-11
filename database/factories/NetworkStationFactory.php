@@ -15,7 +15,7 @@ $factory->define(App\Models\NetworkStation::class, function (Faker\Generator $fa
     return [
         'station_id' => $faker->numberBetween(1, 50),
         'network_id' => $faker->numberBetween(1, 50),
-        'began_at' => $faker->date(),
+        'began_at' => $faker->date('Y-m-d H:i:s'),
         'end_at' => $faker->date('Y-m-d H:i:s'),
     ];
 });

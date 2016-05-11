@@ -25,40 +25,40 @@ class NetworkStationRequest extends FormRequest
 
     public function rules()
     {
-        $station_network = $this->station_network;
-        $id = ($station_network == null) ? null : $station_network->id;
-        $station_id = $this->input('station_network-station_id');
-        $network_id = $this->input('station_network-network_id');
-        $began_at = $this->input('station_network-began_at');
+        $network_station = $this->network_station;
+        $id = ($network_station == null) ? null : $network_station->id;
+        $station_id = $this->input('network_station-station_id');
+        $network_id = $this->input('network_station-network_id');
+        $began_at = $this->input('network_station-began_at');
         return [
-            'station_networks-station_id' => [
-                "unique:station_networks,station_id,{$id},id,network_id,{$network_id},began_at,{$began_at}",
+            'network_station-station_id' => [
+                "unique:network_station,station_id,{$id},id,network_id,{$network_id},began_at,{$began_at}",
             ],
-            'station_networks-network_id' => [
-                "unique:station_networks,network_id,{$id},id,station_id,{$station_id},began_at,{$began_at}",
+            'network_station-network_id' => [
+                "unique:network_station,network_id,{$id},id,station_id,{$station_id},began_at,{$began_at}",
             ],
-            'station_networks-began_at' => [
+            'network_station-began_at' => [
                 'required',
                 'date',
-                "unique:station_networks,began_at,{$id},id,station_id,{$station_id},network_id,{$network_id}",
+                "unique:network_station,began_at,{$id},id,station_id,{$station_id},network_id,{$network_id}",
             ],
-            'station_networks-end_at' => [
+            'network_station-end_at' => [
                 'date',
                 'after:began_at',
             ],
         ];
     }
 
-    public function persist($station_network = null)
+    public function persist($network_station = null)
     {
-        if($station_network == null)
+        if($network_station == null)
         {
-            $station_network = new NetworkStation;
+            $network_station = new NetworkStation;
         }
-        $station_network->station_id = $this->input('station_networks-station_id');
-        $station_network->network_id = $this->input('station_networks-network_id');
-        $station_network->began_at = $this->input('station_networks-began_at');
-        $station_network->end_at = $this->input('station_networks-end_at');
-        return $station_network->save();
+        $network_station->station_id = $this->input('network_station-station_id');
+        $network_station->network_id = $this->input('network_station-network_id');
+        $network_station->began_at = $this->input('network_station-began_at');
+        $network_station->end_at = $this->input('network_station-end_at');
+        return $network_station->save();
     }
 }

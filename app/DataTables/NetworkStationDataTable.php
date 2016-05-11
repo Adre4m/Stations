@@ -20,20 +20,20 @@ class NetworkStationDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn("action", function ($station_network){
-                return view('station_networks.actions')->with('station_network', $station_network);
+            ->addColumn("action", function ($network_station){
+                return view('network_station.actions')->with('network_station', $network_station);
             })
-            ->addColumn('station', function($station_network) {
-                return $station_network->station->code;
+            ->addColumn('station', function($network_station) {
+                return $network_station->station->code;
             })
-            ->addColumn('network', function($station_network) {
-                return $station_network->network->code;
+            ->addColumn('network', function($network_station) {
+                return $network_station->network->code;
             })
-            ->addColumn('begin', function($station_network) {
-                return $station_network->begin;
+            ->addColumn('begin', function($network_station) {
+                return $network_station->begin;
             })
-            ->addColumn('end', function($station_network) {
-                return $station_network->end;
+            ->addColumn('end', function($network_station) {
+                return $network_station->end;
             })
             ->make(true);
     }
@@ -70,10 +70,10 @@ class NetworkStationDataTable extends DataTable
     private function getColumns()
     {
         return [
-            ['data' => 'begin', 'title' => trans('station_networks.began_at'),],
-            ['data' => 'end', 'title' => trans('station_networks.end_at'),],
-            ['data' => 'station', 'title' => trans('station_networks.station')],
-            ['data' => 'network', 'title' => trans('station_networks.network'),],
+            ['data' => 'begin', 'title' => trans('network_station.began_at'),],
+            ['data' => 'end', 'title' => trans('network_station.end_at'),],
+            ['data' => 'station', 'title' => trans('network_station.station')],
+            ['data' => 'network', 'title' => trans('network_station.network'),],
         ];
     }
 
