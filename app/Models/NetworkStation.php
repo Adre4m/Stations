@@ -57,7 +57,8 @@ class NetworkStation extends Model
 
     public static function query()
     {
-        return NetworkStation::select(['id', 'station_id', 'network_id', 'began_at', 'end_at'])->with('station', 'network')->newQuery();
+        return NetworkStation::select(['id', 'station_id', 'network_id', 'began_at', 'end_at'])
+            ->with('station', 'network')->newQuery();
     }
 
     public function getBeginAttribute()

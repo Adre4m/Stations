@@ -18,19 +18,19 @@ class StationDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn("action", function ($station){
+            ->addColumn("action", function ($station) {
                 return view('stations.actions')->with('station', $station);
             })
-            ->addColumn('manager', function($station){
+            ->addColumn('manager', function ($station) {
                 return "{$station->manager->fullname}";
             })
-            ->addColumn('owner', function($station){
+            ->addColumn('owner', function ($station) {
                 return "{$station->owner->fullname}";
             })
-            ->addColumn('position', function($station){
+            ->addColumn('position', function ($station) {
                 return $station->position;
             })
-            ->editColumn('code', function($station) {
+            ->editColumn('code', function ($station) {
                 return "<a href=\"" . route('stations.show', $station) . "\">{$station->code}</a>";
             })
             ->make(true);
@@ -54,10 +54,14 @@ class StationDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->columns($this->getColumns())
-                    ->ajax('')
-                    ->addAction(['width' => '185px'])
-                    ->parameters($this->getBuilderParameters());
+            ->columns($this->getColumns())
+            ->ajax('')
+            ->addAction(['width' => '185px'])
+            ->parameters(array_merge($this->getBuilderParameters(), ['language' => [
+                'url' => '//cdn.datatables.net/plug-ins/1.10.11/i18n/French.json',
+            ],
+                'order' => [[1, 'asc']]
+            ]));
     }
 
     /**
