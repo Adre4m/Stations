@@ -1,7 +1,7 @@
 {!! Form::model($network_station, [
     'route' => ($network_station->exists) ?
         ["network_station.update", $network_station->id] :
-        'network_station.create',
+        'network_station.store',
     'class' => 'form-horizontal'])
 !!}
 {!! Form::token() !!}
