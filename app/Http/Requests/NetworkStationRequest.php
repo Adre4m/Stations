@@ -10,12 +10,12 @@ namespace App\Http\Requests;
 
 
 use App\Models\Network;
-use App\Models\StationNetwork;
+use App\Models\NetworkStation;
 use Doctrine\Common\Cache\ZendDataCache;
 use Illuminate\Foundation\Http\FormRequest;
 use Webpatser\Uuid\Uuid;
 
-class StationNetworkRequest extends FormRequest
+class NetworkStationRequest extends FormRequest
 {
 
     public function authorize()
@@ -27,9 +27,9 @@ class StationNetworkRequest extends FormRequest
     {
         $station_network = $this->station_network;
         $id = ($station_network == null) ? null : $station_network->id;
-        $station_id = $this->station_id;
-        $network_id = $this->network_id;
-        $began_at = $this->began_at;
+        $station_id = $this->input('station_network-station_id');
+        $network_id = $this->input('station_network-network_id');
+        $began_at = $this->input('station_network-began_at');
         return [
             'station_networks-station_id' => [
                 "unique:station_networks,station_id,{$id},id,network_id,{$network_id},began_at,{$began_at}",
@@ -53,7 +53,7 @@ class StationNetworkRequest extends FormRequest
     {
         if($station_network == null)
         {
-            $station_network = new StationNetwork;
+            $station_network = new NetworkStation;
         }
         $station_network->station_id = $this->input('station_networks-station_id');
         $station_network->network_id = $this->input('station_networks-network_id');

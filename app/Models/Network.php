@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property string $began_at
  * @property string $end_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StationNetwork[] $stations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NetworkStation[] $stations
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereUuid($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereCreatedAt($value)
@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @property integer $code
  * @property string $name
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StationNetwork[] $stationNetworks
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NetworkStation[] $stationNetworks
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereName($value)
  */
@@ -43,7 +43,7 @@ class Network extends Model
 
     public function stationNetworks()
     {
-        return $this->hasMany(StationNetwork::class);
+        return $this->hasMany(NetworkStation::class);
     }
 
     public static function query()

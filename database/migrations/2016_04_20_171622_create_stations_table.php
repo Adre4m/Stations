@@ -4,13 +4,16 @@ use Illuminate\Database\Schema\Blueprint;
 
 /**
  * Created by PhpStorm.
- * User: Adrtien
+ * User: Adrien
  * Date: 20/04/2016
  * Time: 17:16
  */
 class CreateStationsTable extends Migration
 {
 
+    /**
+     * Définition de la table, dans la base de donnée.
+     */
     public function up()
     {
         Schema::create('stations', function(Blueprint $table) {

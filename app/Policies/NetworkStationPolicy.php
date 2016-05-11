@@ -2,25 +2,25 @@
 
 namespace App\Policies;
 
-use App\Models\StationNetwork;
+use App\Models\NetworkStation;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class StationNetworkPolicy
+class NetworkStationPolicy
 {
     use HandlesAuthorization;
 
-    public function destroy(User $user, StationNetwork $station)
+    public function destroy(User $user, NetworkStation $station)
     {
         return !auth()->guest();
     }
 
-    public function edit(User $user, StationNetwork $station)
+    public function edit(User $user, NetworkStation $station)
     {
         return !auth()->guest();
     }
 
-    public function add(User $user, StationNetwork $station)
+    public function add(User $user, NetworkStation $station)
     {
         return !auth()->guest();
     }

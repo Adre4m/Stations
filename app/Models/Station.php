@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Contributor $manager
  * @property-read \App\Models\Contributor $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SampleSite[] $sample_sites
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StationNetwork[] $measurement_networks
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NetworkStation[] $measurement_networks
  * @property-read mixed $position
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUuid($value)
@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property integer $id
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StationNetwork[] $networks
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NetworkStation[] $networks
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereId($value)
  */
 class Station extends Model
@@ -66,7 +66,7 @@ class Station extends Model
 
     public function networks()
     {
-        return $this->hasMany(StationNetwork::class);
+        return $this->belongsToMany(Network::class)->withPivot('began_at', 'end_at');
     }
 
     public static function query()

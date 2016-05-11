@@ -15,7 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\StationNetwork
+ * App\Models\NetworkStation
  *
  * @property integer $id
  * @property string $uuid
@@ -25,24 +25,26 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property-read \App\Models\Station $station
  * @property-read \App\Models\Network $measurement_network
- * @method static \Illuminate\Database\Query\Builder|\App\Models\StationNetwork whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\StationNetwork whereUuid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\StationNetwork whereStationId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\StationNetwork whereNetworkId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\StationNetwork whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\StationNetwork whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereUuid($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereStationId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereNetworkId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property integer $network_id
  * @property string $began_at
  * @property string $end_at
  * @property-read \App\Models\Network $network
- * @method static \Illuminate\Database\Query\Builder|\App\Models\StationNetwork whereBeganAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\StationNetwork whereEndAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereBeganAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereEndAt($value)
  */
-class StationNetwork extends Model
+class NetworkStation extends Model
 {
 
     use HasBusinessKey, GenerateUuid;
+
+    protected $table = 'network_station';
 
     public function station()
     {
@@ -55,7 +57,7 @@ class StationNetwork extends Model
 
     public static function query()
     {
-        return StationNetwork::select(['id', 'station_id', 'network_id', 'began_at', 'end_at'])->with('station', 'network')->newQuery();
+        return NetworkStation::select(['id', 'station_id', 'network_id', 'began_at', 'end_at'])->with('station', 'network')->newQuery();
     }
 
     public function getBeginAttribute()

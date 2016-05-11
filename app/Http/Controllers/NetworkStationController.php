@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 
-use App\DataTables\StationNetworkDataTable;
+use App\DataTables\NetworkStationDataTable;
 use App\Http\Requests\NetworkRequest;
-use App\Http\Requests\StationNetworkRequest;
+use App\Http\Requests\NetworkStationRequest;
 use App\Models\Network;
 use App\Models\Station;
-use App\Models\StationNetwork;
+use App\Models\NetworkStation;
 
-class StationNetworkController extends Controller
+class NetworkStationController extends Controller
 {
-    public function index(StationNetworkDataTable $dataTable)
+    public function index(NetworkStationDataTable $dataTable)
     {
         return $dataTable->render('station_networks.index');
     }
@@ -24,7 +24,7 @@ class StationNetworkController extends Controller
         return view('station_networks.create', ['stations' => $stations, 'networks' => $networks]);
     }
 
-    public function store(StationNetworkRequest $request)
+    public function store(NetworkStationRequest $request)
     {
         $request->persist();
         return redirect()->route('station_networks.index');
@@ -33,10 +33,10 @@ class StationNetworkController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  StationNetwork  $sampleSite
+     * @param  NetworkStation  $sampleSite
      * @return \Illuminate\Http\Response
      */
-    public function show(StationNetwork $station_network)
+    public function show(NetworkStation $station_network)
     {
         return view('station_networks.show', ['station_network' => $station_network]);
     }
@@ -44,10 +44,10 @@ class StationNetworkController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  StationNetwork  $station_network
+     * @param  NetworkStation  $station_network
      * @return \Illuminate\Http\Response
      */
-    public function edit(StationNetwork $station_network)
+    public function edit(NetworkStation $station_network)
     {
         $stations = Station::all();
         $networks = Network::all();
@@ -61,11 +61,11 @@ class StationNetworkController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * \App\Http\Requests\StationNetworkRequest  $request
-     * @param  StationNetwork  $station_network
+     * \App\Http\Requests\NetworkStationRequest  $request
+     * @param  NetworkStation  $station_network
      * @return \Illuminate\Http\Response
      */
-    public function update(StationNetworkRequest $request, StationNetwork $station_network)
+    public function update(NetworkStationRequest $request, NetworkStation $station_network)
     {
         $request->persist($station_network);
         return redirect()->route('station_networks.index');
@@ -74,10 +74,10 @@ class StationNetworkController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  StationNetwork  $station_network
+     * @param  NetworkStation  $station_network
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StationNetwork $station_network)
+    public function destroy(NetworkStation $station_network)
     {
         if(!$this->authorize('destroy', $station_network)) {
             redirect()->route('station_networks.index')->withErrors('401');

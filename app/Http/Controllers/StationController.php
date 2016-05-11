@@ -9,6 +9,7 @@ use App\Models\SampleSite;
 use App\Models\Station;
 
 use App\Http\Requests;
+use Carbon\Carbon;
 use Datatables;
 
 class StationController extends Controller
@@ -55,6 +56,7 @@ class StationController extends Controller
      */
     public function show(Station $station)
     {
+        return dd(Carbon::createFromTimestamp($station->networks->first()->pivot->began_at));
         return view('stations.show', ['station' => $station,]);
     }
 

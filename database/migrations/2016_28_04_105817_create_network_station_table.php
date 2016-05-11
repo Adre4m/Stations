@@ -8,12 +8,12 @@ use Illuminate\Database\Schema\Blueprint;
  * Date: 28/04/2016
  * Time: 10:58
  */
-class CreateStationNetworksTable extends Migration
+class CreateNetworkStationTable extends Migration
 {
 
     public function up()
     {
-        Schema::create('station_networks', function(Blueprint $table) {
+        Schema::create('network_station', function(Blueprint $table) {
             $table->increments('id');
             $table->uuid('uuid')->unique();
             $table->integer('station_id')->unsigned();
@@ -21,13 +21,13 @@ class CreateStationNetworksTable extends Migration
             $table->foreign('station_id')->references('id')->on('stations');
             $table->foreign('network_id')->references('id')->on('networks');
             $table->timestamps();
-            $table->dateTime('began_at');
-            $table->dateTime('end_at')->nullable();
+            $table->timestamp('began_at');
+            $table->timestamp('end_at')->nullable();
         });
     }
 
     public function down()
     {
-        Schema::drop('station_networks');
+        Schema::drop('network_station');
     }
 }

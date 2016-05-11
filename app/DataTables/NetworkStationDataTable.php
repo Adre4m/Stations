@@ -4,11 +4,11 @@ namespace App\DataTables;
 
 use App\Models\Network;
 use App\Models\Station;
-use App\Models\StationNetwork;
+use App\Models\NetworkStation;
 use App\User;
 use Yajra\Datatables\Services\DataTable;
 
-class StationNetworkDataTable extends DataTable
+class NetworkStationDataTable extends DataTable
 {
 
     /**
@@ -45,7 +45,7 @@ class StationNetworkDataTable extends DataTable
      */
     public function query()
     {
-        return $this->applyScopes(StationNetwork::query());
+        return $this->applyScopes(NetworkStation::query());
     }
 
     /**
