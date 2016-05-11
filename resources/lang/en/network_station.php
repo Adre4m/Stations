@@ -12,8 +12,4 @@ return [
     'name' => 'Name',
     'began_at' => 'Contract began at',
     'end_at' => 'Contract end at',
-    'set_began' => 'Beginning at',
-    'set_end' => 'Ending at',
-    'set_station' => 'Station',
-    'set_network' => 'Network',
 ];

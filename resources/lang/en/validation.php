@@ -108,7 +108,29 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'station-name' => 'Name',
+        'station-code' => 'Code',
+        'station-x' => 'Abscissa',
+        'station-y' => 'Ordinate',
+        'station-manager_id' => 'Select the manager',
+        'station-owner_id' => 'Select le owner',
+        'network_station-station_id' => 'Select the station',
+        'network_station-network_id' => 'Select the network',
+        'network_station-began_at' => 'Beginning of the contract',
+        'network_station-end_at' => 'Ending of the contract',
+        'network-code' => 'Code',
+        'network-name' => 'Name',
+        'sample_site-code' => 'Code',
+        'sample_site-name' => 'Name',
+        'sample_site-x' => 'Abscissa',
+        'sample_site-y' => 'Ordinate',
+        'sample_site-station_id' => 'Select the station',
+        'contributor-code' => 'Code',
+        'contributor-name' => 'Last name',
+        'contributor-last_name' => 'Last Name',
+        'contributor-siret' => 'Business identification number'
+    ],
 
     'siret' => 'The SIRET number does not respect the correct format',
 

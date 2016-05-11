@@ -15,13 +15,9 @@ return [
     'edit' => 'Éditer',
     'destroy' => 'Supprimer',
     'add' => 'Ajouter un intervenant',
-    'set_name' => 'Prénom :',
-    'set_last_name' => 'Nom :',
     'full_name' => 'Nom complet de l\'intervenant',
     'manager' => 'Gestionnaire',
     'owner' => 'Propriétaire',
     'code' => 'Code',
     'siret' => 'SIRET',
-    'set_code' => 'Code',
-    'set_siret' => 'Siret',
 ];

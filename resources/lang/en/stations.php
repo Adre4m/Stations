@@ -3,11 +3,6 @@
 return [
     'title' => 'Stations',
     'add' => 'Create a station',
-    'set_name' => 'Name of the station',
-    'set_x' => 'Abscissa',
-    'set_y' => 'Ordinate',
-    'set_manager' => 'Select the manager',
-    'set_owner' => 'Select the owner',
     'name' => 'Station\'s name',
     'position' => 'Station\'s position',
     'edit' => 'Edit',
@@ -16,5 +11,4 @@ return [
     'confirm' => 'Confirm',
     'cancel' => '&laquo; Back to stations',
     'code' => 'Code',
-    'set_code' => 'Code',
 ];

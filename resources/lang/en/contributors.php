@@ -15,13 +15,8 @@ return [
     'edit' => 'Edit',
     'destroy' => 'Destroy',
     'add' => 'Add a contributor',
-    'set_name' => 'First name:',
-    'set_last_name' => 'Last name:',
     'full_name' => 'Contributor\'s full name',
     'manager' => 'Manager',
     'owner' => 'Owner',
     'code' => 'Code',
-    'siret' => 'SIRET',
-    'set_code' => 'Code',
-    'set_siret' => 'Siret',
 ];
