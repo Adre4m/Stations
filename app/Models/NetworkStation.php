@@ -38,6 +38,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Network $network
  * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereBeganAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereEndAt($value)
+ * @property-read mixed $begin
+ * @property-read mixed $end
+ * @property-read mixed $business_key
  */
 class NetworkStation extends Model
 {

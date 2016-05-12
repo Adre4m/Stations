@@ -9,6 +9,7 @@
 namespace App\Http\Requests;
 
 
+use App\Models\Contributor;
 use App\Models\Station;
 use Illuminate\Foundation\Http\FormRequest;
 use Webpatser\Uuid\Uuid;

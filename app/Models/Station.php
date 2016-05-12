@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Contributor $manager
  * @property-read \App\Models\Contributor $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SampleSite[] $sample_sites
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NetworkStation[] $measurement_networks
  * @property-read mixed $position
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUuid($value)
@@ -37,6 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NetworkStation[] $networks
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereId($value)
+ * @property-read mixed $business_key
  */
 class Station extends Model
 {
@@ -62,6 +62,9 @@ class Station extends Model
     }
 
     // Relation plusieurs à plusieurs sur Réseau.
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function networks()
     {
         return $this->belongsToMany(Network::class)->withPivot('began_at', 'end_at');

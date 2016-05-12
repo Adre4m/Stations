@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Station[] $stations
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereSiret($value)
+ * @property-read mixed $business_key
  */
 class Contributor extends Model
 {

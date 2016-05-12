@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @property integer $code
  * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereCode($value)
+ * @property-read mixed $business_key
  */
 class SampleSite extends Model
 {

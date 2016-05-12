@@ -35,6 +35,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NetworkStation[] $stationNetworks
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereName($value)
+ * @property-read mixed $business_key
  */
 class Network extends Model
 {
