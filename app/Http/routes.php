@@ -34,12 +34,15 @@ Route::get('/networks/show{network}', 'NetworkController@show')->name('networks.
 Route::get('/network_station', 'NetworkStationController@index')->name('network_station.index');
 Route::get('/network_station/show{station_network}', 'NetworkStationController@show')->name('network_station.show');
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/stations/create', 'StationController@create')->name('stations.create');
     Route::post('/stations/store', 'StationController@store')->name('stations.store');
     Route::get('/stations/edit{station}', 'StationController@edit')->name('stations.edit');
     Route::post('/stations/update{station}', 'StationController@update')->name('stations.update');
     Route::get('/stations/destroy{station}', 'StationController@destroy')->name('stations.destroy');
+    Route::get('/stations/import', function () {
+        return view('stations.file');
+    })->name('stations.import');
 
     Route::get('/contributors/create', 'ContributorController@create')->name('contributors.create');
     Route::post('/contributors/store', 'ContributorController@store')->name('contributors.store');

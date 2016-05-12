@@ -99,6 +99,7 @@ return [
         'station-y' => 'Ordonnée',
         'station-manager_id' => 'Séléctionnez le gestionnaire',
         'station-owner_id' => 'Séléctionnez le propriétaire',
+        'station-file' => 'fichier',
         'network_station-station_id' => 'Séléctionnez la station',
         'network_station-network_id' => 'Séléctionnez le réseau',
         'network_station-began_at' => 'Date de début du contrat',
@@ -113,7 +114,7 @@ return [
         'contributor-code' => 'Code',
         'contributor-name' => 'Prénom',
         'contributor-last_name' => 'Nom',
-        'contributor-siret' => 'Numéro SIRET'
+        'contributor-siret' => 'Numéro SIRET',
     ],
 
     'siret' => 'Le numéro SIRET est invalide',
