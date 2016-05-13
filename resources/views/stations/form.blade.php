@@ -1,3 +1,16 @@
+{!! Form::model($station, [
+    'route' => ($station->exists) ? ["stations.update", $station->code] :  'stations.store',
+    'class' => 'form-horizontal',
+    'files' => true])
+!!}
+{!! Form::token() !!}
+{!! Form::globalText('station-code') !!}
+{!! Form::globalText('station-name') !!}
+{!! Form::globalText('station-x') !!}
+{!! Form::globalText('station-y') !!}
+{!! Form::globalSelect('station-manager_id', $contributors->pluck('fullname', 'id')) !!}
+{!! Form::globalSelect('station-owner_id', $contributors->pluck('fullname', 'id')) !!}
+
 <style>
     .fileUpload {
         position: relative;
@@ -17,24 +30,12 @@
         filter: alpha(opacity=0);
     }
 </style>
-{!! Form::model($station, [
-    'route' => ($station->exists) ? ["stations.update", $station->code] :  'stations.store',
-    'class' => 'form-horizontal',
-    'files' => true])
-!!}
-{!! Form::token() !!}
-{!! Form::globalText('station-code') !!}
-{!! Form::globalText('station-name') !!}
-{!! Form::globalText('station-x') !!}
-{!! Form::globalText('station-y') !!}
-{!! Form::globalSelect('station-manager_id', $contributors->pluck('fullname', 'id')) !!}
-{!! Form::globalSelect('station-owner_id', $contributors->pluck('fullname', 'id')) !!}
 
 <div class="form-group{{ $errors->has('station-file') ? ' has-error' : '' }}">
     <div class="col-md-4 control-label">
         <span class="fileUpload btn btn-success">{{ trans('pagination.upload') }}
             {!! Form::file('station-file',
-            ['accept' => '.xml', 'class' => 'upload form-control', 'id' => 'station-file']) !!}
+            ['accept' => '.xml', 'class' => 'upload form-control', 'id' => 'station-file',]) !!}
         </span>
     </div>
     <div class="col-md-6">
@@ -53,6 +54,7 @@
         document.getElementById("uploadFile").value = this.value;
     };
 </script>
+
 {!! Form::buttons('stations') !!}
 
 {!! Form::close() !!}

@@ -171,6 +171,8 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
 
+        Orchestra\Parser\XmlServiceProvider::class,
+
     ],
 
     /*
@@ -228,6 +230,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
+
+        'XmlParser' => Orchestra\Parser\Xml\Facade::class,
     ],
 
 ];

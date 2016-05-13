@@ -1,44 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Adrtien
- * Date: 21/04/2016
- * Time: 10:41
- */
-
-namespace App\Http\Requests;
-
-
-use App\Models\Contributor;
-use App\Models\Station;
-use Illuminate\Foundation\Http\FormRequest;
-use Orchestra\Parser\Xml;
-
-class StationRequest extends FormRequest
-{
-
-    public function authorize()
-    {
-        return true;
-    }
-
-    public function rules()
-    {
-        return Station::rules($this->station, 'station-', $this->x, $this->y);
-    }
-
-    /**
-     * @param null $station
-     * @return $this|bool
-     */
-    public function persist($station = null)
-    {
-
-        /** @var \App\Models\Station $station */
-        if ($station == null) {
-            $station = new Station;
-        }
-        if ($this->hasFile('station-file')) {
+if ($this->hasFile('station-file')) {
             $file = $this->file('station-file');
             $xml = \XmlParser::load($file->getRealPath());
             $info = $xml->parse([
@@ -74,6 +34,7 @@ class StationRequest extends FormRequest
                         'station-file' => $validator->errors()
                     ]);
             }
+            $manager->save();
             $owner = Contributor::where([
                 'code' => $info['owner.code'],
             ])
@@ -92,6 +53,7 @@ class StationRequest extends FormRequest
                         'station-file' => $validator->errors()
                     ]);
             }
+            $owner->save();
 
             $station = Station::where([
                 'code' => $info['station-code'],
@@ -103,28 +65,13 @@ class StationRequest extends FormRequest
             $station->name = $info['station-name'];
             $station->x = $info['station-x'];
             $station->y = $info['station-y'];
-            $validator = \Validator::make($station->attributesToArray(), Station::rules($station));
-            if ($validator->fails()) {
-                return redirect()->back()
-                    ->withErrors([
-                        'station-file' => $validator->errors()
-                    ]);
-            }
-            $manager->save();
-            $owner->save();
-            $station->manager()->associate($station);
-            $station->owner()->associate($station);
             $station->manager_id = $manager->id;
             $station->owner_id = $owner->id;
+            $validator = \Validator::make($station->attributesToArray(), Station::rules());
+            if ($validator->fails()) {
+                return dd(redirect()->back()
+                    ->withErrors([
+                        'station-file' => $validator->errors()
+                    ]));
+            }
             return $station->save();
-        } else {
-            $station->code = $this->input('station-code');
-            $station->name = $this->input('station-name');
-            $station->x = $this->input('station-x');
-            $station->y = $this->input('station-y');
-            $station->manager_id = $this->input('station-manager_id');
-            $station->owner_id = $this->input('station-owner_id');
-            return $station->save();
-        }
-    }
-}

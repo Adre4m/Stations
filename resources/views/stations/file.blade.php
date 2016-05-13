@@ -1,22 +1,44 @@
-@extends('layouts.app')
-@section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">{{ trans('stations.title') }}</div>
-                    <div class="panel-body">
-                        {!! Form::model([
-                            'route' => 'stations.store',
-                            'class' => 'form-horizontal'])
-                        !!}
-                        {!! Form::token() !!}
-                        {!! Form::globalFile('station-file') !!}
-                        {!! Form::buttons('stations') !!}
-                        {!! Form::close() !!}
-                    </div>
-                </div>
-            </div>
-        </div>
+<style>
+    .fileUpload {
+        position: relative;
+        overflow: hidden;
+        /*margin: 10px;*/
+    }
+
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+</style>
+
+
+<div class="form-group{{ $errors->has('station-file') ? ' has-error' : '' }}">
+    <div class="col-md-4 control-label">
+        <span class="fileUpload btn btn-success">{{ trans('pagination.upload') }}
+            {!! Form::file('station-file',
+            ['accept' => '.xml', 'class' => 'upload form-control', 'id' => 'station-file']) !!}
+        </span>
     </div>
-@endsection
+    <div class="col-md-6">
+        <input id="uploadFile" placeholder="Choose File" disabled="disabled" class="form-control form-control-static"/>
+        @if ($errors->has('station-file'))
+            <div class="alert alert-danger">
+                @foreach($errors->get('station-file') as $error)
+                    <strong>{{ $error }}</strong><br>
+                @endforeach
+            </div>
+        @endif
+    </div>
+</div>
+<script type="text/javascript">
+    document.getElementById("station-file").onchange = function () {
+        document.getElementById("uploadFile").value = this.value;
+    };
+</script>

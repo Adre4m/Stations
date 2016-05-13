@@ -33,23 +33,47 @@ class Contributor extends Model
 
     public $timestamps = false;
 
-    public $fillable = [
-        'name', 'last_name',
-    ];
+    /**
+     * @return array
+     */
+    public static function rules(Contributor $contributor = null, $prefix = '')
+    {
+        $id = (isset($contributor) && $contributor->id != null) ? $contributor->id : 'null';
+        return [
+            "{$prefix}code" => [
+                'required',
+                "unique:contributors,code,{$id},id",
+            ],
+            "{$prefix}name" => [
+                'required',
+                'max:255',
+            ],
+            "{$prefix}last_name" => [
+                'required',
+                'max:255',
+            ],
+            "{$prefix}siret" => [
+                'siret',
+                "unique:contributors,siret,{$id},id",
+            ],
+        ];
+    }
 
-
-    public function getFullnameAttribute()
+    public
+    function getFullnameAttribute()
     {
         return "{$this->name} {$this->last_name}";
     }
 
-    public function stations()
+    public
+    function stations()
     {
         return $this->hasMany(Station::class, 'manager_id', 'owner_id');
     }
 
 
-    public static function query()
+    public
+    static function query()
     {
         return Contributor::select(['id', 'code', 'name', 'last_name', 'siret'])->with('stations')->newQuery();
     }

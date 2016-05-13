@@ -1,54 +1,37 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Adrtien
- * Date: 21/04/2016
- * Time: 11:20
- */
 
 namespace App\Http\Requests;
 
 
 use App\Models\Contributor;
 use Illuminate\Foundation\Http\FormRequest;
-use Webpatser\Uuid\Uuid;
 
 class ContributorRequest extends FormRequest
 {
 
+    /**
+     * @return bool
+     */
     public function authorize()
     {
         return true;
     }
-    
+
+    /**
+     * @return array
+     */
     public function rules()
     {
-        $contributor = $this->contributor;
-        $id = ($contributor == null) ? null : $contributor->id;
-        return [
-            'contributor-code' => [
-                'required',
-                "unique:contributors,code,{$id},id",
-            ],
-            'contributor-name' => [
-                'required',
-                'max:255',
-            ],
-            'contributor-last_name' => [
-                'required',
-                'max:255',
-            ],
-            'contributor-siret' => [
-                'siret',
-                "unique:contributors,siret,{$id},id",
-            ],
-        ];
+        return Contributor::rules($this->contributor, 'contributor-');
     }
 
+    /**
+     * @param null $contributor
+     * @return bool
+     */
     public function persist($contributor = null)
     {
-        if($contributor == null)
-        {
+        if ($contributor == null) {
             $contributor = new Contributor;
         }
         $contributor->code = $this->input('contributor-code');
