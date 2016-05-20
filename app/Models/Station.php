@@ -44,7 +44,7 @@ class Station extends Model
     use HasBusinessKey, GenerateUuid;
 
     protected $fillable = [
-      'code', 'name', 'x', 'y',
+        'code', 'name', 'x', 'y',
     ];
 
     /**
@@ -58,10 +58,11 @@ class Station extends Model
     /**
      * @return array
      */
-    public static function rules(Station $station = null, $prefix = '')
+    public static function rules(Station $station = null, $prefix = '', $x = null, $y = null)
     {
-//        dd($station, $prefix);
         $id = (isset($station) && $station->id != null) ? $station->id : 'null';
+        $x = (!isset($station->x)) ?: $station->x;
+        $y = (!isset($station->y)) ?: $station->y;
         return [
             "{$prefix}code" => [
                 "required_without:{$prefix}file",
@@ -74,12 +75,12 @@ class Station extends Model
             "{$prefix}x" => [
                 "required_without:{$prefix}file",
                 'numeric',
-//                "unique:stations,x,{$id},id,y,{$station->y}",
+                "unique:stations,x,{$id},id,y,{$y}",
             ],
             "{$prefix}y" => [
                 "required_without:{$prefix}file",
                 'numeric',
-//                "unique:stations,y,{$id},id,x,{$station->x}",
+                "unique:stations,y,{$id},id,x,{$x}",
             ],
             "{$prefix}file" => [
                 "required_without_all:{$prefix}code,{$prefix}name,{$prefix}x,{$prefix}y",
