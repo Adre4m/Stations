@@ -65,7 +65,7 @@ class QUESUInterpreter extends \App\Interpreter\Interpreter
         if (is_numeric($key)) {
             return $key;
         }
-        return $this->map[$key];
+        return isset($this->map[$key]) ? $this->map[$key] : $key;
     }
 
     private function not_null($value)
@@ -82,7 +82,6 @@ class QUESUInterpreter extends \App\Interpreter\Interpreter
     {
         $res = [];
         foreach ($tab as $key => $value) {
-            // A simplifier ; sûrement, pas toujours
             if (is_array($value)) {
                 // Cas 1 : chiffre inutile
                 if (isset($value[0]) && !isset($value[1])) {
