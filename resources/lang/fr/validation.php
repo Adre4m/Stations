@@ -63,6 +63,7 @@ return [
         "string"  => "Le texte de :attribute doit contenir :size caractères.",
     ),
     "unique"           => "La valeur du champ :attribute est déjà utilisée.",
+    "unique_with"      => "La valeur du champ :attribute est déjà utilisée dans :other.",
     "url"              => "Le format de l'URL de :attribute n'est pas valide.",
 
     /*
@@ -80,6 +81,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'sample_site-code' => [
+            'unique' => 'Ce site de prélèvement existe déjà au sein de cette station',
+        ]
     ],
 
     /*

@@ -14,7 +14,7 @@
 $factory->define(App\Models\SampleSite::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->word,
-        'code' => $faker->unique()->randomNumber(),
+        'code' => $faker->unique()->randomNumber(3),
         'x' => $faker->randomFloat(3, -999, 999),
         'y' => $faker->randomFloat(3, -999, 999),
         'station_id' => $faker->numberBetween(1, 50),
