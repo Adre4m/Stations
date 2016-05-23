@@ -7,7 +7,7 @@
 {!! Form::globalText('contributor-code') !!}
 {!! Form::globalText('contributor-name') !!}
 {!! Form::globalText('contributor-last_name') !!}
-{!! Form::globalText('contributor-siret') !!}
+{!! Form::globalCheckbox('contributor-siret') !!}
 {!! Form::buttons('contributors') !!}
 
 {!! Form::close() !!}

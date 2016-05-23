@@ -38,7 +38,10 @@ class StationRequest extends FormRequest
         if ($this->hasFile('station-file')) {
             $quesu = new QUESUInterpreter();
             $res = $quesu->parse($this->file('station-file'));
+            $station = $quesu->interpret($res);
             dd($res);
+            dd($station);
+            $quesu->interpret($res);
         } else {
             $station->code = $this->input('station-code');
             $station->name = $this->input('station-name');
@@ -46,7 +49,7 @@ class StationRequest extends FormRequest
             $station->y = $this->input('station-y');
             $station->manager_id = $this->input('station-manager_id');
             $station->owner_id = $this->input('station-owner_id');
-            return $station->save();
         }
+        return $station->save();
     }
 }

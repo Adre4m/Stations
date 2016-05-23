@@ -14,7 +14,7 @@
 $factory->define(App\Models\Scenario::class, function (Faker\Generator $faker) {
     return [
         'code' => strtoupper($faker->word),
-        'version' => $faker->randomNumber(),
+        'version' => $faker->numberBetween(1, 3),
         'name' => $faker->company,
         'began_at' => $faker->date('Y-m-d H:i:s'),
         'end_at' => $faker->date('Y-m-d H:i:s'),

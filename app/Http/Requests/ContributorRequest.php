@@ -22,7 +22,8 @@ class ContributorRequest extends FormRequest
      */
     public function rules()
     {
-        return Contributor::rules($this->contributor, 'contributor-');
+        return Contributor::rules($this->contributor, 'contributor-',
+            $on = $this->input('contributor-siret') == 'on');
     }
 
     /**
@@ -34,10 +35,11 @@ class ContributorRequest extends FormRequest
         if ($contributor == null) {
             $contributor = new Contributor;
         }
+        $on = $this->input('contributor-siret') == 'on';
         $contributor->code = $this->input('contributor-code');
         $contributor->name = $this->input('contributor-name');
         $contributor->last_name = $this->input('contributor-last_name');
-        $contributor->siret = $this->input('contributor-siret');
+        $contributor->siret = $on;
         return $contributor->save();
     }
 }

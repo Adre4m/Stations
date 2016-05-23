@@ -8,10 +8,10 @@
 
 namespace App;
 
-trait HasBusinessKey
+trait HasComposedBusinessKey
 {
 
-    public function getBusinessKeyAttribute()
+    public function getComposedBusinessKeyAttribute()
     {
         return $this->{$this->getBusinessKey()};
     }

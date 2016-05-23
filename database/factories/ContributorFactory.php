@@ -12,10 +12,11 @@
 */
 
 $factory->define(App\Models\Contributor::class, function (Faker\Generator $faker) {
+    $siret = $faker->boolean;
     return [
-        'code' => $faker->unique()->randomNumber(),
+        'code' => $faker->unique()->{($siret) ? 'siret' : 'randomNumber'},
         'name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'siret' => $faker->unique()->siret,
+        'siret' => $siret,
     ];
 });

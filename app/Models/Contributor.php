@@ -16,13 +16,14 @@ class Contributor extends Model
     /**
      * @return array
      */
-    public static function rules(Contributor $contributor = null, $prefix = '')
+    public static function rules(Contributor $contributor = null, $prefix = '', $on = false)
     {
         $id = (isset($contributor) && $contributor->id != null) ? $contributor->id : 'null';
         return [
             "{$prefix}code" => [
                 'required',
                 "unique:contributors,code,{$id},id",
+                ($on) ? 'siret' : '',
             ],
             "{$prefix}name" => [
                 'required',
@@ -31,10 +32,6 @@ class Contributor extends Model
             "{$prefix}last_name" => [
                 'required',
                 'max:255',
-            ],
-            "{$prefix}siret" => [
-                'siret',
-                "unique:contributors,siret,{$id},id",
             ],
         ];
     }

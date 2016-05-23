@@ -8,6 +8,10 @@ abstract class Interpreter
 
     protected $keyMap;
 
+    /**
+     * @param \Symfony\Component\HttpFoundation\File\File $file
+     * @return array
+     */
     public function parse(\Symfony\Component\HttpFoundation\File\File $file)
     {
         $res = $this->transform(\App\Parser\Parser::parse($file));
@@ -15,11 +19,22 @@ abstract class Interpreter
         return $res;
     }
 
+    /**
+     * Transform the given array into a interpretable one.
+     *
+     * @param array $tab
+     * @return array
+     */
     abstract public function transform(array $tab);
 
+    /**
+     * Simplify the given array by deleting all null values, and by narrowing as
+     * mush as possible all the data.
+     *
+     * @param array $tab
+     * @return array
+     */
     abstract protected function simplify(array $tab);
-
-
 
     /**
      * If the given arg is an array then it will return a model if the array is correctly formed,
@@ -30,7 +45,7 @@ abstract class Interpreter
      * @return array | \Illuminate\Database\Eloquent\Model
      * @throws \Symfony\Component\Config\Definition\Exception\InvalidTypeException
      */
-    abstract protected function interpret($arg);
+    abstract public function interpret($arg);
 
 
 }

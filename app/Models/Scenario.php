@@ -13,7 +13,7 @@ class Scenario extends Model
     use HasBusinessKey, GenerateUuid;
 
     protected $fillable = [
-        'code', 'name', 'version',
+        'code', 'name', 'version', 'began_at', 'end_at',
     ];
 
     /**

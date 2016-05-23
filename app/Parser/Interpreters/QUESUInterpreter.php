@@ -2,6 +2,8 @@
 
 namespace App\Interpreter;
 
+use App\Models\Contributor;
+use App\Models\Scenario;
 use Symfony\Component\Config\Definition\Exception\InvalidTypeException;
 
 class QUESUInterpreter extends \App\Interpreter\Interpreter
@@ -9,8 +11,6 @@ class QUESUInterpreter extends \App\Interpreter\Interpreter
 
     protected $map = [
         'Scenario' => 'scenario',
-        'attributes' => 'attributes',
-        'value' => 'value',
         'CodeScenario' => 'code',
         'VersionScenario' => 'version',
         'NomScenario' => 'name',
@@ -116,14 +116,36 @@ class QUESUInterpreter extends \App\Interpreter\Interpreter
     /**
      * {@inheritdoc}
      */
-    protected function interpret($arg)
+    public function interpret($arg)
     {
-        if(is_array($arg)) {
-
-        } else if($arg instanceof \Illuminate\Database\Eloquent\Model) {
-
+        if (is_array($arg)) {
+            if (!isset($arg['scenario']) || !isset($arg['station'])) {
+                throw new InvalidTypeException;
+            }
+            $scenario = new Scenario;
+            $scenario->fill($arg['scenario']);
+            $contributors = [];
+            foreach($arg['scenario'] as $key => $value) {
+                if($key == 'transmitter' || $key == 'receiver') {
+                    $siret = $arg['scenario'][$key]['code']['scheme'] == 'SIRET';
+                    $code = $arg['scenario'][$key]['code']['value'];
+                    if ($siret) {
+                        $code = substr($code, 0, 3) . ' ' . substr($code, 3, 3) . ' ' . substr($code, 6, 3) . ' ' . substr($code, 9, 5);
+                    }
+                    $contributor = Contributor::whereCode($code)->first();
+                    if($contributor == null) {
+                        return redirect()->back()->withErrors(507);
+                    }
+                    $contributors[$key] = $contributor->id;
+                }
+            }
+            $scenario->transmitter_id = $contributors['transmitter'];
+            $scenario->receiver_id = $contributors['receiver'];
+            return $scenario;
+        } else if ($arg instanceof \Illuminate\Database\Eloquent\Model) {
+            return null;
         } else {
-            throw new InvalidTypeException;
+            return redirect()->back()->withErrors(401);
         }
     }
 }
