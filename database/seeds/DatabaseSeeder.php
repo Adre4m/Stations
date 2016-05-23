@@ -4,6 +4,7 @@ use App\Models\NetworkStation;
 use App\Models\Contributor;
 use App\Models\Network;
 use App\Models\SampleSite;
+use App\Models\Scenario;
 use App\Models\Station;
 use App\Models\StationLog;
 use App\User;
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
         factory(SampleSite::class, 50)->create();
         factory(Network::class, 50)->create();
         factory(NetworkStation::class, 50)->create();
+        factory(Scenario::class, 50)->create();
     }
 }

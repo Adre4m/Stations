@@ -2,6 +2,8 @@
 
 namespace App\Interpreter;
 
+use Symfony\Component\Config\Definition\Exception\InvalidTypeException;
+
 class QUESUInterpreter extends \App\Interpreter\Interpreter
 {
 
@@ -78,7 +80,7 @@ class QUESUInterpreter extends \App\Interpreter\Interpreter
         return isset($value);
     }
 
-    public function simplify(array $tab)
+    protected function simplify(array $tab)
     {
         $res = [];
         foreach ($tab as $key => $value) {
@@ -109,5 +111,19 @@ class QUESUInterpreter extends \App\Interpreter\Interpreter
             $res[$key] = $value;
         }
         return $res;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function interpret($arg)
+    {
+        if(is_array($arg)) {
+
+        } else if($arg instanceof \Illuminate\Database\Eloquent\Model) {
+
+        } else {
+            throw new InvalidTypeException;
+        }
     }
 }

@@ -11,11 +11,14 @@
 |
 */
 
-$factory->define(App\Models\Contributor::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Scenario::class, function (Faker\Generator $faker) {
     return [
-        'code' => $faker->unique()->randomNumber(),
-        'name' => $faker->firstName,
-        'last_name' => $faker->lastName,
-        'siret' => $faker->unique()->siret,
+        'code' => strtoupper($faker->word),
+        'version' => $faker->randomNumber(),
+        'name' => $faker->company,
+        'began_at' => $faker->date('Y-m-d H:i:s'),
+        'end_at' => $faker->date('Y-m-d H:i:s'),
+        'transmitter_id' => $faker->numberBetween(1, 50),
+        'receiver_id' => $faker->numberBetween(1, 50),
     ];
 });

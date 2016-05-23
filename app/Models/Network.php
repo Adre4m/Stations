@@ -13,30 +13,6 @@ use App\GenerateUuid;
 use App\HasBusinessKey;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * App\Models\Network
- *
- * @property integer $id
- * @property string $uuid
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property string $began_at
- * @property string $end_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NetworkStation[] $stations
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereUuid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereBeganAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereEndAt($value)
- * @mixin \Eloquent
- * @property integer $code
- * @property string $name
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NetworkStation[] $stationNetworks
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereCode($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereName($value)
- * @property-read mixed $business_key
- */
 class Network extends Model
 {
 

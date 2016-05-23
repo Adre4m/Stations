@@ -21,11 +21,17 @@ class CreateStationsTable extends Migration
             $table->uuid('uuid')->unique();
             $table->integer('code')->unique();
             $table->string('name');
+            $table->string('precise_location');
             $table->double('x');
             $table->double('y');
+            $table->integer('projection');
+            $table->timestamps();
+            $table->integer('hardness_class');
+            $table->integer('hydro_entity_code');
+            $table->integer('hydro_section_code');
+            $table->integer('town_code');
             $table->integer('manager_id')->unsigned();
             $table->integer('owner_id')->unsigned();
-            $table->timestamps();
             $table->foreign('manager_id')->references('id')->on('contributors');
             $table->foreign('owner_id')->references('id')->on('contributors');
         });

@@ -7,37 +7,6 @@ use App\GenerateUuid;
 use App\HasBusinessKey;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * App\Models\Station
- *
- * @property integer $code
- * @property string $uuid
- * @property string $name
- * @property float $x
- * @property float $y
- * @property integer $manager_id
- * @property integer $owner_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read \App\Models\Contributor $manager
- * @property-read \App\Models\Contributor $owner
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SampleSite[] $sample_sites
- * @property-read mixed $position
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCode($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUuid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereX($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereY($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereManagerId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereOwnerId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUpdatedAt($value)
- * @mixin \Eloquent
- * @property integer $id
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NetworkStation[] $networks
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereId($value)
- * @property-read mixed $business_key
- */
 class Station extends Model
 {
 

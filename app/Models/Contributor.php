@@ -6,26 +6,6 @@ use App\GenerateUuid;
 use App\HasBusinessKey;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * App\Models\Contributor
- *
- * @property integer $id
- * @property string $uuid
- * @property string $name
- * @property string $last_name
- * @property-read mixed $fullname
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereUuid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereLastName($value)
- * @mixin \Eloquent
- * @property integer $code
- * @property string $siret
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Station[] $stations
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereCode($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereSiret($value)
- * @property-read mixed $business_key
- */
 class Contributor extends Model
 {
 
