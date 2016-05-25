@@ -5,12 +5,13 @@ namespace App\Models;
 
 use App\GenerateUuid;
 use App\HasBusinessKey;
+use App\Validatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Station extends Model
 {
 
-    use HasBusinessKey, GenerateUuid;
+    use HasBusinessKey, GenerateUuid, Validatable;
 
     protected $fillable = [
         'code', 'name', 'x', 'y',
@@ -68,24 +69,10 @@ class Station extends Model
         ];
     }
 
-    public function validate()
-    {
-        $array = array();
-        foreach($this->toArray() as $key => $value)
-        {
-            $array["station-$key"] = $value;
-        }
-        $validator = \Validator::make($array, static::businessRules());
-        if (!$validator->passes()) {
-            session()->flash('warnings', $validator->errors());
-        }
-    }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public
-    function owner()
+    public function owner()
     {
         return $this->belongsTo(Contributor::class);
     }
@@ -93,8 +80,7 @@ class Station extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public
-    function sample_sites()
+    public function sample_sites()
     {
         return $this->hasMany(SampleSite::class);
     }
@@ -102,8 +88,7 @@ class Station extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public
-    function networks()
+    public function networks()
     {
         return $this->belongsToMany(Network::class)->withPivot('began_at', 'end_at');
     }
@@ -111,8 +96,7 @@ class Station extends Model
     /**
      * @return mixed
      */
-    public
-    static function query()
+    public static function query()
     {
         return Station::select(['id', 'code', 'name', 'x', 'y', 'manager_id', 'owner_id',])
             ->with('manager', 'owner', 'sample_sites')->newQuery();
@@ -121,8 +105,7 @@ class Station extends Model
     /**
      * @return string
      */
-    public
-    function getPositionAttribute()
+    public function getPositionAttribute()
     {
         return "({$this->x}, {$this->y})";
     }

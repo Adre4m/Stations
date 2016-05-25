@@ -41,6 +41,7 @@ class StationRequest extends FormRequest
             $res = $interpreter->forFile($this->file('station-file'))->parse();
             $station = $interpreter->interpret($res);
             $station->validate();
+
         } else {
             $station->code = $this->input('station-code');
             $station->name = $this->input('station-name');

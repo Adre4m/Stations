@@ -14,10 +14,10 @@ namespace App\Models{
  *
  * @property integer $id
  * @property string $uuid
- * @property integer $code
+ * @property string $code
  * @property string $name
  * @property string $last_name
- * @property string $siret
+ * @property boolean $siret
  * @property-read mixed $fullname
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Station[] $stations
  * @property-read mixed $business_key
@@ -113,55 +113,16 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Scenario
- *
- * @property integer $id
- * @property string $uuid
- * @property string $code
- * @property integer $version
- * @property string $name
- * @property string $began_at
- * @property string $end_at
- * @property integer $transmitter_id
- * @property integer $receiver_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read \App\Models\Contributor $transmitter
- * @property-read \App\Models\Contributor $receiver
- * @property-read mixed $business_key
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Scenario whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Scenario whereUuid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Scenario whereCode($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Scenario whereVersion($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Scenario whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Scenario whereBeganAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Scenario whereEndAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Scenario whereTransmitterId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Scenario whereReceiverId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Scenario whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Scenario whereUpdatedAt($value)
- */
-	class Scenario extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
  * App\Models\Station
  *
  * @property integer $id
  * @property string $uuid
  * @property integer $code
  * @property string $name
- * @property string $precise_location
  * @property float $x
  * @property float $y
- * @property integer $projection
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property integer $hardness_class
- * @property integer $hydro_entity_code
- * @property integer $hydro_section_code
- * @property integer $town_code
  * @property integer $manager_id
  * @property integer $owner_id
  * @property-read \App\Models\Contributor $manager
@@ -174,16 +135,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUuid($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station wherePreciseLocation($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereX($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereY($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereProjection($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereHardnessClass($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereHydroEntityCode($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereHydroSectionCode($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereTownCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereManagerId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereOwnerId($value)
  */
