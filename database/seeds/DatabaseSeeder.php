@@ -20,6 +20,11 @@ class DatabaseSeeder extends Seeder
     {
         factory(User::class, 50)->create();
 
+        $me = new User();
+        $me->email = 'test@test.com';
+        $me->name = 'Test Test';
+        $me->password = bcrypt('secret');
+        $me->save();
         factory(Contributor::class, 50)->create();
 
         $unknown = Contributor::firstOrNew(['code' => '0', 'siret' => false]);
@@ -40,6 +45,5 @@ class DatabaseSeeder extends Seeder
         factory(SampleSite::class, 50)->create();
         factory(Network::class, 50)->create();
         factory(NetworkStation::class, 50)->create();
-        factory(Scenario::class, 50)->create();
     }
 }

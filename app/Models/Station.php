@@ -27,41 +27,65 @@ class Station extends Model
     /**
      * @return array
      */
-    public static function rules(Station $station = null, $prefix = '', $x = null, $y = null)
+    public static function rules(Station $station = null, $x = null, $y = null)
     {
         $id = (isset($station) && $station->id != null) ? $station->id : 'null';
         $x = (!isset($station->x)) ?: $station->x;
         $y = (!isset($station->y)) ?: $station->y;
         return [
-            "{$prefix}code" => [
-                "required_without:{$prefix}file",
+            "station-code" => [
+                "required_without:station-file",
                 "unique:stations,code,{$id},id",
             ],
-            "{$prefix}name" => [
-                "required_without:{$prefix}file",
+            "station-name" => [
+                "required_without:station-file",
                 'max:255'
             ],
-            "{$prefix}x" => [
-                "required_without:{$prefix}file",
+            "station-x" => [
+                "required_without:station-file",
                 'numeric',
                 "unique:stations,x,{$id},id,y,{$y}",
             ],
-            "{$prefix}y" => [
-                "required_without:{$prefix}file",
+            "station-y" => [
+                "required_without:station-file",
                 'numeric',
                 "unique:stations,y,{$id},id,x,{$x}",
             ],
-            "{$prefix}file" => [
-                "required_without_all:{$prefix}code,{$prefix}name,{$prefix}x,{$prefix}y",
-                "mimes:xml",
+            "station-file" => [
+                "required_without_all:station-code,station-name,station-x,station-y",
+//                "mimes:xml,csv",
             ],
         ];
     }
 
     /**
+     * @return array
+     */
+    public static function businessRules()
+    {
+        return [
+            'station-code' => 'numeric|max:1',
+        ];
+    }
+
+    public function validate()
+    {
+        $array = array();
+        foreach($this->toArray() as $key => $value)
+        {
+            $array["station-$key"] = $value;
+        }
+        $validator = \Validator::make($array, static::businessRules());
+        if (!$validator->passes()) {
+            session()->flash('warnings', $validator->errors());
+        }
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function owner()
+    public
+    function owner()
     {
         return $this->belongsTo(Contributor::class);
     }
@@ -69,7 +93,8 @@ class Station extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function sample_sites()
+    public
+    function sample_sites()
     {
         return $this->hasMany(SampleSite::class);
     }
@@ -77,7 +102,8 @@ class Station extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function networks()
+    public
+    function networks()
     {
         return $this->belongsToMany(Network::class)->withPivot('began_at', 'end_at');
     }
@@ -85,7 +111,8 @@ class Station extends Model
     /**
      * @return mixed
      */
-    public static function query()
+    public
+    static function query()
     {
         return Station::select(['id', 'code', 'name', 'x', 'y', 'manager_id', 'owner_id',])
             ->with('manager', 'owner', 'sample_sites')->newQuery();
@@ -94,7 +121,8 @@ class Station extends Model
     /**
      * @return string
      */
-    public function getPositionAttribute()
+    public
+    function getPositionAttribute()
     {
         return "({$this->x}, {$this->y})";
     }

@@ -80,6 +80,8 @@ class AppServiceProvider extends ServiceProvider
         Form::component('globalDate', 'form.date', ['name', 'value', 'attributes' => [],]);
         Form::component('globalSelect', 'form.select', ['name', 'options', 'value', 'attributes' => [],]);
         Form::component('globalCheckbox', 'form.checkbox', ['name', 'options', 'value', 'attributes' => [],]);
+        Form::component('errors', 'form.errors', ['name', 'value' => null, 'attributes' => [],]);
+        Form::component('import', 'form.import', ['name', 'value', 'attributes' => [],]);
     }
 
     /**

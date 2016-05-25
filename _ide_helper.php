@@ -12529,12 +12529,13 @@ namespace {
 
         /**
          * @param string $name
+         * @param string $value
          * @return \Illuminate\Contracts\View\View mixed
          * @static
          */
-        public static function globalText($name)
+        public static function globalText($name, $value = null)
         {
-            return \Collective\Html\FormBuilder::globalText($name);
+            return \Collective\Html\FormBuilder::globalText($name, $value);
         }
 
         /**
@@ -12542,9 +12543,19 @@ namespace {
          * @return \Illuminate\Contracts\View\View mixed
          * @static
          */
-        public static function globalSelect($name, $value)
+        public static function globalSelect($name, $value, $selected = null)
         {
-            return \Collective\Html\FormBuilder::globalSelect($name, $value);
+            return \Collective\Html\FormBuilder::globalSelect($name, $value, $selected);
+        }
+
+        public static function errors($name)
+        {
+            return \Collective\Html\FormBuilder::errors($name);
+        }
+
+        public static function import($name)
+        {
+            return \Collective\Html\FormBuilder::import($name);
         }
 
     }

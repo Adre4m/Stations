@@ -32,8 +32,10 @@ class StationController extends Controller
      */
     public function create()
     {
+        $station = session('station', new Station);
+//        dd($station, $station);
         $contributors = Contributor::all();
-        return view('stations.create', ['contributors' => $contributors])->with('station', new Station);
+        return view('stations.create', ['contributors' => $contributors])->with('station', $station);
     }
 
     /**
@@ -44,8 +46,13 @@ class StationController extends Controller
      */
     public function store(StationRequest $request)
     {
-        $request->persist();
-        return redirect()->route('stations.index');
+        /** @var Station $station */
+        $station = $request->persist();
+
+        if($station->exists) {
+            return redirect()->route('stations.index');
+        }
+        return redirect()->back()->with('station', $station);
     }
 
     /**

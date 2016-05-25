@@ -9,6 +9,7 @@
 namespace App\Http\Requests;
 
 use App\Interpreter\QUESUInterpreter;
+use App\Interpreter\TXTInterpreter;
 use App\Models\Station;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,7 +23,7 @@ class StationRequest extends FormRequest
 
     public function rules()
     {
-        return Station::rules($this->station, 'station-', $this->x, $this->y);
+        return Station::rules($this->station);
     }
 
     /**
@@ -36,12 +37,10 @@ class StationRequest extends FormRequest
             $station = new Station;
         }
         if ($this->hasFile('station-file')) {
-            $quesu = new QUESUInterpreter();
-            $res = $quesu->parse($this->file('station-file'));
-            $station = $quesu->interpret($res);
-            dd($res);
-            dd($station);
-            $quesu->interpret($res);
+            $interpreter = new TXTInterpreter();
+            $res = $interpreter->forFile($this->file('station-file'))->parse();
+            $station = $interpreter->interpret($res);
+            $station->validate();
         } else {
             $station->code = $this->input('station-code');
             $station->name = $this->input('station-name');
@@ -49,7 +48,8 @@ class StationRequest extends FormRequest
             $station->y = $this->input('station-y');
             $station->manager_id = $this->input('station-manager_id');
             $station->owner_id = $this->input('station-owner_id');
+            $station->save();
         }
-        return $station->save();
+        return $station;
     }
 }
