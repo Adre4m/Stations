@@ -11,6 +11,7 @@
 |
 */
 
+/** @var Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\Station::class, function (Faker\Generator $faker) {
     return [
         'code' => $faker->unique()->randomNumber(),

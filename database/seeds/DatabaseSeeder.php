@@ -4,7 +4,6 @@ use App\Models\Contributor;
 use App\Models\Network;
 use App\Models\NetworkStation;
 use App\Models\SampleSite;
-use App\Models\Scenario;
 use App\Models\Station;
 use App\User;
 use Illuminate\Database\Seeder;

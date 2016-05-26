@@ -11,6 +11,7 @@
 |
 */
 
+/** @var Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\Contributor::class, function (Faker\Generator $faker) {
     $siret = $faker->boolean;
     return [
