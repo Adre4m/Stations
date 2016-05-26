@@ -29,6 +29,7 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\ShareWarningsFromSession::class,
+            \App\Http\Middleware\ShareInfoFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
         ],
 

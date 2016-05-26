@@ -33,7 +33,6 @@ class StationController extends Controller
     public function create()
     {
         $station = session('station', new Station);
-//        dd($station, $station);
         $contributors = Contributor::all();
         return view('stations.create', ['contributors' => $contributors])->with('station', $station);
     }

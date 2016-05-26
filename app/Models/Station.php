@@ -52,20 +52,28 @@ class Station extends Model
                 'numeric',
                 "unique:stations,y,{$id},id,x,{$x}",
             ],
-            "station-file" => [
-                "required_without_all:station-code,station-name,station-x,station-y",
-//                "mimes:xml,csv",
-            ],
+//            "station-file" => [
+////                "mimes:xml,csv",
+//            ],
         ];
     }
 
     /**
      * @return array
      */
-    public static function businessRules()
+    public static function warningRules()
     {
         return [
             'station-code' => 'numeric|max:1',
+        ];
+    }
+    /**
+     * @return array
+     */
+    public static function infoRules()
+    {
+        return [
+            'station-name' => 'max:5',
         ];
     }
 

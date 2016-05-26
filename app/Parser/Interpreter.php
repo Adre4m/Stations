@@ -28,12 +28,12 @@ abstract class Interpreter
      * @param \Symfony\Component\HttpFoundation\File\File $file
      * @return array
      */
-    public function parse()
+    public function getContent()
     {
         $parser = $this->getParser();
         $res = $this->transform($parser->parse($this->file));
         $res = $this->simplify($res);
-        return $res;
+        return $this->interpret($res);
     }
 
     protected function getParser()
@@ -111,7 +111,7 @@ abstract class Interpreter
      * @return array | \Illuminate\Database\Eloquent\Model
      * @throws \Symfony\Component\Config\Definition\Exception\InvalidTypeException
      */
-    abstract public function interpret($args);
+    abstract protected function interpret($args);
 
 
 }

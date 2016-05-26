@@ -38,10 +38,10 @@ class StationRequest extends FormRequest
         }
         if ($this->hasFile('station-file')) {
             $interpreter = new TXTInterpreter();
-            $res = $interpreter->forFile($this->file('station-file'))->parse();
-            $station = $interpreter->interpret($res);
+            $res = $interpreter->forFile($this->file('station-file'))->getContent();
+            $station->validateCollection($res);
+            $station = array_shift($res);
             $station->validate();
-
         } else {
             $station->code = $this->input('station-code');
             $station->name = $this->input('station-name');

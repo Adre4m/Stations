@@ -39,7 +39,6 @@ class CSVParser extends Parser
             $array[] = $data;
 
         }
-
         return $array;
 
     }

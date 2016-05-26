@@ -12,3 +12,10 @@
         @endforeach
     </div>
 @endif
+@if ($info->has($name))
+    <div class="alert alert-info">
+        @foreach($info->get($name) as $var)
+            <strong>{{ $var }}</strong>
+        @endforeach
+    </div>
+@endif
