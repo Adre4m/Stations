@@ -18,19 +18,9 @@ trait Validatable
             $array["$className-$key"] = $value;
         }
         $info = \Validator::make($array, static::infoRules());
-        if (!$info->passes()) {
-            session()->flash('infos', $info->errors());
-        }
-
         $warning = \Validator::make($array, static::warningRules());
-        if (!$warning->passes()) {
-            session()->flash('warnings', $warning->errors());
-        }
 
         $error = \Validator::make($array, static::rules($this));
-        if (!$error->passes()) {
-            session()->flash('error', $error->errors());
-        }
         session()->flash('info', $info->errors(), 'warnings', $warning->errors(), 'errors', $error->errors());
         return ['info' => $info->errors(), 'warnings' => $warning->errors(), 'errors' => $error->errors(),];
     }
@@ -38,10 +28,16 @@ trait Validatable
     public function validateCollection(array $collection)
     {
         $messages = [];
+        /** @var \Illuminate\Database\Eloquent\Model $var */
+        $i = 0;
         foreach ($collection as $var) {
-            $messages[] = $var->validate();
+            $messages[] = [$var, $var->validate()];
+            if(count($messages[$i][1]['errors']->messages()) == 0) {
+                $var->save();
+            }
+            $i++;
         }
-        session('messages', $messages);
+        return $messages;
     }
 
     public static function infoRules()
