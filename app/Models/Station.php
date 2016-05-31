@@ -117,4 +117,14 @@ class Station extends Model
     {
         return "({$this->x}, {$this->y})";
     }
+
+    public function setManagerAttribute($value)
+    {
+        $this->manager_id = Contributor::whereCode($value)->firstOrFail()->id;
+    }
+
+    public function setOwnerAttribute($value)
+    {
+        $this->owner_id = Contributor::whereCode($value)->firstOrFail()->id;
+    }
 }

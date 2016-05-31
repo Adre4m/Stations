@@ -19,17 +19,16 @@ class TXTInterpreter extends \App\Interpreter\Interpreter
     protected function interpret($args)
     {
         if (is_array($args)) {
-            $stations = array();
+            $models = array();
             foreach ($args as $arg) {
-                $manager = Contributor::whereCode($arg['manager'])->firstOrFail();
-                $owner = Contributor::whereCode($arg['owner'])->firstOrFail();
-                $station = new Station($arg);
-                $station->code = $arg['station'];
-                $station->manager_id = $manager->id;
-                $station->owner_id = $owner->id;
-                $stations[] = $station;
+                $model = new $this->class;
+                foreach($arg as $key => $value)
+                {
+                    $model->{$key} = $value;
+                }
+                $models[] = $model;
             }
-            return $stations;
+            return $models;
         }
         return null;
     }

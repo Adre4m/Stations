@@ -16,11 +16,18 @@ abstract class Interpreter
      *  @var \Symfony\Component\HttpFoundation\File\File $file
      */
     protected $file;
+    protected $class;
 
 
     public function forFile(\Symfony\Component\HttpFoundation\File\File $file)
     {
         $this->file = $file;
+        return $this;
+    }
+
+    public function forClass($class)
+    {
+        $this->class = $class;
         return $this;
     }
 
