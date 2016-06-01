@@ -13,18 +13,26 @@ abstract class Interpreter
     protected $map;
 
     /**
-     *  @var \Symfony\Component\HttpFoundation\File\File $file
+     * @var \Symfony\Component\HttpFoundation\File\File $file
      */
     protected $file;
     protected $class;
 
 
+    /**
+     * @param \Symfony\Component\HttpFoundation\File\File $file
+     * @return $this
+     */
     public function forFile(\Symfony\Component\HttpFoundation\File\File $file)
     {
         $this->file = $file;
         return $this;
     }
 
+    /**
+     * @param $class
+     * @return $this
+     */
     public function forClass($class)
     {
         $this->class = $class;
@@ -43,18 +51,25 @@ abstract class Interpreter
         return $this->interpret($res);
     }
 
+    /**
+     * @return CSVParser|XMLParser|TXTParser
+     */
     protected function getParser()
     {
         if ($this->file->getMimeType() == 'application/xml') {
             return new XMLParser();
         }
-        if($this->file->getMimeType() == 'text/plain') {
+        if ($this->file->getMimeType() == 'text/plain') {
             return new TXTParser();
         }
 
         return new CSVParser();
     }
 
+    /**
+     * @param $key
+     * @return mixed
+     */
     public function mapping($key)
     {
         return isset($this->map[$key]) ? $this->map[$key] : $key;
@@ -71,15 +86,12 @@ abstract class Interpreter
         if (!is_array($tab) || empty($tab)) {
             return $tab;
         }
-
         foreach ($tab as $key => $value) {
             $sanitize_value = $this->transform($value);
-
             if ($sanitize_value != null) {
                 $res[$this->mapping($key)] = $sanitize_value;
             }
         }
-
         return $res;
     }
 
@@ -96,16 +108,12 @@ abstract class Interpreter
         if (!is_array($tab) || empty($tab)) {
             return $tab;
         }
-
-        if(is_array($tab) && count($tab) <= 1) {
+        if (is_array($tab) && count($tab) <= 1) {
             return $this->simplify(array_shift($tab));
         }
-
-
         foreach ($tab as $key => $value) {
             $res[$key] = $this->simplify($value);
         }
-
         return $res;
     }
 

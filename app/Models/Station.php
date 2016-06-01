@@ -127,4 +127,5 @@ class Station extends Model
     {
         $this->owner_id = Contributor::whereCode($value)->firstOrFail()->id;
     }
+
 }

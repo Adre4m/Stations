@@ -38,7 +38,8 @@ class StationRequest extends FormRequest
         }
         if ($this->hasFile('station-file')) {
             $interpreter = new TXTInterpreter();
-            $res = $interpreter->forFile($this->file('station-file'))
+            $res = $interpreter
+                ->forFile($this->file('station-file'))
                 ->forClass(Station::class)
                 ->getContent();
             return $station->validateCollection($res);
