@@ -3,6 +3,7 @@
 namespace App\Models;
 
 
+use App\Exportable;
 use App\GenerateUuid;
 use App\HasBusinessKey;
 use App\Validatable;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class Station extends Model
 {
 
-    use HasBusinessKey, GenerateUuid, Validatable;
+    use HasBusinessKey, GenerateUuid, Validatable, Exportable;
 
     protected $fillable = [
         'code', 'name', 'x', 'y',
@@ -67,6 +68,7 @@ class Station extends Model
             'station-code' => 'numeric|max:1',
         ];
     }
+
     /**
      * @return array
      */

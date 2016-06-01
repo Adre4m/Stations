@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/stations', 'StationController@index')->name('stations.index');
 Route::get('stations/show{station}', 'StationController@show')->name('stations.show');
+Route::get('stations/exports', 'StationController@export')->name('stations.export');
 
 Route::get('/contributors', 'ContributorController@index')->name('contributors.index');
 Route::get('contributors/show{contributor}', 'ContributorController@show')->name('contributors.show');

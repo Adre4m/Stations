@@ -9,8 +9,6 @@ use App\Models\SampleSite;
 use App\Models\Station;
 
 use App\Http\Requests;
-use Carbon\Carbon;
-use Datatables;
 
 class StationController extends Controller
 {
@@ -103,6 +101,12 @@ class StationController extends Controller
     {
         $this->authorize('destroy', $station);
         $station->delete();
+        return redirect()->route('stations.index');
+    }
+
+    public function export()
+    {
+        Station::toCsv();
         return redirect()->route('stations.index');
     }
 }
