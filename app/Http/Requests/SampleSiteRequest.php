@@ -28,7 +28,7 @@ class SampleSiteRequest extends FormRequest
         return [
             'sample_site-code'  => [
                 'required',
-                "unique:sample_sites,code,{$id},id",
+                "unique:sample_sites,code,{$id},id,station_id,{$this->input('sample_site-station_id')}",
             ],
             'sample_site-name'  => [
                 'required',

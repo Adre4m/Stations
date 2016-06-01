@@ -55,6 +55,7 @@ return [
     "required_if"      => "Le champ :attribute est obligatoire quand la valeur de :other est :value.",
     "required_with"    => "Le champ :attribute est obligatoire quand :values est présent.",
     "required_without" => "Le champ :attribute est obligatoire quand :values n'est pas présent.",
+    "required_without_all" => "Le champ :attribute est obligatoire quand aucun des champs :values ne sont présent.",
     "same"             => "Les champs :attribute et :other doivent être identiques.",
     "size"             => array(
         "numeric" => "La taille de la valeur de :attribute doit être :size.",
@@ -62,6 +63,7 @@ return [
         "string"  => "Le texte de :attribute doit contenir :size caractères.",
     ),
     "unique"           => "La valeur du champ :attribute est déjà utilisée.",
+    "unique_with"      => "La valeur du champ :attribute est déjà utilisée dans :other.",
     "url"              => "Le format de l'URL de :attribute n'est pas valide.",
 
     /*
@@ -79,6 +81,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'sample_site-code' => [
+            'unique' => 'Ce site de prélèvement existe déjà au sein de cette station',
+        ]
     ],
 
     /*
@@ -99,6 +104,7 @@ return [
         'station-y' => 'Ordonnée',
         'station-manager_id' => 'Séléctionnez le gestionnaire',
         'station-owner_id' => 'Séléctionnez le propriétaire',
+        'station-file' => 'fichier',
         'network_station-station_id' => 'Séléctionnez la station',
         'network_station-network_id' => 'Séléctionnez le réseau',
         'network_station-began_at' => 'Date de début du contrat',
@@ -113,7 +119,7 @@ return [
         'contributor-code' => 'Code',
         'contributor-name' => 'Prénom',
         'contributor-last_name' => 'Nom',
-        'contributor-siret' => 'Numéro SIRET'
+        'contributor-siret' => 'Numéro SIRET',
     ],
 
     'siret' => 'Le numéro SIRET est invalide',

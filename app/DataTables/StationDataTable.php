@@ -3,7 +3,6 @@
 namespace App\DataTables;
 
 use App\Models\Station;
-use App\User;
 use Yajra\Datatables\Services\DataTable;
 
 class StationDataTable extends DataTable

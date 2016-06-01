@@ -11,7 +11,12 @@
         "barryvdh/laravel-ide-helper": "^2.1",
         "doctrine/dbal": "^2.5",
         "laravelcollective/html": "5.2.*",
-        "webpatser/laravel-uuid": "2.*"
+        "webpatser/laravel-uuid": "2.*",
+        "filp/whoops": "^2.1",
+        "symfony/serializer": "^3.0",
+        "symfony/config": "^3.0",
+        "barryvdh/laravel-debugbar": "^2.2",
+        "proj4php/proj4php": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

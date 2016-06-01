@@ -13,12 +13,7 @@ trait HasBusinessKey
 
     public function getBusinessKeyAttribute()
     {
-        // on récupère le nom de l'attribut qui porte la clef métier
-        $keyAttributeName = $this->getBusinessKey();
-
-        // on renvoie la valeur
-        // c# : this.GetType().GetProperty(keyAttributeName).GetValue(this, null);
-        return $this->{$keyAttributeName};
+        return $this->{$this->getBusinessKey()};
     }
 
     public function getBusinessKey()

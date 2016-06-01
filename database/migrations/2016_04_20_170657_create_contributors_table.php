@@ -11,10 +11,10 @@ class CreateContributorsTable extends Migration
         Schema::create('contributors', function(Blueprint $table) {
             $table->increments('id');
             $table->uuid('uuid')->unique();
-            $table->integer('code')->unique();
+            $table->string('code')->unique();
             $table->string('name');
             $table->string('last_name');
-            $table->string('siret')->nullable();
+            $table->boolean('siret');
         });
     }
 

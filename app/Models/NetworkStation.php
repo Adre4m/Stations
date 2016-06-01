@@ -14,34 +14,6 @@ use App\HasBusinessKey;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * App\Models\NetworkStation
- *
- * @property integer $id
- * @property string $uuid
- * @property integer $station_id
- * @property integer $measurement_network_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read \App\Models\Station $station
- * @property-read \App\Models\Network $measurement_network
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereUuid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereStationId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereNetworkId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereUpdatedAt($value)
- * @mixin \Eloquent
- * @property integer $network_id
- * @property string $began_at
- * @property string $end_at
- * @property-read \App\Models\Network $network
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereBeganAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereEndAt($value)
- * @property-read mixed $begin
- * @property-read mixed $end
- * @property-read mixed $business_key
- */
 class NetworkStation extends Model
 {
 
