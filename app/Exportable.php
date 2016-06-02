@@ -51,7 +51,7 @@ trait Exportable
         }
         $file_name = snake_case(str_plural(substr(static::class, 11))) .
             ".csv";
-        $file = fopen("php://memory", 'w');
+        $file = fopen($file_name, 'w');
         $content = null;
         foreach ($models as $model) {
             $lines[] = $model->getArray();

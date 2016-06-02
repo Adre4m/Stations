@@ -13,12 +13,16 @@
                                     <i class="fa fa-btn fa-plus"></i>{{ trans('contributors.add') }}
                                 </button>
                             </a>
-                        @endcan
-                        @cannot('add', new App\Models\Contributor)
+                        @elsecan
                             <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
                                 <i class="fa fa-btn fa-plus"></i>{{ trans('contributors.add') }}
                             </button>
-                        @endcannot
+                        @endcan
+                        <a href="{{ route('contributors.export') }}">
+                            <button class="btn btn-info">
+                                <i class="fa fa-btn fa-save"></i>{{ trans('pagination.export') }}
+                            </button>
+                        </a>
                         {!! $dataTable->table() !!}
                     </div>
                 </div>

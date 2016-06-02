@@ -77,4 +77,9 @@ class SampleSiteController extends Controller
         $sample_site->delete();
         return redirect()->route('sample_sites.index');
     }
+
+    public function export()
+    {
+        return SampleSite::toCsv();
+    }
 }

@@ -9,6 +9,7 @@
 namespace App\Models;
 
 
+use App\Exportable;
 use App\GenerateUuid;
 use App\HasBusinessKey;
 use Carbon\Carbon;
@@ -17,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
 class NetworkStation extends Model
 {
 
-    use HasBusinessKey, GenerateUuid;
+    use HasBusinessKey, GenerateUuid, Exportable;
 
     protected $table = 'network_station';
 

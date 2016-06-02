@@ -11,5 +11,4 @@ return [
     'confirm' => 'Confirmer',
     'cancel' => '&laquo; Retour aux stations',
     'code' => 'Code',
-    'export' => 'Exporter',
 ];

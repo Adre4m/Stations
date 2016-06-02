@@ -49,4 +49,9 @@ class ContributorController extends Controller
         $contributor->delete();
         return redirect()->route('contributors.index');
     }
+
+    public function export()
+    {
+        return Contributor::toCsv();
+    }
 }

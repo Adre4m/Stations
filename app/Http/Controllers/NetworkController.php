@@ -77,4 +77,9 @@ class NetworkController extends Controller
         $network->delete();
         return redirect()->route('networks.index');
     }
+
+    public function export()
+    {
+        return Network::toCsv();
+    }
 }
