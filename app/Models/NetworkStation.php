@@ -47,4 +47,23 @@ class NetworkStation extends Model
         return Carbon::parse($this->end_at)->format('d/m/Y H:i:s');
     }
 
+    public function setStationAttribute($value)
+    {
+        $station = Station::whereCode($value)->firstOrNew([]);
+        if ($station->exists) {
+            $this->station_id = $station->id;
+        } else {
+            $this->station_id = -1;
+        }
+    }
+
+    public function setNetworkAttribute($value)
+    {
+        $network = Network::whereCode($value)->firstOrNew([]);
+        if ($network->exists) {
+            $this->network_id = $network->id;
+        } else {
+            $this->network_id = -1;
+        }
+    }
 }

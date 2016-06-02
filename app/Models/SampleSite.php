@@ -27,4 +27,14 @@ class SampleSite extends Model
     {
         return "({$this->x}, {$this->y})";
     }
+
+    public function setStationAttribute($value)
+    {
+        $station = Station::whereCode($value)->firstOrNew([]);
+        if ($station->exists) {
+            $this->station_id = $station->id;
+        } else {
+            $this->station_id = -1;
+        }
+    }
 }

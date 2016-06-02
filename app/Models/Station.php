@@ -53,6 +53,12 @@ class Station extends Model
                 'numeric',
                 "unique:stations,y,{$id},id,x,{$x}",
             ],
+            "station-manager_id" => [
+                'exists:contributors,id'
+            ],
+            "station-owner_id" => [
+                'exists:contributors,id'
+            ]
 //            "station-file" => [
 ////                "mimes:xml,csv",
 //            ],
@@ -122,12 +128,22 @@ class Station extends Model
 
     public function setManagerAttribute($value)
     {
-        $this->manager_id = Contributor::whereCode($value)->firstOrFail()->id;
+        $manager = Contributor::whereCode($value)->firstOrNew([]);
+        if ($manager->exists) {
+            $this->manager_id = $manager->id;
+        } else {
+            $this->manager_id = -1;
+        }
     }
 
     public function setOwnerAttribute($value)
     {
-        $this->owner_id = Contributor::whereCode($value)->firstOrFail()->id;
+        $owner = Contributor::whereCode($value)->firstOrNew([]);
+        if ($owner->exists) {
+            $this->owner_id = $owner->id;
+        } else {
+            $this->owner_id = -1;
+        }
     }
 
 }
