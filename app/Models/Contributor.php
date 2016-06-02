@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Exportable;
 use App\GenerateUuid;
 use App\HasBusinessKey;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contributor extends Model
 {
 
-    use HasBusinessKey, GenerateUuid;
+    use HasBusinessKey, GenerateUuid, Exportable;
 
     public $timestamps = false;
 

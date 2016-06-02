@@ -85,4 +85,10 @@ class NetworkStationController extends Controller
         $network_station->delete();
         return redirect()->route('network_station.index');
     }
+
+
+    public function export()
+    {
+        return NetworkStation::toCsv();
+    }
 }

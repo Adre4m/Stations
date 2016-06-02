@@ -21,18 +21,23 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/stations', 'StationController@index')->name('stations.index');
 Route::get('stations/show{station}', 'StationController@show')->name('stations.show');
+Route::get('stations/export', 'StationController@export')->name('stations.export');
 
 Route::get('/contributors', 'ContributorController@index')->name('contributors.index');
 Route::get('contributors/show{contributor}', 'ContributorController@show')->name('contributors.show');
+Route::get('contributors/export', 'ContributorController@export')->name('contributors.export');
 
 Route::get('/sample_sites', 'SampleSiteController@index')->name('sample_sites.index');
 Route::get('/sample_sites/show{sample_site}', 'SampleSiteController@show')->name('sample_sites.show');
+Route::get('sample_sites/export', 'SampleSiteController@export')->name('sample_sites.export');
 
 Route::get('/networks', 'NetworkController@index')->name('networks.index');
 Route::get('/networks/show{network}', 'NetworkController@show')->name('networks.show');
+Route::get('networks/export', 'NetworkController@export')->name('networks.export');
 
 Route::get('/network_station', 'NetworkStationController@index')->name('network_station.index');
 Route::get('/network_station/show{station_network}', 'NetworkStationController@show')->name('network_station.show');
+Route::get('network_station/export', 'NetworkStationController@export')->name('network_station.export');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/stations/create', 'StationController@create')->name('stations.create');

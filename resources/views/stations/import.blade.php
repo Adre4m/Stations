@@ -5,8 +5,15 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ trans('stations.title') }}</div>
+                    <div class="panel-heading">
+                        {{ trans('stations.title') }}
+                    </div>
                     <div class="panel-body">
+                        <a href="{{ route('stations.index') }}">
+                            <button class="btn btn-default">
+                                {{ trans('stations.cancel') }}
+                            </button>
+                        </a>
                         @foreach($messages as $message)
                             <div>
                                 <div class="alert alert-{{ (count($message[1]['errors']) != 0) ? "danger" : "success"  }}">
@@ -19,10 +26,10 @@
                                         <li>{{ trans('validation.attributes.station-x') }} : {{ $message[0]->x }}</li>
                                         <li>{{ trans('validation.attributes.station-y') }} : {{ $message[0]->y  }}</li>
                                         <li>{{ trans('contributors.manager') }} :
-                                            {{ \App\Models\Contributor::find($message[0]->manager_id)->fullname }}
+                                            {{ \App\Models\Contributor::findOrNew($message[0]->manager_id)->fullname }}
                                         </li>
                                         <li>{{ trans('contributors.owner') }} :
-                                            {{ \App\Models\Contributor::find($message[0]->owner_id)->fullname }}
+                                            {{ \App\Models\Contributor::findOrNew($message[0]->owner_id)->fullname }}
                                         </li>
                                     </ul>
                                     @if(count($message[1]['info']) != 0

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 
+use App\Exportable;
 use App\GenerateUuid;
 use App\HasBusinessKey;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class SampleSite extends Model
 {
 
-    use HasBusinessKey, GenerateUuid;
+    use HasBusinessKey, GenerateUuid, Exportable;
 
     public function station()
     {
@@ -25,5 +26,15 @@ class SampleSite extends Model
     public function getPositionAttribute()
     {
         return "({$this->x}, {$this->y})";
+    }
+
+    public function setStationAttribute($value)
+    {
+        $station = Station::whereCode($value)->firstOrNew([]);
+        if ($station->exists) {
+            $this->station_id = $station->id;
+        } else {
+            $this->station_id = -1;
+        }
     }
 }

@@ -26,6 +26,5 @@ class TXTParser extends Parser
             $array[] = array_combine($header, explode(',', $line));
         }
         return $array;
-
     }
 }

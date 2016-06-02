@@ -125,8 +125,8 @@ namespace App\Models{
  * @property \Carbon\Carbon $updated_at
  * @property integer $manager_id
  * @property integer $owner_id
- * @property-read \App\Models\Contributor $manager
- * @property-read \App\Models\Contributor $owner
+ * @property \App\Models\Contributor $manager
+ * @property \App\Models\Contributor $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SampleSite[] $sample_sites
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Network[] $networks
  * @property-read mixed $position
