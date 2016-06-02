@@ -124,4 +124,6 @@ return [
 
     'siret' => 'Le numéro SIRET est invalide',
 
+    'no_errors' => 'Aucune erreur lors de l\'import',
+
 ];

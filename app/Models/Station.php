@@ -29,11 +29,11 @@ class Station extends Model
     /**
      * @return array
      */
-    public static function rules(Station $station = null, $x = null, $y = null)
+    public static function rules(Station $station = null)
     {
         $id = (isset($station) && $station->id != null) ? $station->id : 'null';
-        $x = (!isset($station->x)) ?: $station->x;
-        $y = (!isset($station->y)) ?: $station->y;
+        $x = (isset($station->x)) ? $station->x : null;
+        $y = (isset($station->y)) ? $station->y : null;
         return [
             "station-code" => [
                 "required_without:station-file",

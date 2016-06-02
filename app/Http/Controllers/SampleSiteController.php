@@ -23,8 +23,15 @@ class SampleSiteController extends Controller
 
     public function store(SampleSiteRequest $request)
     {
-        $request->persist();
-        return redirect()->route('sample_sites.index');
+        $sample_site = $request->persist();
+
+        if (is_array($sample_site)) {
+            return view('sample_sites.import')->with('messages', $sample_site);
+        }
+        if ($sample_site->exists) {
+            return redirect()->route('sample_sites.index');
+        }
+        return redirect()->back()->with('sample_site', $sample_site);
     }
 
     /**

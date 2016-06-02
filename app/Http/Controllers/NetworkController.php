@@ -23,8 +23,15 @@ class NetworkController extends Controller
 
     public function store(NetworkRequest $request)
     {
-        $request->persist();
-        return redirect()->route('networks.index');
+        $network = $request->persist();
+
+        if (is_array($network)) {
+            return view('networks.import')->with('messages', $network);
+        }
+        if ($network->exists) {
+            return redirect()->route('networks.index');
+        }
+        return redirect()->back()->with('network', $network);
     }
 
     /**

@@ -5,33 +5,34 @@ namespace App\Models;
 use App\Exportable;
 use App\GenerateUuid;
 use App\HasBusinessKey;
+use App\Validatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Contributor extends Model
 {
 
-    use HasBusinessKey, GenerateUuid, Exportable;
+    use HasBusinessKey, GenerateUuid, Validatable, Exportable;
 
     public $timestamps = false;
 
     /**
      * @return array
      */
-    public static function rules(Contributor $contributor = null, $prefix = '', $on = false)
+    public static function rules(Contributor $contributor = null, $on = false)
     {
         $id = (isset($contributor) && $contributor->id != null) ? $contributor->id : 'null';
         return [
-            "{$prefix}code" => [
-                'required',
+            "contributor-code" => [
+                'required_without:contributor-file',
                 "unique:contributors,code,{$id},id",
                 ($on) ? 'siret' : '',
             ],
-            "{$prefix}name" => [
-                'required',
+            "contributor-name" => [
+                'required_without:contributor-file',
                 'max:255',
             ],
-            "{$prefix}last_name" => [
-                'required',
+            "contributor-last_name" => [
+                'required_without:contributor-file',
                 'max:255',
             ],
         ];

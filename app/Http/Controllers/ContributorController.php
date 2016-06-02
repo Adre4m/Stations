@@ -24,8 +24,15 @@ class ContributorController extends Controller
 
     public function store(ContributorRequest $request)
     {
-        $request->persist();
-        return redirect()->route('contributors.index');
+        $contributor = $request->persist();
+
+        if (is_array($contributor)) {
+            return view('contributors.import')->with('messages', $contributor);
+        }
+        if ($contributor->exists) {
+            return redirect()->route('contributors.index');
+        }
+        return redirect()->back()->with('contributor', $contributor);
     }
 
     public function show(Contributor $contributor)
