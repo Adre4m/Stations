@@ -18,12 +18,14 @@ class TXTParser extends Parser
      */
     public function parse(\Symfony\Component\HttpFoundation\File\File $file)
     {
+        $separator = ';';
+
         $txtData = file_get_contents($file->getRealPath());
         $lines = explode(PHP_EOL, $txtData);
-        $header = explode(',', array_shift($lines));
+        $header = explode($separator, array_shift($lines));
         $array = array();
         foreach ($lines as $line) {
-            $array[] = array_combine($header, explode(',', $line));
+            $array[] = array_combine($header, explode($separator, $line));
         }
         return $array;
     }

@@ -126,7 +126,7 @@ abstract class Interpreter
      * @return array | \Illuminate\Database\Eloquent\Model
      * @throws \Symfony\Component\Config\Definition\Exception\InvalidTypeException
      */
-    abstract protected function interpret($args);
+    abstract protected function interpret(array $args);
 
 
 }

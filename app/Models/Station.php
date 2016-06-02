@@ -19,14 +19,6 @@ class Station extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function manager()
-    {
-        return $this->belongsTo(Contributor::class);
-    }
-
-    /**
      * @return array
      */
     public static function rules(Station $station = null)
@@ -83,6 +75,14 @@ class Station extends Model
         return [
             'station-name' => 'max:5',
         ];
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function manager()
+    {
+        return $this->belongsTo(Contributor::class);
     }
 
     /**

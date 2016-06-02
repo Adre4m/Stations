@@ -17,7 +17,7 @@ class CSVInterpreter extends \App\Interpreter\Interpreter
     /**
      * {@inheritdoc}
      */
-    public function interpret($arg)
+    public function interpret(array $arg)
     {
 
     }

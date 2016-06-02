@@ -57,8 +57,8 @@ trait Exportable
             $header = null;
             $values = null;
             foreach ($line as $key => $value) {
-                $header .= "$key,";
-                $values .= "$value,";
+                $header .= "$key;";
+                $values .= "$value;";
             }
             $header = substr($header, 0, strlen($header) - 1);
             $values = substr($values, 0, strlen($values) - 1);
