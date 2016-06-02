@@ -106,7 +106,7 @@ class StationController extends Controller
 
     public function export()
     {
-        Station::toCsv();
-        return redirect()->route('stations.index');
+        return Station::toCsv();
+//        return redirect()->route('stations.index');
     }
 }

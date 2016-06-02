@@ -9,9 +9,12 @@
 namespace App;
 
 
+
+use Illuminate\Routing\Router;
+
 trait Exportable
 {
-
+    
     protected function getArray()
     {
         $header = $this->toArray();
@@ -43,13 +46,12 @@ trait Exportable
     public static function toCsv()
     {
         $models = static::all();
-        if(count($models) == 0) {
+        if (count($models) == 0) {
             return false;
         }
-        $file_name = "C:\\Users\\ab60053\\Downloads\\" .
-            snake_case(str_plural(substr(static::class, 11))) .
+        $file_name = snake_case(str_plural(substr(static::class, 11))) .
             ".csv";
-        $file = fopen($file_name, 'w');
+        $file = fopen("php://memory", 'w');
         $content = null;
         foreach ($models as $model) {
             $lines[] = $model->getArray();
@@ -69,6 +71,7 @@ trait Exportable
             $content .= "$values\r\n";
         }
         $content = substr($content, 0, strlen($content) - 2);
-        return fwrite($file, $content);
+        fwrite($file, $content);
+        return response()->download($file_name);
     }
 }
