@@ -9,12 +9,9 @@
 namespace App;
 
 
-
-use Illuminate\Routing\Router;
-
 trait Exportable
 {
-    
+
     protected function getArray()
     {
         $header = $this->toArray();
