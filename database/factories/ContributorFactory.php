@@ -18,6 +18,6 @@ $factory->define(App\Models\Contributor::class, function (Faker\Generator $faker
         'code' => $faker->unique()->{($siret) ? 'siret' : 'randomNumber'},
         'name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'siret' => $siret,
+        'scheme' => ($siret) ? 'SIRET' : 'SANDRE',
     ];
 });

@@ -51,7 +51,7 @@
                                             </div>
                                         @endif
                                         @if(count($message[1]['errors']) != 0)
-                                            <div class="alert alert-danger">
+                                            <div class="alert alert-dismissable">
                                                 <ul>
                                                     @foreach($message[1]['errors']->all() as $var)
                                                         <li><strong>{{ $var }}</strong></li>

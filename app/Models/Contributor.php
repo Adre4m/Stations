@@ -18,14 +18,13 @@ class Contributor extends Model
     /**
      * @return array
      */
-    public static function rules(Contributor $contributor = null, $on = false)
+    public static function rules(Contributor $contributor = null)
     {
         $id = (isset($contributor) && $contributor->id != null) ? $contributor->id : 'null';
         return [
             "contributor-code" => [
                 'required_without:contributor-file',
                 "unique:contributors,code,{$id},id",
-                ($on) ? 'siret' : '',
             ],
             "contributor-name" => [
                 'required_without:contributor-file',
@@ -54,7 +53,7 @@ class Contributor extends Model
     public
     static function query()
     {
-        return Contributor::select(['id', 'code', 'name', 'last_name', 'siret'])->with('stations')->newQuery();
+        return Contributor::select(['id', 'code', 'name', 'last_name', 'scheme'])->with('stations')->newQuery();
     }
 
 }

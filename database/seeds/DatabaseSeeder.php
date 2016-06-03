@@ -26,18 +26,18 @@ class DatabaseSeeder extends Seeder
         $me->save();
         factory(Contributor::class, 50)->create();
 
-        $unknown = Contributor::firstOrNew(['code' => '0', 'siret' => false]);
+        $unknown = Contributor::firstOrNew(['code' => '0', 'scheme' => 'SANDRE']);
         $unknown->code = 0;
         $unknown->name = 'Intervenant';
         $unknown->last_name = 'Inconnu';
-        $unknown->siret = false;
+        $unknown->scheme = 'SANDRE';
         $unknown->save();
 
-        $geohyd = Contributor::firstOrNew(['code' => '419 713 904 00037', 'siret' => true]);
+        $geohyd = Contributor::firstOrNew(['code' => '419 713 904 00037', 'scheme' => 'SIRET']);
         $geohyd->code = '419 713 904 00037';
         $geohyd->name = 'GEO';
         $geohyd->last_name = 'HYD';
-        $geohyd->siret = true;
+        $geohyd->scheme = 'SIRET';
         $geohyd->save();
 
         factory(Station::class, 50)->create();

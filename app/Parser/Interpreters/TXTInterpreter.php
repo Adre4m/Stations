@@ -32,8 +32,8 @@ class TXTInterpreter extends \App\Interpreter\Interpreter
                 foreach ($line as $property_name => $property_value) {
                     $model->{$property_name} = $property_value;
                 }
-                $existing_model = $class::findOrFail($model->code);
-                $models[] = ($existing_model->exists) ? $existing_model : $model;
+                $existing_model = $class::find($model->code);
+                $models[] = (isset($existing_model) && $existing_model->exists) ? $existing_model : $model;
             } catch (Exception $e) {
                 $this->exceptions[] = $e;
             }
