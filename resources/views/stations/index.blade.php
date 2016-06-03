@@ -18,11 +18,7 @@
                             <i class="fa fa-btn fa-plus"></i>{{ trans('stations.add') }}
                         </button>
                         @endcan
-                        <a href="{{ route('stations.export') }}">
-                            <button class="btn btn-info">
-                                <i class="fa fa-btn fa-save"></i>{{ trans('pagination.export') }}
-                            </button>
-                        </a>
+                        {!! Html::exports('stations') !!}
                         {!! $dataTable->table(['id' => 'stations']) !!}
                     </div>
                 </div>

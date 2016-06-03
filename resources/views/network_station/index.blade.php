@@ -18,11 +18,7 @@
                                 <i class="fa fa-btn fa-plus"></i>{{ trans('network_station.add') }}
                             </button>
                         @endcan
-                        <a href="{{ route('network_station.export') }}">
-                            <button class="btn btn-info">
-                                <i class="fa fa-btn fa-save"></i>{{ trans('pagination.export') }}
-                            </button>
-                        </a>
+                        {!! Html::exports('network_station') !!}
                         {!! $dataTable->table() !!}
                     </div>
                 </div>

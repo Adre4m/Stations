@@ -5,13 +5,13 @@ namespace App\Models;
 use App\Exportable;
 use App\GenerateUuid;
 use App\HasBusinessKey;
-use App\Validatable;
+use App\Importable;
 use Illuminate\Database\Eloquent\Model;
 
 class Contributor extends Model
 {
 
-    use HasBusinessKey, GenerateUuid, Validatable, Exportable;
+    use HasBusinessKey, GenerateUuid, Importable, Exportable;
 
     public $timestamps = false;
 

@@ -94,7 +94,7 @@ class NetworkStationController extends Controller
     }
 
 
-    public function export()
+    public function exportToCsv()
     {
         return NetworkStation::toCsv();
     }

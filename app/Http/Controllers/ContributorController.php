@@ -57,7 +57,7 @@ class ContributorController extends Controller
         return redirect()->route('contributors.index');
     }
 
-    public function export()
+    public function exportToCsv()
     {
         return Contributor::toCsv();
     }

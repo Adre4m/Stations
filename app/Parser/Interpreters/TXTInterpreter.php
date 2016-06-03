@@ -2,6 +2,7 @@
 
 namespace App\Interpreter;
 
+use App\Importable;
 use App\Models\Contributor;
 use App\Models\Station;
 use Exception;
@@ -9,35 +10,31 @@ use Exception;
 class TXTInterpreter extends \App\Interpreter\Interpreter
 {
 
-    protected $map = [
-
-    ];
+    protected $map = [];
 
 
-    protected $exceptions = [];
-
-    public function GetExceptions(){
-        return $this->exceptions;
-    }
-
+    public $exceptions = [];
 
     /**
      * {@inheritdoc}
      */
-    protected function interpret(array $args)
+    protected function interpret(array $lines)
     {
+        /** @var Importable|\Illuminate\Database\Eloquent\Model $class */
+        $class = $this->class;
         $models = array();
-        foreach ($args as $arg) {
-            // $arg est un tableau (nom de propriété, valeur) représentant un objet à importer
+        foreach ($lines as $line) {
+            // $line est un tableau (nom de propriété, valeur) représentant un objet à importer
             // instantiation d'un nouvel objet avec le type correspondant
-            $model = new $this->class;
+            $model = new $class;
             try {
                 // renseignement de chaque propriété
-                foreach ($arg as $property_name => $property_value) {
+                foreach ($line as $property_name => $property_value) {
                     $model->{$property_name} = $property_value;
                 }
-                $models[] = $model;
-            }catch(Exception $e){
+                $existing_model = $class::findOrFail($model->code);
+                $models[] = ($existing_model->exists) ? $existing_model : $model;
+            } catch (Exception $e) {
                 $this->exceptions[] = $e;
             }
         }

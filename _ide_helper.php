@@ -12928,6 +12928,11 @@ namespace {
         {
             return \Collective\Html\HtmlBuilder::componentCall($method, $parameters);
         }
+        
+        public static function exports($name)
+        {
+            return \Collective\Html\HtmlBuilder::exports($name);
+        }
 
     }
 

@@ -21,23 +21,23 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/stations', 'StationController@index')->name('stations.index');
 Route::get('stations/show{station}', 'StationController@show')->name('stations.show');
-Route::get('stations/export', 'StationController@export')->name('stations.export');
+Route::get('stations/export_to_csv', 'StationController@exportToCsv')->name('stations.exportToCsv');
 
 Route::get('/contributors', 'ContributorController@index')->name('contributors.index');
 Route::get('contributors/show{contributor}', 'ContributorController@show')->name('contributors.show');
-Route::get('contributors/export', 'ContributorController@export')->name('contributors.export');
+Route::get('contributors/export_to_csv', 'ContributorController@exportToCsv')->name('contributors.exportToCsv');
 
 Route::get('/sample_sites', 'SampleSiteController@index')->name('sample_sites.index');
 Route::get('/sample_sites/show{sample_site}', 'SampleSiteController@show')->name('sample_sites.show');
-Route::get('sample_sites/export', 'SampleSiteController@export')->name('sample_sites.export');
+Route::get('sample_sites/export_to_csv', 'SampleSiteController@exportToCsv')->name('sample_sites.exportToCsv');
 
 Route::get('/networks', 'NetworkController@index')->name('networks.index');
 Route::get('/networks/show{network}', 'NetworkController@show')->name('networks.show');
-Route::get('networks/export', 'NetworkController@export')->name('networks.export');
+Route::get('networks/export_to_csv', 'NetworkController@exportToCsv')->name('networks.exportToCsv');
 
 Route::get('/network_station', 'NetworkStationController@index')->name('network_station.index');
 Route::get('/network_station/show{station_network}', 'NetworkStationController@show')->name('network_station.show');
-Route::get('network_station/export', 'NetworkStationController@export')->name('network_station.export');
+Route::get('network_station/export_to_csv', 'NetworkStationController@exportToCsv')->name('network_station.exportToCsv');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/stations/create', 'StationController@create')->name('stations.create');
@@ -45,27 +45,27 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/stations/edit{station}', 'StationController@edit')->name('stations.edit');
     Route::post('/stations/update{station}', 'StationController@update')->name('stations.update');
     Route::get('/stations/destroy{station}', 'StationController@destroy')->name('stations.destroy');
-    Route::get('/stations/import', function () {
-        return view('stations.file');
-    })->name('stations.import');
+    Route::get("/stations/import", function () {
+        return view("stations.file");
+    })->name("stations.import");
 
     Route::get('/contributors/create', 'ContributorController@create')->name('contributors.create');
     Route::post('/contributors/store', 'ContributorController@store')->name('contributors.store');
     Route::get('/contributors/edit{contributor}', 'ContributorController@edit')->name('contributors.edit');
     Route::post('/contributors/update{contributor}', 'ContributorController@update')->name('contributors.update');
     Route::get('/contributors/destroy{contributor}', 'ContributorController@destroy')->name('contributors.destroy');
-    Route::get('/contributors/import', function () {
-        return view('contributors.file');
-    })->name('contributors.import');
+    Route::get("/contributors/import", function () {
+        return view("contributors.file");
+    })->name("contributors.import");
 
     Route::get('/sample_sites/create', 'SampleSiteController@create')->name('sample_sites.create');
     Route::post('/sample_sites/store', 'SampleSiteController@store')->name('sample_sites.store');
     Route::get('/sample_sites/edit{sample_site}', 'SampleSiteController@edit')->name('sample_sites.edit');
     Route::post('/sample_sites/update{sample_site}', 'SampleSiteController@update')->name('sample_sites.update');
     Route::get('/sample_sites/destroy{sample_site}', 'SampleSiteController@destroy')->name('sample_sites.destroy');
-    Route::get('/sample_sites/import', function () {
-        return view('sample_sites.file');
-    })->name('sample_sites.import');
+    Route::get("/sample_sites/import", function () {
+        return view("sample_sites.file");
+    })->name("sample_sites.import");
 
 
     Route::get('/networks/create', 'NetworkController@create')->name('networks.create');
@@ -73,16 +73,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/networks/edit{network}', 'NetworkController@edit')->name('networks.edit');
     Route::post('/networks/update{network}', 'NetworkController@update')->name('networks.update');
     Route::get('/networks/destroy{network}', 'NetworkController@destroy')->name('networks.destroy');
-    Route::get('/networks/import', function () {
-        return view('networks.file');
-    })->name('networks.import');
+    Route::get("/networks/import", function () {
+        return view("networks.file");
+    })->name("networks.import");
 
     Route::get('/network_station/create', 'NetworkStationController@create')->name('network_station.create');
     Route::post('/network_station/store', 'NetworkStationController@store')->name('network_station.store');
     Route::get('/network_station/edit{station_network}', 'NetworkStationController@edit')->name('network_station.edit');
     Route::post('/network_station/update{station_network}', 'NetworkStationController@update')->name('network_station.update');
     Route::get('/network_station/destroy{station_network}', 'NetworkStationController@destroy')->name('network_station.destroy');
-    Route::get('/network_station/import', function () {
-        return view('network_station.file');
-    })->name('network_station.import');
+    Route::get("/network_station/import", function () {
+        return view("network_station.file");
+    })->name("network_station.import");
 });

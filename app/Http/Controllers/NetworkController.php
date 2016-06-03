@@ -85,7 +85,7 @@ class NetworkController extends Controller
         return redirect()->route('networks.index');
     }
 
-    public function export()
+    public function exportToCsv()
     {
         return Network::toCsv();
     }

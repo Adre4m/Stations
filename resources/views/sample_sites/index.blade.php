@@ -18,11 +18,7 @@
                             <i class="fa fa-btn fa-plus"></i>{{ trans('sample_sites.add') }}
                         </button>
                         @endcan
-                        <a href="{{ route('sample_sites.export') }}">
-                            <button class="btn btn-info">
-                                <i class="fa fa-btn fa-save"></i>{{ trans('pagination.export') }}
-                            </button>
-                        </a>
+                        {!! Html::exports('sample_sites') !!}
                         {!! $dataTable->table() !!}
                     </div>
                 </div>

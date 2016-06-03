@@ -18,11 +18,7 @@
                                 <i class="fa fa-btn fa-plus"></i>{{ trans('contributors.add') }}
                             </button>
                         @endcan
-                        <a href="{{ route('contributors.export') }}">
-                            <button class="btn btn-info">
-                                <i class="fa fa-btn fa-save"></i>{{ trans('pagination.export') }}
-                            </button>
-                        </a>
+                        {!! Html::exports('contributors') !!}
                         {!! $dataTable->table() !!}
                     </div>
                 </div>

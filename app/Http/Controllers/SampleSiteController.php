@@ -85,7 +85,7 @@ class SampleSiteController extends Controller
         return redirect()->route('sample_sites.index');
     }
 
-    public function export()
+    public function exportToCsv()
     {
         return SampleSite::toCsv();
     }

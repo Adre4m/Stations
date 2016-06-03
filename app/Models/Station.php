@@ -6,13 +6,13 @@ namespace App\Models;
 use App\Exportable;
 use App\GenerateUuid;
 use App\HasBusinessKey;
-use App\Validatable;
+use App\Importable;
 use Illuminate\Database\Eloquent\Model;
 
 class Station extends Model
 {
 
-    use HasBusinessKey, GenerateUuid, Validatable, Exportable;
+    use HasBusinessKey, GenerateUuid, Importable, Exportable;
 
     protected $fillable = [
         'code', 'name', 'x', 'y',
@@ -51,9 +51,6 @@ class Station extends Model
             "station-owner_id" => [
                 'exists:contributors,id'
             ]
-//            "station-file" => [
-////                "mimes:xml,csv",
-//            ],
         ];
     }
 

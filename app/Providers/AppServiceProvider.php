@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Form;
+use Html;
 use Illuminate\Support\ServiceProvider;
 use Validator;
 
@@ -82,6 +83,7 @@ class AppServiceProvider extends ServiceProvider
         Form::component('globalCheckbox', 'form.checkbox', ['name', 'options', 'value', 'attributes' => [],]);
         Form::component('errors', 'form.errors', ['name', 'value' => null, 'attributes' => [],]);
         Form::component('import', 'form.import', ['name', 'value', 'attributes' => [],]);
+        Html::component('exports', 'html.exports', ['name', 'value' => null, 'attributes' => [],]);
     }
 
     /**

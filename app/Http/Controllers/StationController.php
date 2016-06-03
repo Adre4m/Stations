@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\StationDataTable;
+use App\ExportableController;
 use App\Http\Requests;
 use App\Http\Requests\StationRequest;
 use App\Models\Contributor;
@@ -13,6 +14,7 @@ use App\Models\Station;
 
 class StationController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -113,7 +115,7 @@ class StationController extends Controller
         return redirect()->route('stations.index');
     }
 
-    public function export()
+    public function exportToCsv()
     {
         return Station::toCsv();
     }
