@@ -46,7 +46,12 @@ abstract class Interpreter
     public function getContent()
     {
         $parser = $this->getParser();
-        $res = $this->transform($parser->parse($this->file));
+        $res = $parser->parse($this->file);
+        $lines = $this->transform($res['lines']);
+        $lines = $this->simplify($lines);
+        $exceptions = $this->transform($res['exceptions']);
+        $exceptions = $this->simplify($exceptions);
+        $res = $this->transform([$lines, $exceptions]);
         $res = $this->simplify($res);
         return $this->interpret($res);
     }

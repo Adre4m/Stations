@@ -37,7 +37,7 @@ class NetworkRequest extends FormRequest
                 ->forFile($this->file('network-file'))
                 ->forClass(Network::class)
                 ->getContent();
-            return $network->validateCollection($res);
+            return $network->saveCollection($res);
         } else {
             $network->code = $this->input('network-code');
             $network->name = $this->input('network-name');

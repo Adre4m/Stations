@@ -12,9 +12,6 @@ class TXTInterpreter extends \App\Interpreter\Interpreter
 
     protected $map = [];
 
-
-    public $exceptions = [];
-
     /**
      * {@inheritdoc}
      */
@@ -23,6 +20,8 @@ class TXTInterpreter extends \App\Interpreter\Interpreter
         /** @var Importable|\Illuminate\Database\Eloquent\Model $class */
         $class = $this->class;
         $models = array();
+        $exceptions = $lines[1];
+        $lines = $lines[0];
         foreach ($lines as $line) {
             // $line est un tableau (nom de propriété, valeur) représentant un objet à importer
             // instantiation d'un nouvel objet avec le type correspondant
@@ -33,15 +32,15 @@ class TXTInterpreter extends \App\Interpreter\Interpreter
                     $model->{$property_name} = $property_value;
                 }
                 $existing_model = $class::whereCode($model->code)->get()->first();
-                if(isset($existing_model) && $existing_model->exists) {
+                if (isset($existing_model) && $existing_model->exists) {
                     $model->id = $existing_model->id;
                     $model->exists = true;
                 }
                 $models[] = $model;
             } catch (Exception $e) {
-                $this->exceptions[] = $e;
+                $exceptions[] = $e;
             }
         }
-        return $models;
+        return ['models' => $models, 'exceptions' => $exceptions];
     }
 }

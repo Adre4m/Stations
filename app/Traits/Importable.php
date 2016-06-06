@@ -29,12 +29,13 @@ trait Importable
         return ['info' => $info->errors(), 'warnings' => $warning->errors(), 'errors' => $error->errors(),];
     }
 
-    public function validateCollection(array $collection)
+    public function saveCollection(array $collection)
     {
         $messages = [];
         $i = 0;
+        $models = $collection['models'];
         /** @var Importable|Model $var */
-        foreach ($collection as $var) {
+        foreach ($models as $var) {
             $messages[] = [$var, $var->validate()];
             if (count($messages[$i][1]['errors']->messages()) == 0) {
                 $var->save();
@@ -42,6 +43,21 @@ trait Importable
             $i++;
         }
         return $messages;
+    }
+
+    public function validateCollection(array $collection)
+    {
+        $messages = [];
+        $models = $collection['models'];
+        /** @var Importable|Model $var */
+        foreach ($models as $var) {
+            $messages[] = [$var, $var->validate()];
+        }
+        return [
+            'exceptions' => $collection['exceptions'],
+            'validation' => $messages,
+            'models' => $models
+        ];
     }
 
     public static function infoRules()

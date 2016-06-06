@@ -42,7 +42,7 @@ class StationRequest extends FormRequest
                 ->forFile($this->file('station-file'))
                 ->forClass(Station::class)
                 ->getContent();
-            return $station->validateCollection($res);
+            return $station->saveCollection($res);
         } else {
             $station->code = $this->input('station-code');
             $station->name = $this->input('station-name');

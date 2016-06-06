@@ -42,7 +42,7 @@ class ContributorRequest extends FormRequest
                 ->forFile($this->file('contributor-file'))
                 ->forClass(Contributor::class)
                 ->getContent();
-            return $contributor->validateCollection($res);
+            return $contributor->saveCollection($res);
         } else {
             $on = $this->input('contributor-siret') == 'on';
             $contributor->code = $this->input('contributor-code');

@@ -37,7 +37,7 @@ class SampleSiteRequest extends FormRequest
                 ->forFile($this->file('sample_site-file'))
                 ->forClass(SampleSite::class)
                 ->getContent();
-            return $sample_site->validateCollection($res);
+            return $sample_site->saveCollection($res);
         } else {
             $sample_site->code = $this->input('sample_site-code');
             $sample_site->name = $this->input('sample_site-name');

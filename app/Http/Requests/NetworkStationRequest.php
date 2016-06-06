@@ -38,7 +38,7 @@ class NetworkStationRequest extends FormRequest
                 ->forFile($this->file('network_station-file'))
                 ->forClass(NetworkStation::class)
                 ->getContent();
-            return $network_station->validateCollection($res);
+            return $network_station->saveCollection($res);
         } else {
             $network_station->station_id = $this->input('network_station-station_id');
             $network_station->network_id = $this->input('network_station-network_id');

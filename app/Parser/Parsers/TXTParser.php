@@ -9,8 +9,6 @@
 namespace App\Parser;
 
 
-use Symfony\Component\Config\Definition\Exception\Exception;
-
 class TXTParser extends Parser
 {
 
@@ -25,14 +23,18 @@ class TXTParser extends Parser
         $txtData = file_get_contents($file->getRealPath());
         $lines = explode(PHP_EOL, $txtData);
         $header = explode($separator, array_shift($lines));
-        $array = array();
+        $parsedLines = array();
+        $lineNumber = 2;
+        $exceptions = [];
         foreach ($lines as $line) {
             try {
-                $array[] = array_combine($header, explode($separator, $line));
-            } catch (\ErrorException $e){
-                
+                $values = array_combine($header, explode($separator, $line));
+                $parsedLines[] = $values;
+            } catch (\ErrorException $e) {
+                $exceptions[] = "Ligne $lineNumber illisible : nombre de valeur incompatible";
             }
+            $lineNumber++;
         }
-        return $array;
+        return ['lines' => $parsedLines, 'exceptions' => $exceptions];
     }
 }
