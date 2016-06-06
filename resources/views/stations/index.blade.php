@@ -19,6 +19,7 @@
                         </button>
                         @endcan
                         {!! Html::exports('stations') !!}
+                        {!! Html::import('stations', 'station-file') !!}
                         {!! $dataTable->table(['id' => 'stations']) !!}
                     </div>
                 </div>

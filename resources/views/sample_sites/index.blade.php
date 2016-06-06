@@ -19,6 +19,7 @@
                         </button>
                         @endcan
                         {!! Html::exports('sample_sites') !!}
+                        {!! Html::import('sample_sites', 'sample_site-file') !!}
                         {!! $dataTable->table() !!}
                     </div>
                 </div>

@@ -19,6 +19,7 @@
                         </button>
                         @endcan
                         {!! Html::exports('networks') !!}
+                        {!! Html::import('networks', 'network-file') !!}
                         {!! $dataTable->table() !!}
                     </div>
                 </div>

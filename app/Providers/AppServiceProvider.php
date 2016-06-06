@@ -84,6 +84,7 @@ class AppServiceProvider extends ServiceProvider
         Form::component('errors', 'form.errors', ['name', 'value' => null, 'attributes' => [],]);
         Form::component('import', 'form.import', ['name', 'value', 'attributes' => [],]);
         Html::component('exports', 'html.exports', ['name', 'value' => null, 'attributes' => [],]);
+        Html::component('import', 'html.import', ['name', 'value', 'attributes' => [],]);
     }
 
     /**

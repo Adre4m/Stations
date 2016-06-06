@@ -19,6 +19,7 @@
                             </button>
                         @endcan
                         {!! Html::exports('contributors') !!}
+                        {!! Html::import('contributors', 'contributor-file') !!}
                         {!! $dataTable->table() !!}
                     </div>
                 </div>
