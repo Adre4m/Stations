@@ -55,8 +55,7 @@ trait Importable
         }
         return [
             'exceptions' => $collection['exceptions'],
-            'validation' => $messages,
-            'models' => $models
+            'models' => $messages
         ];
     }
 

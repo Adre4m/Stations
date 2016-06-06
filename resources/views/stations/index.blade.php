@@ -14,7 +14,7 @@
                             </button>
                         </a>
                         @elsecan
-                        <button class="btn btn-default btn-link" style="background-color: #aeaeae; color: #5e5e5e">
+                        <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
                             <i class="fa fa-btn fa-plus"></i>{{ trans('stations.add') }}
                         </button>
                         @endcan

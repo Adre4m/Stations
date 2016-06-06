@@ -50,7 +50,7 @@ class StationController extends Controller
         $station = $request->persist();
 
         if (is_array($station)) {
-            return view('stations.import')->with('messages', $station);
+            return view('stations.temp')->with('messages', $station);
         }
         if ($station->exists) {
             return redirect()->route('stations.index');

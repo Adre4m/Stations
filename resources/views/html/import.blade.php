@@ -16,11 +16,19 @@
         opacity: 0;
         filter: alpha(opacity=0);
     }
+
+    form {
+        display: inline-block;
+    }
 </style>
-{!! Form::open(['route' => "$name.store", 'files' => true]) !!}
+{!! Form::open([
+    'route' => "$name.store",
+    'files' => true
+]) !!}
 {!! Form::token() !!}
 <span class="fileUpload btn btn-success">
     <i class="fa fa-btn fa-download"></i>{{ trans('pagination.upload') }}
-    <input name="{{ $value }}" id="{{ $value }}" accept=".xml,.csv" type="file" class="upload form-control" onchange="submit()"/>
+    <input name="{{ $value }}" id="{{ $value }}" accept=".xml,.csv" type="file" class="upload form-control"
+           onchange="submit()"/>
 </span>
 {!! Form::close() !!}
