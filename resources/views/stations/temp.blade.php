@@ -11,7 +11,7 @@
                     <div class="panel-body">
                         <a href="{{ route('stations.index') }}">
                             <button class="btn btn-default">
-                                <i class="fa fa-arrow-left"></i>
+                                <i class="fa fa-level-down fa-rotate-90"></i>
                             </button>
                         </a>
                         <a href="/">
@@ -22,16 +22,17 @@
                         </a>
                         <div>
                             <strong>Exceptions :</strong>
-                            <ul>
+                            <ul class="fa-ul">
                                 @if(isset($messages['exceptions']) && count($messages['exceptions']) != 0)
                                     @foreach($messages['exceptions'] as $exception)
-                                        <li class="alert alert-danger">
-                                            tableau
+                                        <li style="color:#cc0000">
+                                            <i class="fa-li fa fa-times-circle" aria-hidden="true"></i>
                                             {{ $exception }}
                                         </li>
                                     @endforeach
                                 @else
-                                    <li class="alert alert-success">
+                                    <li style="color: #6cad49">
+                                        <i class="fa-li fa fa-check-circle"></i>
                                         Fichier lu correctement
                                     </li>
                                 @endif
@@ -39,16 +40,20 @@
                         </div>
                         <div>
                             <strong>Validation :</strong>
-                            <ul>
+                            <ul class="fa-ul">
                                 @foreach($messages['models'] as $model)
                                 @if(count($model[1]['errors']) != 0)
-                                    <li class="alert alert-danger">
+                                    <li style="color:#cc0000">
+                                    <i class="fa-li fa fa-times-circle"></i>
                                 @elseif(count($model[1]['warnings']) != 0)
-                                    <li class="alert alert-warning">
+                                    <li style="color: #ffa057">
+                                    <i class="fa-li fa fa-exclamation-circle" aria-hidden="true"></i>
                                 @elseif(count($model[1]['info']) != 0)
-                                        <li class="alert alert-info">
+                                    <li style="color: #4169E1">
+                                    <i class="fa-li fa fa-info-circle" aria-hidden="true"></i>
                                 @else
-                                        <li class="alert alert-success">
+                                    <li>
+                                    <i class="fa-li fa fa-check"></i>
                                 @endif
                                         Station {{ $model[0]->code }}
                                         <span style="float:right">
