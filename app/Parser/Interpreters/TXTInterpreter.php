@@ -33,7 +33,11 @@ class TXTInterpreter extends \App\Interpreter\Interpreter
                     $model->{$property_name} = $property_value;
                 }
                 $existing_model = $class::whereCode($model->code)->get()->first();
-                $models[] = ($existing_model->exists) ? $existing_model : dd($model, $existing_model);
+                if(isset($existing_model) && $existing_model->exists) {
+                    $model->id = $existing_model->id;
+                    $model->exists = true;
+                }
+                $models[] = $model;
             } catch (Exception $e) {
                 $this->exceptions[] = $e;
             }

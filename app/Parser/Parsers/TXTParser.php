@@ -9,6 +9,8 @@
 namespace App\Parser;
 
 
+use Symfony\Component\Config\Definition\Exception\Exception;
+
 class TXTParser extends Parser
 {
 
@@ -25,7 +27,11 @@ class TXTParser extends Parser
         $header = explode($separator, array_shift($lines));
         $array = array();
         foreach ($lines as $line) {
-            $array[] = array_combine($header, explode($separator, $line));
+            try {
+                $array[] = array_combine($header, explode($separator, $line));
+            } catch (\ErrorException $e){
+                
+            }
         }
         return $array;
     }
