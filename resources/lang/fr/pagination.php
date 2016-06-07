@@ -24,6 +24,7 @@ return [
     'station_networks'      => 'Réseaux de stations',
     'login'         => 'S\'identifier',
     'register'      => 'S\'enregistrer',
-    'logout'        => 'Se déconnecter'
+    'logout'        => 'Se déconnecter',
+    'upload'        => 'Importer',
 
 ];

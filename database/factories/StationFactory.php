@@ -11,10 +11,11 @@
 |
 */
 
+/** @var Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\Station::class, function (Faker\Generator $faker) {
     return [
         'code' => $faker->unique()->randomNumber(),
-        'name' => $faker->company,
+        'name' => strtoupper($faker->company),
         'x' => $faker->randomFloat(3, -999, 999),
         'y' => $faker->randomFloat(3, -999, 999),
         'manager_id' => $faker->numberBetween(1, 50),

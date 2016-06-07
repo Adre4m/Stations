@@ -11,10 +11,11 @@
 |
 */
 
+/** @var Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->email,
+        'email' => $faker->unique()->safeEmail,
         'password' => bcrypt('secret'),
     ];
 });

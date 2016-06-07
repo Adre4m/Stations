@@ -23,9 +23,9 @@ class CreateStationsTable extends Migration
             $table->string('name');
             $table->double('x');
             $table->double('y');
+            $table->timestamps();
             $table->integer('manager_id')->unsigned();
             $table->integer('owner_id')->unsigned();
-            $table->timestamps();
             $table->foreign('manager_id')->references('id')->on('contributors');
             $table->foreign('owner_id')->references('id')->on('contributors');
         });

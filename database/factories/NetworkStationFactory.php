@@ -11,6 +11,7 @@
 |
 */
 
+/** @var Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\NetworkStation::class, function (Faker\Generator $faker) {
     return [
         'station_id' => $faker->numberBetween(1, 50),

@@ -11,9 +11,10 @@
 |
 */
 
+/** @var Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\Network::class, function (Faker\Generator $faker) {
     return [
         'code' => $faker->unique()->randomNumber(),
-        'name' => $faker->company,
+        'name' => strtoupper($faker->company),
     ];
 });

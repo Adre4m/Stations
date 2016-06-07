@@ -8,11 +8,10 @@
 
 namespace App\Http\Requests;
 
-
-use App\Models\Contributor;
+use App\Interpreter\QUESUInterpreter;
+use App\Interpreter\TXTInterpreter;
 use App\Models\Station;
 use Illuminate\Foundation\Http\FormRequest;
-use Webpatser\Uuid\Uuid;
 
 class StationRequest extends FormRequest
 {
@@ -24,42 +23,35 @@ class StationRequest extends FormRequest
 
     public function rules()
     {
-        $station = $this->station;
-        $id = ($station == null) ? null : $station->id;
-        return [
-            'station-code'  => [
-                'required',
-                "unique:stations,code,{$id},id",
-            ],
-            'station-name'  => [
-                'required',
-                'max:255'
-            ],
-            'station-x'     => [
-                'required',
-                'numeric',
-                "unique:stations,x,{$id},id,y,{$this->y}",
-            ],
-            'station-y'     => [
-                'required',
-                'numeric',
-                "unique:stations,y,{$id},id,x,{$this->x}",
-            ],
-        ];
+        return Station::rules($this->station);
     }
 
+    /**
+     * @param null $station
+     * @return $this|bool
+     */
     public function persist($station = null)
     {
-        if($station == null)
-        {
+        /** @var \App\Models\Station $station */
+        if ($station == null) {
             $station = new Station;
         }
-        $station->code = $this->input('station-code');
-        $station->name = $this->input('station-name');
-        $station->x = $this->input('station-x');
-        $station->y = $this->input('station-y');
-        $station->manager_id = $this->input('station-manager_id');
-        $station->owner_id = $this->input('station-owner_id');
-        return  $station->save();
+        if ($this->hasFile('station-file')) {
+            $interpreter = new TXTInterpreter();
+            $res = $interpreter
+                ->forFile($this->file('station-file'))
+                ->forClass(Station::class)
+                ->getContent();
+            return $station->validateCollection($res);
+        } else {
+            $station->code = $this->input('station-code');
+            $station->name = $this->input('station-name');
+            $station->x = $this->input('station-x');
+            $station->y = $this->input('station-y');
+            $station->manager_id = $this->input('station-manager_id');
+            $station->owner_id = $this->input('station-owner_id');
+            $station->save();
+        }
+        return $station;
     }
 }
