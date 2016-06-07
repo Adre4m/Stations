@@ -156,6 +156,21 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * DataTables
+         */
+        Yajra\Datatables\DatatablesServiceProvider::class,
+
+        /*
+         * Ide-helper
+         */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
+        /*
+         * Forms & HTML LaravelCollective
+         */
+        Collective\Html\HtmlServiceProvider::class,
+
     ],
 
     /*
@@ -201,10 +216,17 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Contributor' => App\Models\Contributor::class,
-        'Station' => App\Models\Station::class,
-        'StationLog' => App\Models\StationLog::class,
 
+        /*
+         * DataTables
+         */
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+
+        /*
+         * Forms & HTML LaravelCollective
+         */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

@@ -11,7 +11,47 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Station
+ *
+ * @property integer $code
+ * @property string $name
+ * @property float $x
+ * @property float $y
+ * @property integer $contributor_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereX($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereY($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereContributorId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Station extends Model
 {
 
+    protected $primaryKey = 'code';
+
+    public function contributor()
+    {
+        return $this->belongsTo(Contributor::class);
+    }
+
+    public function stationLogs()
+    {
+        return $this->hasMany(StationLog::class);
+    }
+
+    public static function query()
+    {
+        return Station::with('contributor');
+    }
+
+    public function getPositionAttribute()
+    {
+        return "({$this->x}, {$this->y})";
+    }
 }

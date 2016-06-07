@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Contributor;
+use App\Models\Station;
+use App\Models\StationLog;
 use App\User;
 use Illuminate\Database\Seeder;
 use Faker\Factory;
@@ -14,17 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
-        for($i = 0; $i < 500; ++$i) {
-            $contributor = new Contributor;
-            $contributor->name = $faker->firstName;
-            $contributor->last_name = $faker->lastName;
-            $contributor->save();
-            $user = new User;
-            $user->name = $faker->name;
-            $user->email = $faker->unique()->email;
-            $user->password = bcrypt('secret');
-            $user->save();
+        factory(User::class, 50)->create();
+        factory(Contributor::class, 50)->create();
+        factory(Station::class, 5000)->create();
+        foreach (Station::all() as $station)
+        {
+            $log = new StationLog;
+            $log->msg = 'Creation of a new station, code: ' . $station->code ;
+            $log->station_id = $station->code;
+            $log->save();
         }
     }
 }
