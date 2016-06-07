@@ -26,12 +26,18 @@ class NetworkController extends Controller
         $network = $request->persist();
 
         if (is_array($network)) {
-            return view('networks.import')->with('messages', $network);
+            return view('networks.temp')->with('messages', $network);
         }
         if ($network->exists) {
             return redirect()->route('networks.index');
         }
         return redirect()->back()->with('network', $network);
+    }
+
+    public function import()
+    {
+        $networks = Network::saveCollection(session('networks'));
+        return view('networks.import')->with('messages', $networks);
     }
 
     /**

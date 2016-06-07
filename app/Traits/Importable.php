@@ -29,16 +29,16 @@ trait Importable
         return ['info' => $info->errors(), 'warnings' => $warning->errors(), 'errors' => $error->errors(),];
     }
 
-    public function saveCollection(array $collection)
+    public static function saveCollection(array $collection)
     {
         $messages = [];
         $i = 0;
         $models = $collection['models'];
         /** @var Importable|Model $var */
         foreach ($models as $var) {
-            $messages[] = [$var, $var->validate()];
+            $messages[] = [$var[0], $var[0]->validate()];
             if (count($messages[$i][1]['errors']->messages()) == 0) {
-                $var->save();
+                $var[0]->save();
             }
             $i++;
         }

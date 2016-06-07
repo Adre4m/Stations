@@ -29,12 +29,18 @@ class NetworkStationController extends Controller
         $network_station = $request->persist();
 
         if (is_array($network_station)) {
-            return view('network_station.import')->with('messages', $network_station);
+            return view('network_station.temp')->with('messages', $network_station);
         }
         if ($network_station->exists) {
             return redirect()->route('network_station.index');
         }
         return redirect()->back()->with('network_station', $network_station);
+    }
+
+    public function import()
+    {
+        $network_station = NetworkStation::saveCollection(session('network_station'));
+        return view('network_station.import')->with('messages', $network_station);
     }
 
     /**

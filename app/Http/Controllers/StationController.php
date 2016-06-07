@@ -58,6 +58,12 @@ class StationController extends Controller
         return redirect()->back()->with('station', $station);
     }
 
+    public function import()
+    {
+        $stations = Station::saveCollection(session('stations'));
+        return view('stations.import')->with('messages', $stations);
+    }
+
     /**
      * Display the specified resource.
      *

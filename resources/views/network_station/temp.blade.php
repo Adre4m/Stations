@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    {!! Html::preview('stations', $messages) !!}
+    {!! Html::preview('network_station', $messages) !!}
 @endsection

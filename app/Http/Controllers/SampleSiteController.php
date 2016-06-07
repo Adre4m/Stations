@@ -26,12 +26,18 @@ class SampleSiteController extends Controller
         $sample_site = $request->persist();
 
         if (is_array($sample_site)) {
-            return view('sample_sites.import')->with('messages', $sample_site);
+            return view('sample_sites.temp')->with('messages', $sample_site);
         }
         if ($sample_site->exists) {
             return redirect()->route('sample_sites.index');
         }
         return redirect()->back()->with('sample_site', $sample_site);
+    }
+
+    public function import()
+    {
+        $sample_sites = SampleSite::saveCollection(session('sample_sites'));
+        return view('sample_sites.import')->with('messages', $sample_sites);
     }
 
     /**

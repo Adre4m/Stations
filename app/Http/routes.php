@@ -48,6 +48,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/stations/import", function () {
         return view("stations.file");
     })->name("stations.import");
+    Route::get("/stations/import/confirm", 'StationController@import')
+        ->name("stations.import.confirm");
 
     Route::get('/contributors/create', 'ContributorController@create')->name('contributors.create');
     Route::post('/contributors/store', 'ContributorController@store')->name('contributors.store');
@@ -57,6 +59,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/contributors/import", function () {
         return view("contributors.file");
     })->name("contributors.import");
+    Route::get("/contributors/import/confirm", 'ContributorController@import')
+        ->name("contributors.import.confirm");
 
     Route::get('/sample_sites/create', 'SampleSiteController@create')->name('sample_sites.create');
     Route::post('/sample_sites/store', 'SampleSiteController@store')->name('sample_sites.store');
@@ -66,6 +70,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/sample_sites/import", function () {
         return view("sample_sites.file");
     })->name("sample_sites.import");
+    Route::get("/sample_site/import/confirm", 'SampleSiteController@import')
+        ->name("sample_site.import.confirm");
 
 
     Route::get('/networks/create', 'NetworkController@create')->name('networks.create');
@@ -76,6 +82,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/networks/import", function () {
         return view("networks.file");
     })->name("networks.import");
+    Route::get("/networks/import/confirm", 'NetworkController@import')
+        ->name("networks.import.confirm");
 
     Route::get('/network_station/create', 'NetworkStationController@create')->name('network_station.create');
     Route::post('/network_station/store', 'NetworkStationController@store')->name('network_station.store');
@@ -85,4 +93,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/network_station/import", function () {
         return view("network_station.file");
     })->name("network_station.import");
+    Route::get("/network_station/import/confirm", 'NetworkStationController@import')
+        ->name("network_station.import.confirm");
 });

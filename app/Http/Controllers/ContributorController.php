@@ -24,16 +24,24 @@ class ContributorController extends Controller
 
     public function store(ContributorRequest $request)
     {
+        /** @var Contributor $contributor */
         $contributor = $request->persist();
 
         if (is_array($contributor)) {
-            return view('contributors.import')->with('messages', $contributor);
+            return view('contributors.temp')->with('messages', $contributor);
         }
         if ($contributor->exists) {
             return redirect()->route('contributors.index');
         }
         return redirect()->back()->with('contributor', $contributor);
     }
+
+    public function import()
+    {
+        $contributors = Contributor::saveCollection(session('contributors'));
+        return view('contributors.import')->with('messages', $contributors);
+    }
+
 
     public function show(Contributor $contributor)
     {

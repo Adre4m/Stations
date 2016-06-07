@@ -126,4 +126,14 @@ return [
 
     'no_errors' => 'Aucune erreur lors de l\'import',
 
+    'preview' => [
+        'file_correct'  => 'Fichier correctement lu',
+        'exceptions'    => 'Exceptions',
+        'msg'           => 'Validation',
+        'error'         => 'erreurs',
+        'warnings'      => 'avertissements',
+        'info'          => 'informations',
+    ],
+
+
 ];
