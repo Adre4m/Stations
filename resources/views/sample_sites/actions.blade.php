@@ -12,6 +12,5 @@
         <button class="btn btn-danger" type="button"><i class="fa fa-trash"></i></button>
     </a>
 @else
-    
         <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e" type="button"><i class="fa fa-trash"></i></button>
 @endcan
