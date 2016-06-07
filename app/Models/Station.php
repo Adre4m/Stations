@@ -18,6 +18,15 @@ class Station extends Model
         'code', 'name', 'x', 'y',
     ];
 
+    public static $header = [
+        'code' => 'code',
+        'name' => 'name',
+        'x' => 'x',
+        'y' => 'y',
+        'manager' => 'manager',
+        'owner' => 'owner',
+    ];
+
     /**
      * @return array
      */

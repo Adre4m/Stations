@@ -70,8 +70,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/sample_sites/import", function () {
         return view("sample_sites.file");
     })->name("sample_sites.import");
-    Route::get("/sample_site/import/confirm", 'SampleSiteController@import')
-        ->name("sample_site.import.confirm");
+    Route::get("/sample_sites/import/confirm", 'SampleSiteController@import')
+        ->name("sample_sites.import.confirm");
 
 
     Route::get('/networks/create', 'NetworkController@create')->name('networks.create');

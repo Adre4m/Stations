@@ -14,6 +14,14 @@ class SampleSite extends Model
 
     use HasBusinessKey, GenerateUuid, Importable, Exportable;
 
+    public static $header = [
+        'code' => 'code',
+        'name' => 'name',
+        'x' => 'x',
+        'y' => 'y',
+        'station' => 'station',
+    ];
+
     public static function rules(SampleSite $sampleSite = null)
     {
         $id = (isset($sampleSite) && $sampleSite->id != null) ? $sampleSite->id : 'null';

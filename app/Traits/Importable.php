@@ -35,6 +35,9 @@ trait Importable
         $i = 0;
         $models = $collection['models'];
         /** @var Importable|Model $var */
+        // In fact at this point $var is an array composed of :
+        // [0] => the model
+        // [1] => the errors already encountered, though they are not useful so I just ignore them.
         foreach ($models as $var) {
             $messages[] = [$var[0], $var[0]->validate()];
             if (count($messages[$i][1]['errors']->messages()) == 0) {

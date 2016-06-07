@@ -20,4 +20,5 @@ return [
     'owner' => 'Propriétaire',
     'code' => 'Code',
     'siret' => 'SIRET',
+    'scheme' => 'Schème',
 ];

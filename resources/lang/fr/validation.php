@@ -135,5 +135,10 @@ return [
         'info'          => 'informations',
     ],
 
+    'exceptions' => [
+        'unreadable_line' => 'La ligne :lineNumber est illisible',
+        'unreadable_file' => 'Le fichier spécifié est incorrect',
+    ]
+
 
 ];

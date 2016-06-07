@@ -15,6 +15,13 @@ class Contributor extends Model
 
     public $timestamps = false;
 
+    public static $header = [
+        'code' => 'code',
+        'name' => 'name',
+        'last_name' => 'last_name',
+        'scheme' => 'scheme',
+    ];
+
     /**
      * @return array
      */

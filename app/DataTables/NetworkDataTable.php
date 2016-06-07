@@ -45,7 +45,7 @@ class NetworkDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '180.5px'])
+                    ->addAction(['width' => '70px'])
                     ->parameters(array_merge($this->getBuilderParameters(), ['language' => [
                         'url' => '//cdn.datatables.net/plug-ins/1.10.11/i18n/French.json',
                     ],

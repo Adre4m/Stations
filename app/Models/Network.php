@@ -20,6 +20,11 @@ class Network extends Model
 
     use HasBusinessKey, GenerateUuid, Importable, Exportable;
 
+    public static $header = [
+        'code' => 'code',
+        'name' => 'name',
+    ];
+
     public static function rules(Network $network = null)
     {
         $id = (isset($network) && $network->id != null) ? $network->id : null;

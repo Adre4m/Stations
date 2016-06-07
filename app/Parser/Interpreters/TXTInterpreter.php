@@ -6,6 +6,7 @@ use App\Importable;
 use App\Models\Contributor;
 use App\Models\Station;
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 
 class TXTInterpreter extends \App\Interpreter\Interpreter
 {
@@ -17,11 +18,18 @@ class TXTInterpreter extends \App\Interpreter\Interpreter
      */
     protected function interpret(array $lines)
     {
-        /** @var Importable|\Illuminate\Database\Eloquent\Model $class */
+        /** @var Importable|Model $class */
         $class = $this->class;
         $models = array();
         $exceptions = $lines[1];
         $lines = $lines[0];
+        foreach ($lines[0] as $key => $value) {
+            /** @var array $header */
+            if (!isset($class::$header[$key])) {
+                $exceptions[] = trans('validation.exceptions.unreadable_file');
+                return ['models' => $models, 'exceptions' => $exceptions];
+            }
+        }
         foreach ($lines as $line) {
             // $line est un tableau (nom de propriété, valeur) représentant un objet à importer
             // instantiation d'un nouvel objet avec le type correspondant

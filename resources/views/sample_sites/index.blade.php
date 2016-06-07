@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ trans('stations.title') }}</div>
+                    <div class="panel-heading">{{ trans('sample_sites.title') }}</div>
                     <div class="panel-body">
                         @can('add', new App\Models\SampleSite)
                         <a href="{{ route('sample_sites.create') }}">

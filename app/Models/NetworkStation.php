@@ -23,6 +23,13 @@ class NetworkStation extends Model
 
     protected $table = 'network_station';
 
+    public static $header = [
+        'station' => 'station',
+        'network' => 'network',
+        'began_at' => 'began_at',
+        'end_at' => 'end_at',
+    ];
+
     public static $plural = 1;
 
     public static function rules(NetworkStation $networkStation = null)

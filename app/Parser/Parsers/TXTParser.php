@@ -22,6 +22,7 @@ class TXTParser extends Parser
 
         $txtData = file_get_contents($file->getRealPath());
         $lines = explode(PHP_EOL, $txtData);
+        // TODO here the header should be transformed, but I don't need it now
         $header = explode($separator, array_shift($lines));
         $parsedLines = array();
         $lineNumber = 2;
@@ -31,7 +32,8 @@ class TXTParser extends Parser
                 $values = array_combine($header, explode($separator, $line));
                 $parsedLines[] = $values;
             } catch (\ErrorException $e) {
-                $exceptions[] = "Ligne $lineNumber illisible : nombre de valeur incompatible";
+                $exceptions[] = trans('validation.exceptions.unreadable_line',
+                    ['lineNumber' => $lineNumber]);
             }
             $lineNumber++;
         }
