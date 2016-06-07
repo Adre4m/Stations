@@ -7,20 +7,20 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{{ trans('networks.title') }}</div>
                     <div class="panel-body">
-                        @can('add', new App\Models\SampleSite)
+                        @can('add', new App\Models\Network)
                         <a href="{{ route('networks.create') }}">
                             <button class="btn btn-primary">
                                 <i class="fa fa-btn fa-plus"></i>{{ trans('networks.add') }}
                             </button>
                         </a>
-                        @elsecan
-                        <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
-                            <i class="fa fa-btn fa-plus"></i>{{ trans('networks.add') }}
-                        </button>
-                        @endcan
-                        {!! Html::exports('networks') !!}
-                        {!! Html::import('networks', 'network-file') !!}
-                        {!! $dataTable->table() !!}
+                        @else
+                            <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
+                                <i class="fa fa-btn fa-plus"></i>{{ trans('networks.add') }}
+                            </button>
+                            @endcan
+                            {!! Html::import('networks', 'network-file', new App\Models\Network) !!}
+                            {!! Html::exports('networks') !!}
+                            {!! $dataTable->table() !!}
                     </div>
                 </div>
             </div>
