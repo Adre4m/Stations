@@ -2,7 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\Contributor;
+use App\Models\Network;
+use App\Models\SampleSite;
 use App\Models\Station;
+use App\Models\StationNetwork;
+use App\Policies\ContributorPolicy;
+use App\Policies\NetworkPolicy;
+use App\Policies\SampleSitePolicy;
+use App\Policies\StationNetworkPolicy;
 use App\Policies\StationPolicy;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -16,6 +24,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Station::class => StationPolicy::class,
+        Contributor::class => ContributorPolicy::class,
+        SampleSite::class => SampleSitePolicy::class,
+        StationNetwork::class => StationNetworkPolicy::class,
+        Network::class => NetworkPolicy::class,
     ];
 
     /**

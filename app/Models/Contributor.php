@@ -4,16 +4,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Created by PhpStorm.
- * 
- * User: Adrien
- * Date: 20/04/2016
- * Time: 17:34
+ * App\Models\Contributor
  *
  * @property integer $id
+ * @property string $uuid
  * @property string $name
  * @property string $last_name
+ * @property-read mixed $fullname
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereUuid($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereLastName($value)
  * @mixin \Eloquent
@@ -33,10 +32,15 @@ class Contributor extends Model
         return "{$this->name} {$this->last_name}";
     }
 
+    public function stations()
+    {
+        return $this->hasMany(Station::class, 'manager_id', 'owner_id');
+    }
+
 
     public static function query()
     {
-        return Contributor::select(['id', 'name', 'last_name'])->newQuery();
+            return Contributor::select(['code', 'name', 'last_name', 'siret'])->with('stations')->newQuery();
     }
 
 }

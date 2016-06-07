@@ -8,7 +8,7 @@
 
 return [
     'title' => 'Contributors',
-    'agree' => 'Confirm',
+    'confirm' => 'Confirm',
     'cancel' => '&laquo; Back to contributors',
     'name' => 'Contributor\'s first name',
     'last_name' => 'Contributor\'s last name',
@@ -18,4 +18,10 @@ return [
     'set_name' => 'First name:',
     'set_last_name' => 'Last name:',
     'full_name' => 'Contributor\'s full name',
+    'manager' => 'Manager',
+    'owner' => 'Owner',
+    'code' => 'Code',
+    'siret' => 'Siret',
+    'set_code' => 'Code',
+    'set_siret' => 'Siret',
 ];

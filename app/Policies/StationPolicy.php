@@ -12,6 +12,16 @@ class StationPolicy
 
     public function destroy(User $user, Station $station)
     {
-        return true;
+        return !auth()->guest();
+    }
+
+    public function edit(User $user, Station $station)
+    {
+        return !auth()->guest();
+    }
+
+    public function add(User $user, Station $station)
+    {
+        return !auth()->guest();
     }
 }

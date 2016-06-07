@@ -14,13 +14,17 @@ class CreateStationsTable extends Migration
     public function up()
     {
         Schema::create('stations', function(Blueprint $table) {
-            $table->increments('code');
+            $table->increments('id');
+            $table->uuid('uuid')->unique();
+            $table->integer('code')->unique();
             $table->string('name');
             $table->double('x');
             $table->double('y');
-            $table->integer('contributor_id')->unsigned();
+            $table->integer('manager_id')->unsigned();
+            $table->integer('owner_id')->unsigned();
             $table->timestamps();
-            $table->foreign('contributor_id')->references('id')->on('contributors');
+            $table->foreign('manager_id')->references('id')->on('contributors');
+            $table->foreign('owner_id')->references('id')->on('contributors');
         });
     }
 

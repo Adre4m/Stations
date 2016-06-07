@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>{{trans('pagination.title')}}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -23,6 +23,59 @@
         .fa-btn {
             margin-right: 6px;
         }
+
+        .dataTable  {
+            border: solid 1px #d5d5d5;
+        }
+
+        .dataTable .odd {
+            background-color: #f5f5f5;
+        }
+
+        .dataTable .odd :hover:not(.btn){
+            background-color: #f0f0f0;
+        }
+
+        .dataTable .even {
+            background-color: #e5e5e5;
+        }
+
+        .dataTable .even :hover:not(.btn) {
+            background-color: #e0e0e0;
+        }
+
+        .navbar {
+            background-color: #61addd;
+        }
+
+        .navbar .navbar-brand,
+        .navbar-default .navbar-nav > li > a {
+            color: #ffffff;
+        }
+
+        .navbar .navbar-brand:hover,
+        .navbar-default .navbar-nav > li > a:hover {
+            color: #ffffff;
+            background-color:#509ccc;
+        }
+
+        .navbar-default .navbar-nav > .open > a,
+        .navbar-default .navbar-nav > .open > a:focus,
+        .navbar-default .navbar-nav > .open > a:hover
+        {
+            color:#ffffff;
+            background-color:#509ccc;
+        }
+
+        .dropdown-menu > li > a{
+            color:#61addd;
+        }
+
+        .dropdown-menu > li > a:hover {
+            color:#509ccc;
+            background-color: inherit;
+        }
+
     </style>
 </head>
 <body id="app-layout">
@@ -40,18 +93,20 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    {{trans('pagination.title')}}
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-left">
                     <li><a href="{{ route('home') }}">{{ trans('pagination.home') }}</a></li>
                     <li><a href="{{ route('stations.index') }}">{{ trans('pagination.stations') }}</a></li>
                     <li><a href="{{ route('contributors.index') }}">{{ trans('pagination.contributors') }}</a></li>
+                    <li><a href="{{ route('sample_sites.index') }}">{{ trans('pagination.sample_sites') }}</a></li>
+                    <li><a href="{{ route('networks.index') }}">{{ trans('pagination.networks') }}</a></li>
+                    <li><a href="{{ route('station_networks.index') }}">{{ trans('pagination.station_networks') }}</a></li>
                 </ul>
-
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->

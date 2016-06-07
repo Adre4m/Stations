@@ -11,6 +11,7 @@ namespace App\Http\Requests;
 
 use App\Models\Contributor;
 use Illuminate\Foundation\Http\FormRequest;
+use Webpatser\Uuid\Uuid;
 
 class ContributorRequest extends FormRequest
 {
@@ -33,6 +34,7 @@ class ContributorRequest extends FormRequest
         if($contributor == null)
         {
             $contributor = new Contributor;
+            $contributor->uuid = Uuid::generate(4);
         }
         $contributor->name = $this->input('name');
         $contributor->last_name = $this->input('last_name');

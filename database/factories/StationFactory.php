@@ -13,9 +13,12 @@
 
 $factory->define(App\Models\Station::class, function (Faker\Generator $faker) {
     return [
+        'uuid' => $faker->uuid,
+        'code' => $faker->unique()->randomNumber(),
         'name' => $faker->name,
-        'x' => $faker->randomFloat(3, -200, 200),
-        'y' => $faker->randomFloat(3, -200, 200),
-        'contributor_id' => App\Models\Contributor::all()->random()->id,
+        'x' => $faker->randomFloat(3, -999, 999),
+        'y' => $faker->randomFloat(3, -999, 999),
+        'manager_id' => $faker->numberBetween(1, 50),
+        'owner_id' => $faker->numberBetween(1, 50),
     ];
 });

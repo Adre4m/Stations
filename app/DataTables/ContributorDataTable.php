@@ -17,17 +17,8 @@ class ContributorDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn("action", function($contributor) {
-                return '<a href="/contributors/edit' . $contributor->id . '">
-                            <button class="btn btn-warning" type="button"><i class="fa fa-btn fa-edit"></i>' .
-                trans('contributors.edit').
-                '</button>
-                        </a>
-                        <a href="/contributors/destroy' . $contributor->id . '">
-                            <button class="btn btn-danger" type="button"><i class="fa fa-btn fa-trash"></i>'.
-                trans('contributors.destroy').
-                '</button>
-                        </a>';
+            ->addColumn("action", function ($contributor){
+                return view('contributors.actions')->with('contributor', $contributor);
             })
             ->make(true);
     }
@@ -39,8 +30,7 @@ class ContributorDataTable extends DataTable
      */
     public function query()
     {
-        $contributors = Contributor::query();
-        return $this->applyScopes($contributors);
+        return $this->applyScopes(Contributor::query());
     }
 
     /**
@@ -53,7 +43,7 @@ class ContributorDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '155px'])
+                    ->addAction(['width' => '180.5px'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -65,9 +55,10 @@ class ContributorDataTable extends DataTable
     private function getColumns()
     {
         return [
-            ['data' => 'id', 'title' => trans('contributors.id'), 'visible' => false],
-            ['data' => 'name', 'title' => trans('contributors.name')],
-            ['data' => 'last_name', 'title' => trans('contributors.last_name')],
+            ['data' => 'code', 'title' => trans('contributors.code')],
+            ['data' => 'name', 'title' => trans('contributors.name'),],
+            ['data' => 'last_name', 'title' => trans('contributors.last_name'),],
+            ['data' => 'siret', 'title' => trans('contributors.siret'),],
         ];
     }
 
