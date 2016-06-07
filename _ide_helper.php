@@ -12934,6 +12934,16 @@ namespace {
             return \Collective\Html\HtmlBuilder::exports($name);
         }
 
+        public static function import($name, $label, $object)
+        {
+            return \Collective\Html\HtmlBuilder::import($name, $label, $object);
+        }
+
+        public static function preview($name, $messages)
+        {
+            return \Collective\Html\HtmlBuilder::preview($name, $messages);
+        }
+
     }
 
 
