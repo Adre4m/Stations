@@ -3,36 +3,34 @@
 namespace App\Models;
 
 
+use App\Exportable;
 use App\GenerateUuid;
 use App\HasBusinessKey;
-use App\Validatable;
+use App\Importable;
 use Illuminate\Database\Eloquent\Model;
 
 class Station extends Model
 {
 
-    use HasBusinessKey, GenerateUuid, Validatable;
+    use HasBusinessKey, GenerateUuid, Importable, Exportable;
 
     protected $fillable = [
         'code', 'name', 'x', 'y',
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function manager()
-    {
-        return $this->belongsTo(Contributor::class);
-    }
-
-    /**
      * @return array
      */
-    public static function rules(Station $station = null, $x = null, $y = null)
+    public static function rules(Station $station = null)
     {
-        $id = (isset($station) && $station->id != null) ? $station->id : 'null';
-        $x = (!isset($station->x)) ?: $station->x;
-        $y = (!isset($station->y)) ?: $station->y;
+        $id = null;
+        $x = null;
+        $y = null;
+        if (isset($station)) {
+            $id = $station->id;
+            $x = $station->x;
+            $y = $station->y;
+        }
         return [
             "station-code" => [
                 "required_without:station-file",
@@ -52,9 +50,12 @@ class Station extends Model
                 'numeric',
                 "unique:stations,y,{$id},id,x,{$x}",
             ],
-//            "station-file" => [
-////                "mimes:xml,csv",
-//            ],
+            "station-manager_id" => [
+                'exists:contributors,id'
+            ],
+            "station-owner_id" => [
+                'exists:contributors,id'
+            ]
         ];
     }
 
@@ -67,6 +68,7 @@ class Station extends Model
             'station-code' => 'numeric|max:1',
         ];
     }
+
     /**
      * @return array
      */
@@ -75,6 +77,14 @@ class Station extends Model
         return [
             'station-name' => 'max:5',
         ];
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function manager()
+    {
+        return $this->belongsTo(Contributor::class);
     }
 
     /**
@@ -120,12 +130,22 @@ class Station extends Model
 
     public function setManagerAttribute($value)
     {
-        $this->manager_id = Contributor::whereCode($value)->firstOrFail()->id;
+        $manager = Contributor::whereCode($value)->firstOrNew([]);
+        if ($manager->exists) {
+            $this->manager_id = $manager->id;
+        } else {
+            $this->manager_id = -1;
+        }
     }
 
     public function setOwnerAttribute($value)
     {
-        $this->owner_id = Contributor::whereCode($value)->firstOrFail()->id;
+        $owner = Contributor::whereCode($value)->firstOrNew([]);
+        if ($owner->exists) {
+            $this->owner_id = $owner->id;
+        } else {
+            $this->owner_id = -1;
+        }
     }
 
 }

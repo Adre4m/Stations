@@ -9,9 +9,9 @@
 namespace App\Http\Requests;
 
 
+use App\Interpreter\TXTInterpreter;
 use App\Models\Network;
 use Illuminate\Foundation\Http\FormRequest;
-use Webpatser\Uuid\Uuid;
 
 class NetworkRequest extends FormRequest
 {
@@ -23,28 +23,26 @@ class NetworkRequest extends FormRequest
 
     public function rules()
     {
-        $network = $this->network;
-        $id = ($network == null) ? null : $network->id;
-        return [
-            'network-code' => [
-                'required',
-                "unique:networks,code,{$id},id",
-            ],
-            'network-name'  => [
-                'required',
-                'max:255',
-            ],
-        ];
+        return Network::rules($this->network);
     }
 
     public function persist($network = null)
     {
-        if($network == null)
-        {
+        if ($network == null) {
             $network = new Network;
         }
-        $network->code = $this->input('network-code');
-        $network->name = $this->input('network-name');
-        return $network->save();
+        if ($this->hasFile('network-file')) {
+            $interpreter = new TXTInterpreter();
+            $res = $interpreter
+                ->forFile($this->file('network-file'))
+                ->forClass(Network::class)
+                ->getContent();
+            return $network->validateCollection($res);
+        } else {
+            $network->code = $this->input('network-code');
+            $network->name = $this->input('network-name');
+            $network->save();
+        }
+        return $network;
     }
 }

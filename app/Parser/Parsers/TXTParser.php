@@ -9,6 +9,8 @@
 namespace App\Parser;
 
 
+use Symfony\Component\Config\Definition\Exception\Exception;
+
 class TXTParser extends Parser
 {
 
@@ -18,14 +20,19 @@ class TXTParser extends Parser
      */
     public function parse(\Symfony\Component\HttpFoundation\File\File $file)
     {
+        $separator = ';';
+
         $txtData = file_get_contents($file->getRealPath());
         $lines = explode(PHP_EOL, $txtData);
-        $header = explode(',', array_shift($lines));
+        $header = explode($separator, array_shift($lines));
         $array = array();
         foreach ($lines as $line) {
-            $array[] = array_combine($header, explode(',', $line));
+            try {
+                $array[] = array_combine($header, explode($separator, $line));
+            } catch (\ErrorException $e){
+                
+            }
         }
         return $array;
-
     }
 }

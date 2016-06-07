@@ -50,7 +50,7 @@ class QUESUInterpreter extends \App\Interpreter\Interpreter
     /**
      * {@inheritdoc}
      */
-    public function interpret($arg)
+    public function interpret(array $arg)
     {
         if (is_array($arg)) {
             if (!isset($arg['scenario']) || !isset($arg['station'])) {

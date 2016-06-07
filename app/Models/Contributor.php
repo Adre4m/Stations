@@ -2,35 +2,36 @@
 
 namespace App\Models;
 
+use App\Exportable;
 use App\GenerateUuid;
 use App\HasBusinessKey;
+use App\Importable;
 use Illuminate\Database\Eloquent\Model;
 
 class Contributor extends Model
 {
 
-    use HasBusinessKey, GenerateUuid;
+    use HasBusinessKey, GenerateUuid, Importable, Exportable;
 
     public $timestamps = false;
 
     /**
      * @return array
      */
-    public static function rules(Contributor $contributor = null, $prefix = '', $on = false)
+    public static function rules(Contributor $contributor = null)
     {
         $id = (isset($contributor) && $contributor->id != null) ? $contributor->id : 'null';
         return [
-            "{$prefix}code" => [
-                'required',
+            "contributor-code" => [
+                'required_without:contributor-file',
                 "unique:contributors,code,{$id},id",
-                ($on) ? 'siret' : '',
             ],
-            "{$prefix}name" => [
-                'required',
+            "contributor-name" => [
+                'required_without:contributor-file',
                 'max:255',
             ],
-            "{$prefix}last_name" => [
-                'required',
+            "contributor-last_name" => [
+                'required_without:contributor-file',
                 'max:255',
             ],
         ];
@@ -52,7 +53,7 @@ class Contributor extends Model
     public
     static function query()
     {
-        return Contributor::select(['id', 'code', 'name', 'last_name', 'siret'])->with('stations')->newQuery();
+        return Contributor::select(['id', 'code', 'name', 'last_name', 'scheme'])->with('stations')->newQuery();
     }
 
 }

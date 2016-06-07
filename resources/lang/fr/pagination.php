@@ -26,5 +26,6 @@ return [
     'register'      => 'S\'enregistrer',
     'logout'        => 'Se déconnecter',
     'upload'        => 'Importer',
+    'export' => 'Exporter',
 
 ];

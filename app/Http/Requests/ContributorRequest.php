@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 
+use App\Interpreter\TXTInterpreter;
 use App\Models\Contributor;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,7 +23,7 @@ class ContributorRequest extends FormRequest
      */
     public function rules()
     {
-        return Contributor::rules($this->contributor, 'contributor-',
+        return Contributor::rules($this->contributor,
             $on = $this->input('contributor-siret') == 'on');
     }
 
@@ -35,11 +36,21 @@ class ContributorRequest extends FormRequest
         if ($contributor == null) {
             $contributor = new Contributor;
         }
-        $on = $this->input('contributor-siret') == 'on';
-        $contributor->code = $this->input('contributor-code');
-        $contributor->name = $this->input('contributor-name');
-        $contributor->last_name = $this->input('contributor-last_name');
-        $contributor->siret = $on;
-        return $contributor->save();
+        if ($this->hasFile('contributor-file')) {
+            $interpreter = new TXTInterpreter();
+            $res = $interpreter
+                ->forFile($this->file('contributor-file'))
+                ->forClass(Contributor::class)
+                ->getContent();
+            return $contributor->validateCollection($res);
+        } else {
+            $on = $this->input('contributor-siret') == 'on';
+            $contributor->code = $this->input('contributor-code');
+            $contributor->name = $this->input('contributor-name');
+            $contributor->last_name = $this->input('contributor-last_name');
+            $contributor->siret = $on;
+            $contributor->save();
+        }
+        return $contributor;
     }
 }

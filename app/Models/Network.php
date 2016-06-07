@@ -9,14 +9,31 @@
 namespace App\Models;
 
 
+use App\Exportable;
 use App\GenerateUuid;
 use App\HasBusinessKey;
+use App\Importable;
 use Illuminate\Database\Eloquent\Model;
 
 class Network extends Model
 {
 
-    use HasBusinessKey, GenerateUuid;
+    use HasBusinessKey, GenerateUuid, Importable, Exportable;
+
+    public static function rules(Network $network = null)
+    {
+        $id = (isset($network) && $network->id != null) ? $network->id : null;
+        return [
+            'network-code' => [
+                'required_without:network-file',
+                "unique:networks,code,{$id},id",
+            ],
+            'network-name'  => [
+                'required_without:network-file',
+                'max:255',
+            ],
+        ];
+    }
 
     public function stationNetworks()
     {

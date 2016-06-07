@@ -63,7 +63,7 @@ class ContributorDataTable extends DataTable
             ['data' => 'code', 'title' => trans('contributors.code')],
             ['data' => 'name', 'title' => trans('contributors.name'),],
             ['data' => 'last_name', 'title' => trans('contributors.last_name'),],
-            ['data' => 'siret', 'title' => trans('contributors.siret'),],
+            ['data' => 'scheme', 'title' => trans('contributors.siret'),],
         ];
     }
 

@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\StationDataTable;
+use App\ExportableController;
+use App\Http\Requests;
 use App\Http\Requests\StationRequest;
 use App\Models\Contributor;
+use App\Models\Network;
+use App\Models\NetworkStation;
 use App\Models\SampleSite;
 use App\Models\Station;
 
-use App\Http\Requests;
-use Carbon\Carbon;
-use Datatables;
-
 class StationController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +41,7 @@ class StationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StationRequest  $request
+     * @param  \App\Http\Requests\StationRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StationRequest $request)
@@ -48,10 +49,10 @@ class StationController extends Controller
         /** @var Station $station */
         $station = $request->persist();
 
-        if(is_array($station)) {
+        if (is_array($station)) {
             return view('stations.import')->with('messages', $station);
         }
-        if($station->exists) {
+        if ($station->exists) {
             return redirect()->route('stations.index');
         }
         return redirect()->back()->with('station', $station);
@@ -60,7 +61,7 @@ class StationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Station  $station
+     * @param  Station $station
      * @return \Illuminate\Http\Response
      */
     public function show(Station $station)
@@ -71,7 +72,7 @@ class StationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Station  $station
+     * @param  Station $station
      * @return \Illuminate\Http\Response
      */
     public function edit(Station $station)
@@ -84,7 +85,7 @@ class StationController extends Controller
      * Update the specified resource in storage.
      *
      * \App\Http\Requests\StationRequest  $request
-     * @param  Station  $station
+     * @param  Station $station
      * @return \Illuminate\Http\Response
      */
     public function update(StationRequest $request, Station $station)
@@ -96,13 +97,26 @@ class StationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Station  $station
+     * @param  Station $station
      * @return \Illuminate\Http\Response
      */
     public function destroy(Station $station)
     {
         $this->authorize('destroy', $station);
+        $sample_sites = SampleSite::whereStationId($station->id)->get();
+        $network_stations = NetworkStation::whereStationId($station->id)->get();
+        foreach ($sample_sites as $sample_site) {
+            $sample_site->delete();
+        }
+        foreach ($network_stations as $network_station) {
+            $network_station->delete();
+        }
         $station->delete();
         return redirect()->route('stations.index');
+    }
+
+    public function exportToCsv()
+    {
+        return Station::toCsv();
     }
 }

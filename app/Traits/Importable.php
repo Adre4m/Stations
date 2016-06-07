@@ -8,12 +8,16 @@
 
 namespace App;
 
-trait Validatable
+use Illuminate\Database\Eloquent\Model;
+
+trait Importable
 {
+
     public function validate()
     {
         $array = array();
         $className = snake_case(substr(static::class, 11));
+        /** @var Importable|Model $this */
         foreach ($this->toArray() as $key => $value) {
             $array["$className-$key"] = $value;
         }
@@ -28,11 +32,11 @@ trait Validatable
     public function validateCollection(array $collection)
     {
         $messages = [];
-        /** @var \Illuminate\Database\Eloquent\Model $var */
         $i = 0;
+        /** @var Importable|Model $var */
         foreach ($collection as $var) {
             $messages[] = [$var, $var->validate()];
-            if(count($messages[$i][1]['errors']->messages()) == 0) {
+            if (count($messages[$i][1]['errors']->messages()) == 0) {
                 $var->save();
             }
             $i++;

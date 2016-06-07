@@ -6,12 +6,12 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        {{ trans('stations.title') }}
+                        {{ trans('networks.title') }}
                     </div>
                     <div class="panel-body">
-                        <a href="{{ route('stations.index') }}">
+                        <a href="{{ route('networks.index') }}">
                             <button class="btn btn-default">
-                                {{ trans('stations.cancel') }}
+                                {{ trans('networks.cancel') }}
                             </button>
                         </a>
                         @foreach($messages as $message)
@@ -19,18 +19,10 @@
                                 <div class="alert alert-{{ (count($message[1]['errors']) != 0) ? "danger" : "success"  }}">
                                     <strong>Station : </strong>
                                     <ul>
-                                        <li>{{ trans('validation.attributes.station-code') }}
+                                        <li>{{ trans('validation.attributes.network-code') }}
                                             : {{ $message[0]->code }}</li>
-                                        <li>{{ trans('validation.attributes.station-name') }}
+                                        <li>{{ trans('validation.attributes.network-name') }}
                                             : {{ $message[0]->name }}</li>
-                                        <li>{{ trans('validation.attributes.station-x') }} : {{ $message[0]->x }}</li>
-                                        <li>{{ trans('validation.attributes.station-y') }} : {{ $message[0]->y  }}</li>
-                                        <li>{{ trans('contributors.manager') }} :
-                                            {{ \App\Models\Contributor::findOrNew($message[0]->manager_id)->fullname }}
-                                        </li>
-                                        <li>{{ trans('contributors.owner') }} :
-                                            {{ \App\Models\Contributor::findOrNew($message[0]->owner_id)->fullname }}
-                                        </li>
                                     </ul>
                                     @if(count($message[1]['info']) != 0
                                     || count($message[1]['warnings']) != 0
@@ -54,7 +46,7 @@
                                             </div>
                                         @endif
                                         @if(count($message[1]['errors']) != 0)
-                                            <div>
+                                            <div class="alert alert-danger">
                                                 <ul>
                                                     @foreach($message[1]['errors']->all() as $var)
                                                         <li><strong>{{ $var }}</strong></li>

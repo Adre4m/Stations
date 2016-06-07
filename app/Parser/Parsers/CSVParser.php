@@ -21,25 +21,13 @@ class CSVParser extends Parser
      */
     public function parse(\Symfony\Component\HttpFoundation\File\File $file)
     {
-        $csvData = file_get_contents($file->getRealPath());
-        $lines = explode(PHP_EOL, $csvData);
+        $txtData = file_get_contents($file->getRealPath());
+        $lines = explode(PHP_EOL, $txtData);
+        $header = explode(';', array_shift($lines));
         $array = array();
-
-        if ($this->has_header == true) {
-            $header = str_getcsv(array_shift($lines));
-        }
-
         foreach ($lines as $line) {
-            $data = str_getcsv($line);
-
-            if(isset($header)) {
-                $data = array_combine($header, $data);
-            }
-
-            $array[] = $data;
-
+            $array[] = array_combine($header, explode(';', $line));
         }
         return $array;
-
     }
 }

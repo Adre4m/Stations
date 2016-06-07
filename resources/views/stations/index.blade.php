@@ -8,28 +8,29 @@
                     <div class="panel-heading">{{ trans('stations.title') }}</div>
                     <div class="panel-body">
                         @can('add', new App\Models\Station)
-                            <a href="{{ route('stations.create') }}">
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-btn fa-plus"></i>{{ trans('stations.add') }}
-                                </button>
-                            </a>
-                        @endcan
-                        @cannot('add', new App\Models\Station)
-                            <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
+                        <a href="{{ route('stations.create') }}">
+                            <button class="btn btn-primary">
                                 <i class="fa fa-btn fa-plus"></i>{{ trans('stations.add') }}
                             </button>
-                        @endcannot
+                        </a>
+                        @elsecan
+                        <button class="btn btn-default btn-link" style="background-color: #aeaeae; color: #5e5e5e">
+                            <i class="fa fa-btn fa-plus"></i>{{ trans('stations.add') }}
+                        </button>
+                        @endcan
+                        {!! Html::exports('stations') !!}
+                        {!! Html::import('stations', 'station-file') !!}
                         {!! $dataTable->table(['id' => 'stations']) !!}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+    @endsection
 
-@push('scripts')
-    <!--DataTables-->
+    @push('scripts')
+            <!--DataTables-->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" type="text/css">
     <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" type="text/javascript"></script>
     {!! $dataTable->scripts() !!}
-@endpush
+    @endpush

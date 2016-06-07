@@ -13,12 +13,13 @@
                                     <i class="fa fa-btn fa-plus"></i>{{ trans('contributors.add') }}
                                 </button>
                             </a>
-                        @endcan
-                        @cannot('add', new App\Models\Contributor)
+                        @elsecan
                             <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
                                 <i class="fa fa-btn fa-plus"></i>{{ trans('contributors.add') }}
                             </button>
-                        @endcannot
+                        @endcan
+                        {!! Html::exports('contributors') !!}
+                        {!! Html::import('contributors', 'contributor-file') !!}
                         {!! $dataTable->table() !!}
                     </div>
                 </div>

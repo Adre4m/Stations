@@ -14,7 +14,7 @@ class CreateContributorsTable extends Migration
             $table->string('code')->unique();
             $table->string('name');
             $table->string('last_name');
-            $table->boolean('siret');
+            $table->string('scheme');
         });
     }
 

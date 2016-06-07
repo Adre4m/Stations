@@ -13,12 +13,13 @@
                                     <i class="fa fa-btn fa-plus"></i>{{ trans('network_station.add') }}
                                 </button>
                             </a>
-                        @endcan
-                        @cannot('add', new App\Models\SampleSite)
+                        @elsecan
                             <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
                                 <i class="fa fa-btn fa-plus"></i>{{ trans('network_station.add') }}
                             </button>
-                        @endcannot
+                        @endcan
+                        {!! Html::exports('network_station') !!}
+                        {!! Html::import('network_station', 'network_station-file') !!}
                         {!! $dataTable->table() !!}
                     </div>
                 </div>
