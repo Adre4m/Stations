@@ -46,7 +46,11 @@ class NetworkDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->ajax('')
                     ->addAction(['width' => '180.5px'])
-                    ->parameters($this->getBuilderParameters());
+                    ->parameters(array_merge($this->getBuilderParameters(), ['language' => [
+                        'url' => '//cdn.datatables.net/plug-ins/1.10.11/i18n/French.json',
+                    ],
+                        'order' => [[1, 'asc']]
+                    ]));
     }
 
     /**
@@ -57,6 +61,7 @@ class NetworkDataTable extends DataTable
     private function getColumns()
     {
         return [
+            ['data' => 'id', 'visible' => false],
             ['data' => 'code', 'title' => trans('networks.code')],
             ['data' => 'name', 'title' => trans('networks.name')],
         ];

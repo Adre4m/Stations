@@ -105,7 +105,7 @@
                     <li><a href="{{ route('contributors.index') }}">{{ trans('pagination.contributors') }}</a></li>
                     <li><a href="{{ route('sample_sites.index') }}">{{ trans('pagination.sample_sites') }}</a></li>
                     <li><a href="{{ route('networks.index') }}">{{ trans('pagination.networks') }}</a></li>
-                    <li><a href="{{ route('station_networks.index') }}">{{ trans('pagination.station_networks') }}</a></li>
+                    <li><a href="{{ route('network_station.index') }}">{{ trans('pagination.station_networks') }}</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">

@@ -23,9 +23,25 @@ class ContributorRequest extends FormRequest
     
     public function rules()
     {
+        $contributor = $this->contributor;
+        $id = ($contributor == null) ? null : $contributor->id;
         return [
-            'name' => 'required|max:255',
-            'last_name' => 'required|max:255',
+            'contributor-code' => [
+                'required',
+                "unique:contributors,code,{$id},id",
+            ],
+            'contributor-name' => [
+                'required',
+                'max:255',
+            ],
+            'contributor-last_name' => [
+                'required',
+                'max:255',
+            ],
+            'contributor-siret' => [
+                'siret',
+                "unique:contributors,siret,{$id},id",
+            ],
         ];
     }
 
@@ -34,10 +50,11 @@ class ContributorRequest extends FormRequest
         if($contributor == null)
         {
             $contributor = new Contributor;
-            $contributor->uuid = Uuid::generate(4);
         }
-        $contributor->name = $this->input('name');
-        $contributor->last_name = $this->input('last_name');
+        $contributor->code = $this->input('contributor-code');
+        $contributor->name = $this->input('contributor-name');
+        $contributor->last_name = $this->input('contributor-last_name');
+        $contributor->siret = $this->input('contributor-siret');
         return $contributor->save();
     }
 }

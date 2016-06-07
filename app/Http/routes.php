@@ -31,8 +31,8 @@ Route::get('/sample_sites/show{sample_site}', 'SampleSiteController@show')->name
 Route::get('/networks', 'NetworkController@index')->name('networks.index');
 Route::get('/networks/show{network}', 'NetworkController@show')->name('networks.show');
 
-Route::get('/station_networks', 'StationNetworkController@index')->name('station_networks.index');
-Route::get('/station_networks/show{station_network}', 'StationNetworkController@show')->name('station_networks.show');
+Route::get('/network_station', 'NetworkStationController@index')->name('network_station.index');
+Route::get('/network_station/show{station_network}', 'NetworkStationController@show')->name('network_station.show');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/stations/create', 'StationController@create')->name('stations.create');
@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/contributors/create', 'ContributorController@create')->name('contributors.create');
     Route::post('/contributors/store', 'ContributorController@store')->name('contributors.store');
     Route::get('/contributors/edit{contributor}', 'ContributorController@edit')->name('contributors.edit');
-    Route::get('/contributors/update{contributor}', 'ContributorController@update')->name('contributors.update');
+    Route::post('/contributors/update{contributor}', 'ContributorController@update')->name('contributors.update');
     Route::get('/contributors/destroy{contributor}', 'ContributorController@destroy')->name('contributors.destroy');
 
     Route::get('/sample_sites/create', 'SampleSiteController@create')->name('sample_sites.create');
@@ -60,9 +60,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/networks/update{network}', 'NetworkController@update')->name('networks.update');
     Route::get('/networks/destroy{network}', 'NetworkController@destroy')->name('networks.destroy');
 
-    Route::get('/station_networks/create', 'StationNetworkController@create')->name('station_networks.create');
-    Route::post('/station_networks/store', 'StationNetworkController@store')->name('station_networks.store');
-    Route::get('/station_networks/edit{station_network}', 'StationNetworkController@edit')->name('station_networks.edit');
-    Route::post('/station_networks/update{station_network}', 'StationNetworkController@update')->name('station_networks.update');
-    Route::get('/station_networks/destroy{station_network}', 'StationNetworkController@destroy')->name('station_networks.destroy');
+    Route::get('/network_station/create', 'NetworkStationController@create')->name('network_station.create');
+    Route::post('/network_station/store', 'NetworkStationController@store')->name('network_station.store');
+    Route::get('/network_station/edit{station_network}', 'NetworkStationController@edit')->name('network_station.edit');
+    Route::post('/network_station/update{station_network}', 'NetworkStationController@update')->name('network_station.update');
+    Route::get('/network_station/destroy{station_network}', 'NetworkStationController@destroy')->name('network_station.destroy');
 });

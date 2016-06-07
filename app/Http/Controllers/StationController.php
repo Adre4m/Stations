@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\DataTables\StationDataTable;
 use App\Http\Requests\StationRequest;
 use App\Models\Contributor;
+use App\Models\SampleSite;
 use App\Models\Station;
 
 use App\Http\Requests;
-use App\Models\StationLog;
+use Carbon\Carbon;
+use Datatables;
 
 class StationController extends Controller
 {
@@ -54,7 +56,7 @@ class StationController extends Controller
      */
     public function show(Station $station)
     {
-        return view('stations.show', ['station' => $station]);
+        return view('stations.show', ['station' => $station,]);
     }
 
     /**
@@ -91,12 +93,6 @@ class StationController extends Controller
     public function destroy(Station $station)
     {
         $this->authorize('destroy', $station);
-
-        $logs = StationLog::whereStationId($station->code)->get();
-        foreach ($logs as $log)
-        {
-            $log->delete();
-        }
         $station->delete();
         return redirect()->route('stations.index');
     }

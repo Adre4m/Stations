@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Network;
-use App\Models\StationNetwork;
+use App\Models\NetworkStation;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 

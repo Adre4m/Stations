@@ -3,6 +3,8 @@
 namespace App\Models;
 
 
+use App\GenerateUuid;
+use App\HasBusinessKey;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,7 +22,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Contributor $manager
  * @property-read \App\Models\Contributor $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SampleSite[] $sample_sites
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StationNetwork[] $measurement_networks
  * @property-read mixed $position
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUuid($value)
@@ -32,33 +33,46 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property integer $id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NetworkStation[] $networks
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereId($value)
+ * @property-read mixed $business_key
  */
 class Station extends Model
 {
 
+    use HasBusinessKey, GenerateUuid;
+
+    // Relation un à plusieurs sur Intervenant, côté "un"
     public function manager()
     {
         return $this->belongsTo(Contributor::class);
     }
 
+    // Relation un à plusieurs sur Intervenant, côté "un"
     public function owner()
     {
         return $this->belongsTo(Contributor::class);
     }
 
+    // Relation un à plusieurs sur Site de prélèvement, côté "plusieurs"
     public function sample_sites()
     {
         return $this->hasMany(SampleSite::class);
     }
 
+    // Relation plusieurs à plusieurs sur Réseau.
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function networks()
     {
-        return $this->hasMany(StationNetwork::class);
+        return $this->belongsToMany(Network::class)->withPivot('began_at', 'end_at');
     }
 
     public static function query()
     {
-        return Station::select(['code', 'name', 'x', 'y', 'manager_id', 'owner_id',])
+        return Station::select(['id', 'code', 'name', 'x', 'y', 'manager_id', 'owner_id',])
             ->with('manager', 'owner', 'sample_sites')->newQuery();
     }
 

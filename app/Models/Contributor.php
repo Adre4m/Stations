@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Models;
+
+use App\GenerateUuid;
+use App\HasBusinessKey;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,14 +19,22 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereLastName($value)
  * @mixin \Eloquent
+ * @property integer $code
+ * @property string $siret
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Station[] $stations
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereSiret($value)
+ * @property-read mixed $business_key
  */
 class Contributor extends Model
 {
 
+    use HasBusinessKey, GenerateUuid;
+
     public $timestamps = false;
 
     public $fillable = [
-      'name', 'last_name',
+        'name', 'last_name',
     ];
 
 
@@ -40,7 +51,7 @@ class Contributor extends Model
 
     public static function query()
     {
-            return Contributor::select(['code', 'name', 'last_name', 'siret'])->with('stations')->newQuery();
+        return Contributor::select(['id', 'code', 'name', 'last_name', 'siret'])->with('stations')->newQuery();
     }
 
 }

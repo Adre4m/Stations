@@ -2,11 +2,13 @@
 
 namespace App\DataTables;
 
+use App\Models\Network;
 use App\Models\Station;
+use App\Models\NetworkStation;
 use App\User;
 use Yajra\Datatables\Services\DataTable;
 
-class StationDataTable extends DataTable
+class NetworkStationDataTable extends DataTable
 {
 
     /**
@@ -18,20 +20,14 @@ class StationDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn("action", function ($station) {
-                return view('stations.actions')->with('station', $station);
+            ->addColumn("action", function ($network_station) {
+                return view('network_station.actions')->with('network_station', $network_station);
             })
-            ->addColumn('manager', function ($station) {
-                return "{$station->manager->fullname}";
+            ->addColumn('station', function ($network_station) {
+                return $network_station->station->code;
             })
-            ->addColumn('owner', function ($station) {
-                return "{$station->owner->fullname}";
-            })
-            ->addColumn('position', function ($station) {
-                return $station->position;
-            })
-            ->editColumn('code', function ($station) {
-                return "<a href=\"" . route('stations.show', $station) . "\">{$station->code}</a>";
+            ->addColumn('network', function ($network_station) {
+                return $network_station->network->code;
             })
             ->make(true);
     }
@@ -43,7 +39,7 @@ class StationDataTable extends DataTable
      */
     public function query()
     {
-        return $this->applyScopes(Station::query());
+        return $this->applyScopes(NetworkStation::query());
     }
 
     /**
@@ -56,11 +52,11 @@ class StationDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->ajax('')
-            ->addAction(['width' => '185px'])
+            ->addAction(['width' => '180.5px'])
             ->parameters(array_merge($this->getBuilderParameters(), ['language' => [
                 'url' => '//cdn.datatables.net/plug-ins/1.10.11/i18n/French.json',
             ],
-                'order' => [[1, 'asc']]
+                'order' => [[3, 'asc']]
             ]));
     }
 
@@ -73,11 +69,12 @@ class StationDataTable extends DataTable
     {
         return [
             ['data' => 'id', 'visible' => false],
-            ['data' => 'code', 'title' => trans('stations.code'),],
-            ['data' => 'name', 'title' => trans('stations.name'),],
-            ['data' => 'position', 'title' => trans('stations.position')],
-            ['data' => 'manager', 'title' => trans('contributors.manager')],
-            ['data' => 'owner', 'title' => trans('contributors.owner')],
+            ['data' => 'station_id', 'visible' => false],
+            ['data' => 'network_id', 'visible' => false],
+            ['data' => 'began_at', 'title' => trans('network_station.began_at'),],
+            ['data' => 'end_at', 'title' => trans('network_station.end_at'),],
+            ['data' => 'station', 'title' => trans('network_station.station')],
+            ['data' => 'network', 'title' => trans('network_station.network'),],
         ];
     }
 
@@ -88,6 +85,6 @@ class StationDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'stations';
+        return 'networks';
     }
 }

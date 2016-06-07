@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\StationNetwork;
+use App\Models\NetworkStation;
 use App\Models\Contributor;
 use App\Models\Network;
 use App\Models\SampleSite;
@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
     {
         factory(User::class, 50)->create();
         factory(Contributor::class, 50)->create();
-        factory(Station::class, 500)->create();
-        factory(SampleSite::class, 500)->create();
-        factory(Network::class, 500)->create();
-        factory(StationNetwork::class, 14)->create();
+        factory(Station::class, 50)->create();
+        factory(SampleSite::class, 50)->create();
+        factory(Network::class, 50)->create();
+        factory(NetworkStation::class, 50)->create();
     }
 }

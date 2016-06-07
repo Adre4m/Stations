@@ -9,6 +9,4 @@ return [
     'cancel' => '&laquo; Retour aux réseaux',
     'code' => 'Code',
     'name' => 'Nom',
-    'set_code' => 'Code',
-    'set_name' => 'Nom',
 ];

@@ -13,10 +13,9 @@
 
 $factory->define(App\Models\Contributor::class, function (Faker\Generator $faker) {
     return [
-        'uuid' => $faker->unique()->uuid,
         'code' => $faker->unique()->randomNumber(),
         'name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'siret' => $faker->creditCardNumber,
+        'siret' => $faker->unique()->siret(),
     ];
 });

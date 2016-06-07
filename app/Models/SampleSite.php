@@ -3,6 +3,8 @@
 namespace App\Models;
 
 
+use App\GenerateUuid;
+use App\HasBusinessKey;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -27,9 +29,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property integer $code
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereCode($value)
+ * @property-read mixed $business_key
  */
 class SampleSite extends Model
 {
+
+    use HasBusinessKey, GenerateUuid;
 
     public function station()
     {
@@ -38,7 +45,7 @@ class SampleSite extends Model
 
     public static function query()
     {
-        return SampleSite::select(['code', 'name', 'x', 'y',])->with('station')->newQuery();
+        return SampleSite::select(['id', 'code', 'name', 'x', 'y',])->with('station')->newQuery();
     }
 
     public function getPositionAttribute()
