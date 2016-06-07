@@ -26,9 +26,15 @@
     'files' => true
 ]) !!}
 {!! Form::token() !!}
+@can('add', $attributes)
 <span class="fileUpload btn btn-success">
     <i class="fa fa-btn fa-download"></i>{{ trans('pagination.upload') }}
     <input name="{{ $value }}" id="{{ $value }}" accept=".xml,.csv" type="file" class="upload form-control"
            onchange="submit()"/>
 </span>
+@else
+    <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
+        <i class="fa fa-btn fa-download"></i>{{ trans('pagination.upload') }}
+    </button>
+@endcan
 {!! Form::close() !!}

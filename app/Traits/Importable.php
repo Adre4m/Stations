@@ -25,7 +25,10 @@ trait Importable
         $warning = \Validator::make($array, static::warningRules());
 
         $error = \Validator::make($array, static::rules($this));
-        session()->flash('info', $info->errors(), 'warnings', $warning->errors(), 'errors', $error->errors());
+        session()->flash(
+            'info', $info->errors(),
+            'warnings', $warning->errors(),
+            'errors', $error->errors());
         return ['info' => $info->errors(), 'warnings' => $warning->errors(), 'errors' => $error->errors(),];
     }
 

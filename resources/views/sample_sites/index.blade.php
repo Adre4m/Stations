@@ -13,13 +13,13 @@
                                 <i class="fa fa-btn fa-plus"></i>{{ trans('sample_sites.add') }}
                             </button>
                         </a>
-                        @elsecan
+                        @else
                         <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
                             <i class="fa fa-btn fa-plus"></i>{{ trans('sample_sites.add') }}
                         </button>
                         @endcan
-                        {!! Html::exports('sample_sites') !!}
-                        {!! Html::import('sample_sites', 'sample_site-file') !!}
+                            {!! Html::import('sample_sites', 'sample_site-file', new App\Models\SampleSite) !!}
+                            {!! Html::exports('sample_sites') !!}
                         {!! $dataTable->table() !!}
                     </div>
                 </div>

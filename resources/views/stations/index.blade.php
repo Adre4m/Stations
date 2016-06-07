@@ -13,13 +13,13 @@
                                 <i class="fa fa-btn fa-plus"></i>{{ trans('stations.add') }}
                             </button>
                         </a>
-                        @elsecan
+                        @else
                         <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
                             <i class="fa fa-btn fa-plus"></i>{{ trans('stations.add') }}
                         </button>
                         @endcan
-                        {!! Html::exports('stations') !!}
-                        {!! Html::import('stations', 'station-file') !!}
+                            {!! Html::import('stations', 'station-file', new App\Models\Station) !!}
+                            {!! Html::exports('stations') !!}
                         {!! $dataTable->table(['id' => 'stations']) !!}
                     </div>
                 </div>
