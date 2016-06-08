@@ -53,7 +53,16 @@
                                     <li style="color: #6cad49">
                                         <i class="fa-li fa fa-check-circle"></i>
                                         @endif
-                                        {{ trans("$name.title") }} {{ $model[0]->code }}
+                                        {{ trans("$name.title") }} :
+                                        @if(is_array($model[0]->business_key))
+                                            [
+                                            @foreach($model[0]->business_key as $key)
+                                                {{ $key }},
+                                            @endforeach
+                                            ]
+                                        @else
+                                            {{$model[0]->business_key}}
+                                        @endif
                                         <span style="float:right">
                                             {{ count($model[1]['errors'])}} {{ trans('validation.preview.errors') }},
                                             {{ count($model[1]['warnings']) }} {{ trans('validation.preview.warnings') }}

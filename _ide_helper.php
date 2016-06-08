@@ -12944,6 +12944,11 @@ namespace {
             return \Collective\Html\HtmlBuilder::preview($name, $messages);
         }
 
+        public static function renderImport($name, $messages)
+        {
+            return \Collective\Html\HtmlBuilder::renderImport($name, $messages);
+        }
+
     }
 
 
