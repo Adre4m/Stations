@@ -47,6 +47,9 @@ class SampleSite extends Model
                 'numeric',
                 "unique:sample_sites,y,{$id},id,x,{$x}",
             ],
+            'sample_site-station_id' => [
+                'exists:stations,id'
+            ]
         ];
     }
 

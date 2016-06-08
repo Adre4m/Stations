@@ -130,7 +130,7 @@ return [
         'file_correct'  => 'Fichier correctement lu',
         'exceptions'    => 'Exceptions',
         'msg'           => 'Validation',
-        'error'         => 'erreurs',
+        'errors'        => 'erreurs',
         'warnings'      => 'avertissements',
         'info'          => 'informations',
     ],

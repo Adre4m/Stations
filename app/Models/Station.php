@@ -24,7 +24,8 @@ class Station extends Model
         'x' => 'x',
         'y' => 'y',
         'manager' => 'manager',
-        'owner',];
+        'owner' => 'owner',
+    ];
 
     /**
      * @return array

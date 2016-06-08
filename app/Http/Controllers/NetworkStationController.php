@@ -6,12 +6,15 @@ namespace App\Http\Controllers;
 use App\DataTables\NetworkStationDataTable;
 use App\Http\Requests\NetworkRequest;
 use App\Http\Requests\NetworkStationRequest;
+use App\ImportableController;
 use App\Models\Network;
 use App\Models\Station;
 use App\Models\NetworkStation;
 
 class NetworkStationController extends Controller
 {
+    use ImportableController;
+
     public function index(NetworkStationDataTable $dataTable)
     {
         return $dataTable->render('network_station.index');
@@ -26,7 +29,7 @@ class NetworkStationController extends Controller
 
     public function store(NetworkStationRequest $request)
     {
-        $network_station = $request->persist();
+        $network_station = $request->persist();;
 
         if (is_array($network_station)) {
             return view('network_station.temp')->with('messages', $network_station);
@@ -35,12 +38,6 @@ class NetworkStationController extends Controller
             return redirect()->route('network_station.index');
         }
         return redirect()->back()->with('network_station', $network_station);
-    }
-
-    public function import()
-    {
-        $network_station = NetworkStation::saveCollection(session('network_station'));
-        return view('network_station.import')->with('messages', $network_station);
     }
 
     /**
