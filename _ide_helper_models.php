@@ -17,7 +17,7 @@ namespace App\Models{
  * @property string $code
  * @property string $name
  * @property string $last_name
- * @property boolean $siret
+ * @property string $scheme
  * @property-read mixed $fullname
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Station[] $stations
  * @property-read mixed $business_key
@@ -26,7 +26,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereLastName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereSiret($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereScheme($value)
  */
 	class Contributor extends \Eloquent {}
 }
@@ -65,8 +65,8 @@ namespace App\Models{
  * @property \Carbon\Carbon $updated_at
  * @property string $began_at
  * @property string $end_at
- * @property-read \App\Models\Station $station
- * @property-read \App\Models\Network $network
+ * @property \App\Models\Station $station
+ * @property \App\Models\Network $network
  * @property-read mixed $begin
  * @property-read mixed $end
  * @property-read mixed $business_key
@@ -95,7 +95,7 @@ namespace App\Models{
  * @property integer $station_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property-read \App\Models\Station $station
+ * @property \App\Models\Station $station
  * @property-read mixed $position
  * @property-read mixed $business_key
  * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereId($value)

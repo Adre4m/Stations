@@ -15,7 +15,6 @@
                     <a href="{{ route("$name.import.confirm")}}">
                         <button class="btn btn-{{ count($value['exceptions']) == 0 ? "success" : "warning" }}">
                             <i class="fa fa-{{ count($value['exceptions']) == 0 ? "check" : "warning" }}"></i>
-                            {{ trans("$name.confirm") }}
                         </button>
                     </a>
                     <div>
@@ -62,7 +61,7 @@
                                             ]
                                         @else
                                             {{$model[0]->business_key}}
-                                        @endif
+                                @endif
                                         <span style="float:right">
                                             {{ count($model[1]['errors'])}} {{ trans('validation.preview.errors') }},
                                             {{ count($model[1]['warnings']) }} {{ trans('validation.preview.warnings') }}
@@ -70,7 +69,7 @@
                                             {{ count($model[1]['info']) }} {{ trans('validation.preview.info') }}
                                         </span>
                                     </li>
-                                    @endforeach
+                            @endforeach
                         </ul>
                     </div>
                 </div>
