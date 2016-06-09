@@ -12,22 +12,31 @@ namespace App\Parser;
 class CSVParser extends Parser
 {
 
-    protected $has_header = true;
-
-
     /**
      * @param \Symfony\Component\HttpFoundation\File\File $file
      * @return mixed
      */
     public function parse(\Symfony\Component\HttpFoundation\File\File $file)
     {
+        $separator = ';';
+
         $txtData = file_get_contents($file->getRealPath());
         $lines = explode(PHP_EOL, $txtData);
-        $header = explode(';', array_shift($lines));
-        $array = array();
+        // TODO here the header should be transformed, but I don't need it now
+        $header = explode($separator, array_shift($lines));
+        $parsedLines = array();
+        $lineNumber = 2;
+        $exceptions = [];
         foreach ($lines as $line) {
-            $array[] = array_combine($header, explode(';', $line));
+            try {
+                $values = array_combine($header, explode($separator, $line));
+                $parsedLines[] = $values;
+            } catch (\ErrorException $e) {
+                $exceptions[] = trans('validation.exceptions.unreadable_line',
+                    ['lineNumber' => $lineNumber]);
+            }
+            $lineNumber++;
         }
-        return $array;
+        return ['lines' => $parsedLines, 'exceptions' => $exceptions];
     }
 }

@@ -130,13 +130,13 @@ return [
         'file_correct'  => 'Fichier correctement lu',
         'exceptions'    => 'Exceptions',
         'msg'           => 'Validation',
-        'error'         => 'erreurs',
+        'errors'        => 'erreurs',
         'warnings'      => 'avertissements',
         'info'          => 'informations',
     ],
 
     'exceptions' => [
-        'unreadable_line' => 'La ligne :lineNumber est illisible',
+        'unreadable_line' => 'La ligne :lineNumber est illisible (nombre de paramètre incorrects)',
         'unreadable_file' => 'Le fichier spécifié est incorrect',
     ]
 

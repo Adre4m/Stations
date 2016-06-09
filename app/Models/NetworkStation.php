@@ -11,7 +11,7 @@ namespace App\Models;
 
 use App\Exportable;
 use App\GenerateUuid;
-use App\HasBusinessKey;
+use App\HasBusinessComposedKey;
 use App\Importable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 class NetworkStation extends Model
 {
 
-    use HasBusinessKey, GenerateUuid, Importable, Exportable;
+    use HasBusinessComposedKey, GenerateUuid, Importable, Exportable;
 
     protected $table = 'network_station';
 
@@ -28,6 +28,12 @@ class NetworkStation extends Model
         'network' => 'network',
         'began_at' => 'began_at',
         'end_at' => 'end_at',
+    ];
+
+    protected $business = [
+        'station_id',
+        'network_id',
+        'began_at',
     ];
 
     public static $plural = 1;

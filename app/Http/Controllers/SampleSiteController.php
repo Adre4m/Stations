@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 
 use App\DataTables\SampleSiteDataTable;
 use App\Http\Requests\SampleSiteRequest;
+use App\ImportableController;
 use App\Models\SampleSite;
 use App\Models\Station;
 
 class SampleSiteController extends Controller
 {
+    use ImportableController;
+
     public function index(SampleSiteDataTable $dataTable)
     {
         return $dataTable->render('sample_sites.index');
@@ -32,12 +35,6 @@ class SampleSiteController extends Controller
             return redirect()->route('sample_sites.index');
         }
         return redirect()->back()->with('sample_site', $sample_site);
-    }
-
-    public function import()
-    {
-        $sample_sites = SampleSite::saveCollection(session('sample_sites'));
-        return view('sample_sites.import')->with('messages', $sample_sites);
     }
 
     /**

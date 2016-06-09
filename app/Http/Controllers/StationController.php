@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\StationDataTable;
-use App\ExportableController;
 use App\Http\Requests;
 use App\Http\Requests\StationRequest;
+use App\ImportableController;
 use App\Models\Contributor;
 use App\Models\Network;
 use App\Models\NetworkStation;
@@ -14,6 +14,7 @@ use App\Models\Station;
 
 class StationController extends Controller
 {
+    use ImportableController;
 
     /**
      * Display a listing of the resource.
@@ -56,12 +57,6 @@ class StationController extends Controller
             return redirect()->route('stations.index');
         }
         return redirect()->back()->with('station', $station);
-    }
-
-    public function import()
-    {
-        $stations = Station::saveCollection(session('stations'));
-        return view('stations.import')->with('messages', $stations);
     }
 
     /**

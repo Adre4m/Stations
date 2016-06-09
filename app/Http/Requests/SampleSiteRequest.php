@@ -9,7 +9,7 @@
 namespace App\Http\Requests;
 
 
-use App\Interpreter\TXTInterpreter;
+use App\Interpreter\CSVInterpreter;
 use App\Models\SampleSite;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,7 +32,7 @@ class SampleSiteRequest extends FormRequest
             $sample_site = new SampleSite;
         }
         if ($this->hasFile('sample_site-file')) {
-            $interpreter = new TXTInterpreter();
+            $interpreter = new CSVInterpreter();
             $res = $interpreter
                 ->forFile($this->file('sample_site-file'))
                 ->forClass(SampleSite::class)

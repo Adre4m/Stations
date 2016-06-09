@@ -1,40 +1,72 @@
-<style>
-    .fileUpload {
-        position: relative;
-        overflow: hidden;
-        /*margin: 10px;*/
-    }
+@extends('layouts.app')
 
-    .fileUpload input.upload {
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin: 0;
-        padding: 0;
-        font-size: 20px;
-        cursor: pointer;
-        opacity: 0;
-        filter: alpha(opacity=0);
-    }
-
-    form {
-        display: inline-block;
-    }
-</style>
-{!! Form::open([
-    'route' => "$name.store",
-    'files' => true
-]) !!}
-{!! Form::token() !!}
-@can('add', $attributes)
-<span class="fileUpload btn btn-success">
-    <i class="fa fa-btn fa-download"></i>{{ trans('pagination.upload') }}
-    <input name="{{ $value }}" id="{{ $value }}" accept=".xml,.csv" type="file" class="upload form-control"
-           onchange="submit()"/>
-</span>
-@else
-    <button class="btn btn-default" style="background-color: #aeaeae; color: #5e5e5e">
-        <i class="fa fa-btn fa-download"></i>{{ trans('pagination.upload') }}
-    </button>
-@endcan
-{!! Form::close() !!}
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{ trans("$name.title") }}
+                    </div>
+                    <div class="panel-body">
+                        <a href="{{ route("$name.index") }}">
+                            <button class="btn btn-default">
+                                {{ trans("$name.cancel") }}
+                            </button>
+                        </a>
+                        @foreach($value as $message)
+                            <div>
+                                <div class="alert alert-{{ (count($message[1]['errors']) != 0) ? "danger" : "success"  }}">
+                                    <strong>Station : </strong>
+                                    <ul>
+                                        @foreach($message[0]->toArray() as $key => $value)
+                                            @if($key != 'id' && $key != 'uuid' && $key != 'created_at' && $key != 'updated_at')
+                                                <li>
+                                                    {{ trans("validation.attributes.".str_singular($name)."-{$key}") }}
+                                                    : {{ $value }}
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                    @if(count($message[1]['info']) != 0
+                                    || count($message[1]['warnings']) != 0
+                                    || count($message[1]['errors']) != 0)
+                                        @if(count($message[1]['info']) != 0)
+                                            <div class="alert alert-info">
+                                                <ul>
+                                                    @foreach($message[1]['info']->all() as $var)
+                                                        <li><strong>{{ $var }}</strong></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        @if(count($message[1]['warnings']) != 0)
+                                            <div class="alert alert-warning">
+                                                <ul>
+                                                    @foreach($message[1]['warnings']->all() as $var)
+                                                        <li><strong>{{ $var }}</strong></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        @if(count($message[1]['errors']) != 0)
+                                            <div>
+                                                <ul>
+                                                    @foreach($message[1]['errors']->all() as $var)
+                                                        <li><strong>{{ $var }}</strong></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                    @else
+                                        {{ trans('validation.no_errors') }}
+                                    @endif
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

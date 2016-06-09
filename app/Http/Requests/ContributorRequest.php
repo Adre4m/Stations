@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 
-use App\Interpreter\TXTInterpreter;
+use App\Interpreter\CSVInterpreter;
 use App\Models\Contributor;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -37,7 +37,7 @@ class ContributorRequest extends FormRequest
             $contributor = new Contributor;
         }
         if ($this->hasFile('contributor-file')) {
-            $interpreter = new TXTInterpreter();
+            $interpreter = new CSVInterpreter();
             $res = $interpreter
                 ->forFile($this->file('contributor-file'))
                 ->forClass(Contributor::class)
