@@ -8,7 +8,7 @@ use App\Models\Station;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 
-class TXTInterpreter extends \App\Interpreter\Interpreter
+class CSVInterpreter extends \App\Interpreter\Interpreter
 {
 
     protected $map = [];
