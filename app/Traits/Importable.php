@@ -16,7 +16,7 @@ trait Importable
     public function validate()
     {
         $array = array();
-        $className = snake_case(substr(static::class, 11));
+        $className = snake_case(substr(static::class, strlen('App\\Models\\')));
         /** @var Importable|Model $this */
         foreach ($this->toArray() as $key => $value) {
             $array["$className-$key"] = $value;

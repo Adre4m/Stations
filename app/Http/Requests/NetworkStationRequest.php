@@ -9,7 +9,7 @@
 namespace App\Http\Requests;
 
 
-use App\Interpreter\TXTInterpreter;
+use App\Interpreter\CSVInterpreter;
 use App\Models\Network;
 use App\Models\NetworkStation;
 use Illuminate\Foundation\Http\FormRequest;
@@ -33,7 +33,7 @@ class NetworkStationRequest extends FormRequest
             $network_station = new NetworkStation;
         }
         if ($this->hasFile('network_station-file')) {
-            $interpreter = new TXTInterpreter();
+            $interpreter = new CSVInterpreter();
             $res = $interpreter
                 ->forFile($this->file('network_station-file'))
                 ->forClass(NetworkStation::class)

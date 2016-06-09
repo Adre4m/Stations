@@ -46,7 +46,7 @@ trait Exportable
         if (count($models) == 0) {
             return false;
         }
-        $file_name = snake_case(str_plural(substr(static::class, 11))) .
+        $file_name = snake_case(str_plural(substr(static::class, strlen('App\\Models\\')))) .
             ".csv";
         $file = fopen($file_name, 'w');
         $content = null;

@@ -4,8 +4,6 @@ namespace App\Interpreter;
 
 
 use App\Parser\CSVParser;
-use App\Parser\Parsers\XMLParser;
-use App\Parser\TXTParser;
 
 abstract class Interpreter
 {
@@ -55,15 +53,12 @@ abstract class Interpreter
     }
 
     /**
-     * @return CSVParser|XMLParser|TXTParser
+     * @return |CSVParser
      */
     protected function getParser()
     {
-        if ($this->file->getMimeType() == 'application/xml') {
-            return new XMLParser();
-        }
         if ($this->file->getMimeType() == 'text/plain') {
-            return new TXTParser();
+            return new CSVParser();
         }
 
         return new CSVParser();

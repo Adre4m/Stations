@@ -20,7 +20,7 @@
                                     <strong>Station : </strong>
                                     <ul>
                                         @foreach($message[0]->toArray() as $key => $value)
-                                            @if($key != 'id' && $key != 'created_at' && $key != 'updated_at')
+                                            @if($key != 'id' && $key != 'uuid' && $key != 'created_at' && $key != 'updated_at')
                                                 <li>
                                                     {{ trans("validation.attributes.".str_singular($name)."-{$key}") }}
                                                     : {{ $value }}

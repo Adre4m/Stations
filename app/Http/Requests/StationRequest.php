@@ -9,7 +9,7 @@
 namespace App\Http\Requests;
 
 use App\Interpreter\QUESUInterpreter;
-use App\Interpreter\TXTInterpreter;
+use App\Interpreter\CSVInterpreter;
 use App\Models\Station;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -37,7 +37,7 @@ class StationRequest extends FormRequest
             $station = new Station;
         }
         if ($this->hasFile('station-file')) {
-            $interpreter = new TXTInterpreter();
+            $interpreter = new CSVInterpreter();
             $res = $interpreter
                 ->forFile($this->file('station-file'))
                 ->forClass(Station::class)

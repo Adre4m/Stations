@@ -15,15 +15,16 @@ trait ImportableController
 
     public function import()
     {
-        $className = substr(static::class, 21);
-        $className = substr($className, 0, strlen($className) - 10);
+        $controller_namespace = 'App\\Http\\Controllers\\';
+        $controller = 'Controller';
+        $models_namespace = 'App\\Models';
+
+        $className = substr(static::class, strlen($controller_namespace));
+        $className = substr($className, 0, strlen($className) - strlen($controller));
         $sessionFile = snake_case($className);
-        $className = "App\\Models\\$className";
-        $plural = 2;
+        $className = "$models_namespace\\$className";
         /** @var Importable $className */
-        if(isset($className::$plural)) {
-            $plural = $className::$plural;
-        }
+        $plural = isset($className::$plural) ? $className::$plural : 2;
         $sessionFile = str_plural($sessionFile, $plural);
         $models = $className::saveCollection(session($sessionFile));
         return view("$sessionFile.import")->with('messages', $models);
