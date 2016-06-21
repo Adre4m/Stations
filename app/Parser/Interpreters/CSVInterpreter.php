@@ -39,10 +39,12 @@ class CSVInterpreter extends \App\Interpreter\Interpreter
                 foreach ($line as $property_name => $property_value) {
                     $model->{$property_name} = $property_value;
                 }
-                if(is_array($model->business_key)) {
+                if (is_array($model->business_key)) {
                     $existing_model = $class::where($model->business_key)->get()->first();
                 } else {
-                    $existing_model = $class::where($model->GetBusinessKey(), '=', $model->business_key)->get()->first();
+                    $existing_model = $class::where($model->GetBusinessKey(), '=', $model->business_key)
+                        ->get()
+                        ->first();
                 }
                 if (isset($existing_model) && $existing_model->exists) {
                     $model->id = $existing_model->id;

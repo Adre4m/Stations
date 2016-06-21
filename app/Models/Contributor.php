@@ -44,6 +44,18 @@ class Contributor extends Model
         ];
     }
 
+    public static function infoRules()
+    {
+        return [
+        ];
+    }
+
+    public static function warningRules()
+    {
+        return [
+        ];
+    }
+
     public
     function getFullnameAttribute()
     {

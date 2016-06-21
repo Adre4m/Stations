@@ -8,7 +8,6 @@
 
 namespace App\Http\Requests;
 
-use App\Interpreter\QUESUInterpreter;
 use App\Interpreter\CSVInterpreter;
 use App\Models\Station;
 use Illuminate\Foundation\Http\FormRequest;
@@ -16,11 +15,13 @@ use Illuminate\Foundation\Http\FormRequest;
 class StationRequest extends FormRequest
 {
 
+    // Renvois true
     public function authorize()
     {
         return true;
     }
 
+    // Renvois Station::rules
     public function rules()
     {
         return Station::rules($this->station);
