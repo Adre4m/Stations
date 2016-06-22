@@ -47,9 +47,11 @@ class NetworkStation extends Model
         return [
             'network_station-station_id' => [
                 "unique:network_station,station_id,{$id},id,network_id,{$network_id},began_at,{$began_at}",
+                "exists:stations,id"
             ],
             'network_station-network_id' => [
                 "unique:network_station,network_id,{$id},id,station_id,{$station_id},began_at,{$began_at}",
+                "exists:networks,id"
             ],
             'network_station-began_at' => [
                 'required_without:network_station-file',
@@ -59,6 +61,23 @@ class NetworkStation extends Model
             'network_station-end_at' => [
                 'date',
                 'after:began_at',
+            ],
+        ];
+    }
+
+    public static function infoRules()
+    {
+        return [
+            'network_station-began_at' => [
+            ]
+        ];
+    }
+
+    public static function warningRules()
+    {
+        return [
+            'network_station-end_at' => [
+                'required',
             ],
         ];
     }

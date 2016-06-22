@@ -43,7 +43,7 @@ class NetworkStationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  NetworkStation  $sampleSite
+     * @param  NetworkStation  $network_station
      * @return \Illuminate\Http\Response
      */
     public function show(NetworkStation $network_station)
