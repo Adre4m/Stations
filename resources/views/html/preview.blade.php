@@ -38,20 +38,9 @@
                     <div>
                         <strong>{{ trans('validation.preview.msg') }}</strong>
                         <ul class="fa-ul">
-                        @foreach($value['models'] as $model)
-                            @if(count($model[1]['errors']) != 0)
-                                <li style="color:#cc0000">
-                                    <i class="fa-li fa fa-times-circle"></i>
-                            @elseif(count($model[1]['warnings']) != 0)
-                                <li style="color: #ffa057">
-                                    <i class="fa-li fa fa-exclamation-circle" aria-hidden="true"></i>
-                            @elseif(count($model[1]['info']) != 0)
-                                <li style="color: #4169E1">
-                                    <i class="fa-li fa fa-info-circle" aria-hidden="true"></i>
-                            @else
-                                <li style="color: #6cad49">
-                                    <i class="fa-li fa fa-check-circle"></i>
-                                    @endif
+                            @foreach($value['models'] as $model)
+                                <li style="color:{{ count($model[1]['errors']) != 0 ? '#cc0000' : '#6cad49' }}">
+                                    <i class="fa-li fa fa-{{ count($model[1]['errors']) != 0 ? 'times' : 'check' }}-circle"></i>
                                     {{ trans("$name.title") }} :
                                     @if(is_array($model[0]->business_key))
                                         [
@@ -102,7 +91,6 @@
                                             @endforeach
                                         </ul>
                                     @endif
-
                                 </li>
                             @endforeach
                         </ul>
