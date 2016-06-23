@@ -16,6 +16,32 @@ use App\Importable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\NetworkStation
+ *
+ * @property integer $id
+ * @property string $uuid
+ * @property integer $station_id
+ * @property integer $network_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $began_at
+ * @property string $end_at
+ * @property \App\Models\Station $station
+ * @property \App\Models\Network $network
+ * @property-read mixed $begin
+ * @property-read mixed $end
+ * @property-read mixed $business_key
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereUuid($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereStationId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereNetworkId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereBeganAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereEndAt($value)
+ * @mixin \Eloquent
+ */
 class NetworkStation extends Model
 {
 

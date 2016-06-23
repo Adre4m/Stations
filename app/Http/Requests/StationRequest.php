@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Adrtien
+ * User: Adrien
  * Date: 21/04/2016
  * Time: 10:41
  */
@@ -12,6 +12,9 @@ use App\Interpreter\CSVInterpreter;
 use App\Models\Station;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property Station station
+ */
 class StationRequest extends FormRequest
 {
 
@@ -24,6 +27,10 @@ class StationRequest extends FormRequest
     // Renvois Station::rules
     public function rules()
     {
+        $info = \Validator::make($this->all(), Station::infoRules());
+        $warning = \Validator::make($this->all(), Station::warningRules());
+        session()->flash('warnings', $warning->errors());
+        session()->flash('info', $info->errors());
         return Station::rules($this->station);
     }
 

@@ -15,6 +15,25 @@ use App\HasBusinessKey;
 use App\Importable;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Network
+ *
+ * @property integer $id
+ * @property string $uuid
+ * @property integer $code
+ * @property string $name
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NetworkStation[] $stationNetworks
+ * @property-read mixed $business_key
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereUuid($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Network whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Network extends Model
 {
 

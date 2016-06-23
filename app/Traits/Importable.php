@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 
 trait Importable
 {
+    // TODO Retirer l'etape intermediaire.....
+    // TODO transformer l'import en job super !
 
     public function validate()
     {
@@ -25,16 +27,11 @@ trait Importable
         $warning = \Validator::make($array, static::warningRules());
 
         $error = \Validator::make($array, static::rules($this));
-        session()->flash(
-            'info', $info->errors(),
-            'warnings', $warning->errors(),
-            'errors', $error->errors());
         return ['info' => $info->errors(), 'warnings' => $warning->errors(), 'errors' => $error->errors(),];
     }
 
     public static function saveCollection(array $collection)
     {
-        $messages = [];
         $models = $collection['models'];
         /** @var Importable|Model $var */
         // In fact at this point $var is an array composed of :
@@ -72,7 +69,11 @@ trait Importable
         return [];
     }
 
-    public static function rules($model)
+    /**
+     * @param null $model
+     * @return array
+     */
+    public static function rules($model = null)
     {
         return [];
     }

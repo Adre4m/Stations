@@ -8,6 +8,26 @@ use App\HasBusinessKey;
 use App\Importable;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Contributor
+ *
+ * @property integer $id
+ * @property string $uuid
+ * @property string $code
+ * @property string $name
+ * @property string $last_name
+ * @property string $scheme
+ * @property-read mixed $fullname
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Station[] $stations
+ * @property-read mixed $business_key
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereUuid($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereLastName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereScheme($value)
+ * @mixin \Eloquent
+ */
 class Contributor extends Model
 {
 

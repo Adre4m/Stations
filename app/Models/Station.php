@@ -9,6 +9,37 @@ use App\HasBusinessKey;
 use App\Importable;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Station
+ *
+ * @property integer $id
+ * @property string $uuid
+ * @property integer $code
+ * @property string $name
+ * @property float $x
+ * @property float $y
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property integer $manager_id
+ * @property integer $owner_id
+ * @property \App\Models\Contributor $manager
+ * @property \App\Models\Contributor $owner
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SampleSite[] $sample_sites
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Network[] $networks
+ * @property-read mixed $position
+ * @property-read mixed $business_key
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUuid($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereX($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereY($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereManagerId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereOwnerId($value)
+ * @mixin \Eloquent
+ */
 class Station extends Model
 {
 
@@ -28,6 +59,7 @@ class Station extends Model
     ];
 
     /**
+     * @param Station $station
      * @return array
      */
     public static function rules(Station $station = null)
