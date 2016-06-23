@@ -7,7 +7,7 @@ class CreateSampleSitesTable extends Migration
 {
     public function up()
     {
-        Schema::create('sample_sites', function(Blueprint $table) {
+        Schema::create('sample_sites', function (Blueprint $table) {
             $table->increments('id');
             $table->uuid('uuid')->unique();
             $table->integer('code');

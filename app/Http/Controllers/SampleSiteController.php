@@ -40,7 +40,7 @@ class SampleSiteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  SampleSite  $sampleSite
+     * @param SampleSite $sample_site
      * @return \Illuminate\Http\Response
      */
     public function show(SampleSite $sample_site)
@@ -51,7 +51,7 @@ class SampleSiteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  SampleSite  $sample_site
+     * @param  SampleSite $sample_site
      * @return \Illuminate\Http\Response
      */
     public function edit(SampleSite $sample_site)
@@ -63,8 +63,8 @@ class SampleSiteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * \App\Http\Requests\SampleSiteRequest  $request
-     * @param  SampleSite  $sample_site
+     * @param \App\Http\Requests\SampleSiteRequest $request
+     * @param  SampleSite $sample_site
      * @return \Illuminate\Http\Response
      */
     public function update(SampleSiteRequest $request, SampleSite $sample_site)
@@ -76,12 +76,12 @@ class SampleSiteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  SampleSite  $sample_site
+     * @param  SampleSite $sample_site
      * @return \Illuminate\Http\Response
      */
     public function destroy(SampleSite $sample_site)
     {
-        if(!$this->authorize('destroy', $sample_site)) {
+        if (!$this->authorize('destroy', $sample_site)) {
             redirect()->route('sample_sites.index')->withErrors('401');
         }
         $sample_site->delete();

@@ -4,13 +4,13 @@ namespace App\Providers;
 
 use App\Models\Contributor;
 use App\Models\Network;
+use App\Models\NetworkStation;
 use App\Models\SampleSite;
 use App\Models\Station;
-use App\Models\NetworkStation;
 use App\Policies\ContributorPolicy;
 use App\Policies\NetworkPolicy;
-use App\Policies\SampleSitePolicy;
 use App\Policies\NetworkStationPolicy;
+use App\Policies\SampleSitePolicy;
 use App\Policies\StationPolicy;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register any application authentication / authorization services.
      *
-     * @param  \Illuminate\Contracts\Auth\Access\Gate  $gate
+     * @param  \Illuminate\Contracts\Auth\Access\Gate $gate
      * @return void
      */
     public function boot(GateContract $gate)

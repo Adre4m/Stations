@@ -2,12 +2,14 @@
 
 namespace App\Parser;
 
+use Symfony\Component\HttpFoundation\File\File;
+
 abstract class Parser
 {
 
     /**
-     * @param \Symfony\Component\HttpFoundation\File\File $file
+     * @param File $file
      * @return mixed
      */
-    abstract public function parse(\Symfony\Component\HttpFoundation\File\File  $file);
+    abstract public function parse(File $file);
 }

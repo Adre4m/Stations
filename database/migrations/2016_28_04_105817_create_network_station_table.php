@@ -13,7 +13,7 @@ class CreateNetworkStationTable extends Migration
 
     public function up()
     {
-        Schema::create('network_station', function(Blueprint $table) {
+        Schema::create('network_station', function (Blueprint $table) {
             $table->increments('id');
             $table->uuid('uuid')->unique();
             $table->integer('station_id')->unsigned();

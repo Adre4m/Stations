@@ -9,14 +9,16 @@
 namespace App\Parser;
 
 
+use Symfony\Component\HttpFoundation\File\File;
+
 class CSVParser extends Parser
 {
 
     /**
-     * @param \Symfony\Component\HttpFoundation\File\File $file
+     * @param File $file
      * @return mixed
      */
-    public function parse(\Symfony\Component\HttpFoundation\File\File $file)
+    public function parse(File $file)
     {
         $separator = ';';
 

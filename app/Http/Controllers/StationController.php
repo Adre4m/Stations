@@ -7,7 +7,6 @@ use App\Http\Requests;
 use App\Http\Requests\StationRequest;
 use App\ImportableController;
 use App\Models\Contributor;
-use App\Models\Network;
 use App\Models\NetworkStation;
 use App\Models\SampleSite;
 use App\Models\Station;
@@ -19,6 +18,7 @@ class StationController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param StationDataTable $dataTable
      * @return \Illuminate\Http\Response
      */
     public function index(StationDataTable $dataTable)
@@ -85,7 +85,7 @@ class StationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * \App\Http\Requests\StationRequest  $request
+     * @param \App\Http\Requests\StationRequest $request
      * @param  Station $station
      * @return \Illuminate\Http\Response
      */

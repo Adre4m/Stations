@@ -14,7 +14,7 @@ trait HasBusinessComposedKey
     public function getBusinessKeyAttribute()
     {
         $values = array();
-        foreach($this->getBusinessKey() as $businessKeyName) {
+        foreach ($this->getBusinessKey() as $businessKeyName) {
             $values[$businessKeyName] = $this->{$businessKeyName};
         }
         return $values;
@@ -22,6 +22,6 @@ trait HasBusinessComposedKey
 
     public function getBusinessKey()
     {
-        return (isset($this->business) && !empty($this->business))? $this->business : null;
+        return (isset($this->business) && !empty($this->business)) ? $this->business : null;
     }
 }

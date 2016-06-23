@@ -3,12 +3,10 @@
 namespace App\Interpreter;
 
 use App\Importable;
-use App\Models\Contributor;
-use App\Models\Station;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 
-class CSVInterpreter extends \App\Interpreter\Interpreter
+class CSVInterpreter extends Interpreter
 {
 
     protected $map = [];

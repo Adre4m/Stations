@@ -14,7 +14,7 @@ class CreateNetworksTable extends Migration
 
     public function up()
     {
-        Schema::create('networks', function(Blueprint $table) {
+        Schema::create('networks', function (Blueprint $table) {
             $table->increments('id');
             $table->uuid('uuid')->unique();
             $table->integer('code')->unique();

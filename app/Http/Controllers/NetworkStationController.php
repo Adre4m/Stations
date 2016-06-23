@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 
 use App\DataTables\NetworkStationDataTable;
-use App\Http\Requests\NetworkRequest;
 use App\Http\Requests\NetworkStationRequest;
 use App\ImportableController;
 use App\Models\Network;
-use App\Models\Station;
 use App\Models\NetworkStation;
+use App\Models\Station;
 
 class NetworkStationController extends Controller
 {
@@ -43,7 +42,7 @@ class NetworkStationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  NetworkStation  $network_station
+     * @param  NetworkStation $network_station
      * @return \Illuminate\Http\Response
      */
     public function show(NetworkStation $network_station)
@@ -54,7 +53,7 @@ class NetworkStationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  NetworkStation  $network_station
+     * @param  NetworkStation $network_station
      * @return \Illuminate\Http\Response
      */
     public function edit(NetworkStation $network_station)
@@ -71,8 +70,8 @@ class NetworkStationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * \App\Http\Requests\NetworkStationRequest  $request
-     * @param  NetworkStation  $network_station
+     * @param NetworkStationRequest $request
+     * @param  NetworkStation $network_station
      * @return \Illuminate\Http\Response
      */
     public function update(NetworkStationRequest $request, NetworkStation $network_station)
@@ -84,12 +83,12 @@ class NetworkStationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  NetworkStation  $network_station
+     * @param  NetworkStation $network_station
      * @return \Illuminate\Http\Response
      */
     public function destroy(NetworkStation $network_station)
     {
-        if(!$this->authorize('destroy', $network_station)) {
+        if (!$this->authorize('destroy', $network_station)) {
             redirect()->route('network_station.index')->withErrors('401');
         }
         $network_station->delete();

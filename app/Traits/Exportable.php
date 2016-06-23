@@ -12,34 +12,6 @@ namespace App;
 trait Exportable
 {
 
-    protected function getArrayAttribute()
-    {
-        $header = $this->toArray();
-        $header = $this->filter($header);
-        return $header;
-    }
-
-    public function toXML()
-    {
-
-    }
-
-    protected function filter($header)
-    {
-        $header = array_where($header, function ($key, $value) {
-            return $key != 'id' && $key != 'uuid' && $key != 'created_at' && $key != 'updated_at';
-        });
-        $filter_header = array();
-        foreach ($header as $key => $value) {
-            if (str_contains($key, 'id')) {
-                $key = substr($key, 0, strpos($key, '_id'));
-                $value = $this->{$key}->business_key;
-            }
-            $filter_header[$key] = $value;
-        }
-        return $filter_header;
-    }
-
     public static function toCsv()
     {
         $models = static::all();
@@ -70,5 +42,33 @@ trait Exportable
         $content = substr($content, 0, strlen($content) - 2);
         fwrite($file, $content);
         return response()->download($file_name);
+    }
+
+    public function toXML()
+    {
+
+    }
+
+    protected function getArrayAttribute()
+    {
+        $header = $this->toArray();
+        $header = $this->filter($header);
+        return $header;
+    }
+
+    protected function filter($header)
+    {
+        $header = array_where($header, function ($key, $value) {
+            return $key != 'id' && $key != 'uuid' && $key != 'created_at' && $key != 'updated_at';
+        });
+        $filter_header = array();
+        foreach ($header as $key => $value) {
+            if (str_contains($key, 'id')) {
+                $key = substr($key, 0, strpos($key, '_id'));
+                $value = $this->{$key}->business_key;
+            }
+            $filter_header[$key] = $value;
+        }
+        return $filter_header;
     }
 }

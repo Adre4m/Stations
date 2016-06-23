@@ -15,21 +15,6 @@ trait Importable
     // TODO Retirer l'etape intermediaire.....
     // TODO transformer l'import en job super !
 
-    public function validate()
-    {
-        $array = array();
-        $className = snake_case(substr(static::class, strlen('App\\Models\\')));
-        /** @var Importable|Model $this */
-        foreach ($this->toArray() as $key => $value) {
-            $array["$className-$key"] = $value;
-        }
-        $info = \Validator::make($array, static::infoRules());
-        $warning = \Validator::make($array, static::warningRules());
-
-        $error = \Validator::make($array, static::rules($this));
-        return ['info' => $info->errors(), 'warnings' => $warning->errors(), 'errors' => $error->errors(),];
-    }
-
     public static function saveCollection(array $collection)
     {
         $models = $collection['models'];
@@ -57,6 +42,21 @@ trait Importable
             'exceptions' => $collection['exceptions'],
             'models' => $messages
         ];
+    }
+
+    public function validate()
+    {
+        $array = array();
+        $className = snake_case(substr(static::class, strlen('App\\Models\\')));
+        /** @var Importable|Model $this */
+        foreach ($this->toArray() as $key => $value) {
+            $array["$className-$key"] = $value;
+        }
+        $info = \Validator::make($array, static::infoRules());
+        $warning = \Validator::make($array, static::warningRules());
+
+        $error = \Validator::make($array, static::rules($this));
+        return ['info' => $info->errors(), 'warnings' => $warning->errors(), 'errors' => $error->errors(),];
     }
 
     public static function infoRules()

@@ -18,6 +18,6 @@ trait HasBusinessKey
 
     public function getBusinessKey()
     {
-        return (isset($this->business) && !empty($this->business))? $this->business : 'code';
+        return (isset($this->business) && !empty($this->business)) ? $this->business : 'code';
     }
 }

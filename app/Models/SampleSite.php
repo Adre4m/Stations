@@ -98,6 +98,7 @@ class SampleSite extends Model
     {
         $station = Station::whereCode($value)->firstOrNew([]);
         if ($station->exists) {
+            /** @var Station $station */
             $this->station_id = $station->id;
         } else {
             $this->station_id = -1;

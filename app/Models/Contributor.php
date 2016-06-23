@@ -43,6 +43,7 @@ class Contributor extends Model
     ];
 
     /**
+     * @param Contributor $contributor
      * @return array
      */
     public static function rules(Contributor $contributor = null)

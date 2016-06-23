@@ -4,6 +4,7 @@ namespace App\Interpreter;
 
 
 use App\Parser\CSVParser;
+use Symfony\Component\HttpFoundation\File\File;
 
 abstract class Interpreter
 {
@@ -11,17 +12,17 @@ abstract class Interpreter
     protected $map;
 
     /**
-     * @var \Symfony\Component\HttpFoundation\File\File $file
+     * @var File $file
      */
     protected $file;
     protected $class;
 
 
     /**
-     * @param \Symfony\Component\HttpFoundation\File\File $file
+     * @param File $file
      * @return $this
      */
-    public function forFile(\Symfony\Component\HttpFoundation\File\File $file)
+    public function forFile(File $file)
     {
         $this->file = $file;
         return $this;
@@ -38,7 +39,6 @@ abstract class Interpreter
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\File\File $file
      * @return array
      */
     public function getContent()
@@ -53,7 +53,7 @@ abstract class Interpreter
     }
 
     /**
-     * @return |CSVParser
+     * @return CSVParser |CSVParser
      */
     protected function getParser()
     {
@@ -62,15 +62,6 @@ abstract class Interpreter
         }
 
         return new CSVParser();
-    }
-
-    /**
-     * @param $key
-     * @return mixed
-     */
-    public function mapping($key)
-    {
-        return isset($this->map[$key]) ? $this->map[$key] : $key;
     }
 
     /**
@@ -91,6 +82,15 @@ abstract class Interpreter
             }
         }
         return $res;
+    }
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public function mapping($key)
+    {
+        return isset($this->map[$key]) ? $this->map[$key] : $key;
     }
 
     /**

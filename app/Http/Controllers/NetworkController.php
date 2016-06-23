@@ -40,7 +40,7 @@ class NetworkController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Network  $sampleSite
+     * @param Network $network
      * @return \Illuminate\Http\Response
      */
     public function show(Network $network)
@@ -51,7 +51,7 @@ class NetworkController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Network  $network
+     * @param  Network $network
      * @return \Illuminate\Http\Response
      */
     public function edit(Network $network)
@@ -63,8 +63,8 @@ class NetworkController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * \App\Http\Requests\NetworkRequest  $request
-     * @param  Network  $network
+     * @param NetworkRequest $request
+     * @param  Network $network
      * @return \Illuminate\Http\Response
      */
     public function update(NetworkRequest $request, Network $network)
@@ -76,12 +76,12 @@ class NetworkController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Network  $network
+     * @param  Network $network
      * @return \Illuminate\Http\Response
      */
     public function destroy(Network $network)
     {
-        if(!$this->authorize('destroy', $network)) {
+        if (!$this->authorize('destroy', $network)) {
             redirect()->route('networks.index')->withErrors('401');
         }
         $network->delete();
