@@ -7,6 +7,8 @@ use App\DataTables\SampleSiteDataTable;
 use App\Http\Requests\SampleSiteRequest;
 use App\Models\SampleSite;
 use App\Models\Station;
+use Illuminate\Mail\Message;
+use Mail;
 
 class SampleSiteController extends Controller
 {
@@ -27,7 +29,14 @@ class SampleSiteController extends Controller
         $sample_site = $request->persist();
 
         if (is_array($sample_site)) {
-            return view('sample_sites.temp')->with('messages', $sample_site);
+            $user = auth()->user();
+            Mail::send('sample_sites.temp', ['user' => $user, 'messages' => $sample_site],
+                function ($message) use ($user) {
+                    /** @var Message $message */
+                    $message->from('no-reply-import-result@service.com', 'Import Result');
+                    $message->to($user->email, $user->name)->subject('Import Result');
+                });
+            return redirect()->route('sample_sites.index');
         }
         if ($sample_site->exists) {
             return redirect()->route('sample_sites.index');

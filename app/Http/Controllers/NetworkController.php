@@ -7,6 +7,8 @@ use App\DataTables\NetworkDataTable;
 use App\Http\Requests\NetworkRequest;
 use App\Models\Network;
 use App\Models\Station;
+use Illuminate\Mail\Message;
+use Mail;
 
 class NetworkController extends Controller
 {
@@ -27,7 +29,14 @@ class NetworkController extends Controller
         $network = $request->persist();
 
         if (is_array($network)) {
-            return view('networks.temp')->with('messages', $network);
+            $user = auth()->user();
+            Mail::send('networks.temp', ['user' => $user, 'messages' => $network],
+                function ($message) use ($user) {
+                    /** @var Message $message */
+                    $message->from('no-reply-import-result@service.com', 'Import Result');
+                    $message->to($user->email, $user->name)->subject('Import Result');
+                });
+            return redirect()->route('networks.index');
         }
         if ($network->exists) {
             return redirect()->route('networks.index');

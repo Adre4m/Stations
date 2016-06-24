@@ -6,6 +6,8 @@ use App\DataTables\ContributorDataTable;
 use App\Http\Requests;
 use App\Http\Requests\ContributorRequest;
 use App\Models\Contributor;
+use Illuminate\Mail\Message;
+use Mail;
 
 class ContributorController extends Controller
 {
@@ -27,7 +29,14 @@ class ContributorController extends Controller
         $contributor = $request->persist();
 
         if (is_array($contributor)) {
-            return view('contributors.temp')->with('messages', $contributor);
+            $user = auth()->user();
+            Mail::send('contributors.temp', ['user' => $user, 'messages' => $contributor],
+                function ($message) use ($user) {
+                    /** @var Message $message */
+                    $message->from('no-reply-import-result@service.com', 'Import Result');
+                    $message->to($user->email, $user->name)->subject('Import Result');
+                });
+            return redirect()->route('contributors.index');
         }
         if ($contributor->exists) {
             return redirect()->route('contributors.index');

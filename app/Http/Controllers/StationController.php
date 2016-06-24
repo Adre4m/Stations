@@ -9,6 +9,7 @@ use App\Models\Contributor;
 use App\Models\NetworkStation;
 use App\Models\SampleSite;
 use App\Models\Station;
+use Illuminate\Mail\Message;
 use Mail;
 
 class StationController extends Controller
@@ -51,10 +52,13 @@ class StationController extends Controller
 
         if (is_array($station)) {
             $user = auth()->user();
-            Mail::send('stations.temp', ['user' => $user, 'messages' => $station], function ($message) use ($user) {
-                $message->from('no-reply-import-result@service.com', 'Import Result');
-                $message->to($user->email, $user->name)->subject('Import Result');
-            });
+            Mail::send(
+                'stations.temp', ['user' => $user, 'messages' => $station],
+                function ($message) use ($user) {
+                    /** @var Message $message */
+                    $message->from('no-reply-import-result@service.com', 'Import Result');
+                    $message->to($user->email, $user->name)->subject('Import Result');
+                });
             return redirect()->route('stations.index');
         }
         if ($station->exists) {

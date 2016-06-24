@@ -8,6 +8,8 @@ use App\Http\Requests\NetworkStationRequest;
 use App\Models\Network;
 use App\Models\NetworkStation;
 use App\Models\Station;
+use Illuminate\Mail\Message;
+use Mail;
 
 class NetworkStationController extends Controller
 {
@@ -29,7 +31,14 @@ class NetworkStationController extends Controller
         $network_station = $request->persist();;
 
         if (is_array($network_station)) {
-            return view('network_station.temp')->with('messages', $network_station);
+            $user = auth()->user();
+            Mail::send('network_station.temp', ['user' => $user, 'messages' => $network_station],
+                function ($message) use ($user) {
+                    /** @var Message $message */
+                    $message->from('no-reply-import-result@service.com', 'Import Result');
+                    $message->to($user->email, $user->name)->subject('Import Result');
+                });
+            return redirect()->route('network_station.index');
         }
         if ($network_station->exists) {
             return redirect()->route('network_station.index');
