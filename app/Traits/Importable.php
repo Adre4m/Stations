@@ -12,31 +12,18 @@ use Illuminate\Database\Eloquent\Model;
 
 trait Importable
 {
-    // TODO Retirer l'etape intermediaire.....
-    // TODO transformer l'import en job super !
-
-    public static function saveCollection(array $collection)
-    {
-        $models = $collection['models'];
-        /** @var Importable|Model $var */
-        // In fact at this point $var is an array composed of :
-        // [0] => the model
-        // [1] => the errors already encountered, though they are not useful so I just ignore them.
-        foreach ($models as $var) {
-            if (count($var[1]['errors']->messages()) == 0) {
-                $var[0]->save();
-            }
-        }
-        return $models;
-    }
 
     public function validateCollection(array $collection)
     {
         $messages = [];
         $models = $collection['models'];
         /** @var Importable|Model $var */
+        $i = 0;
         foreach ($models as $var) {
             $messages[] = [$var, $var->validate()];
+            if (count($messages[$i][1]['errors']->messages()) == 0) {
+                $var->save();
+            }
         }
         return [
             'exceptions' => $collection['exceptions'],

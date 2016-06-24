@@ -165,7 +165,6 @@ return [
          * Ide-helper
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Forms & HTML LaravelCollective
@@ -229,7 +228,6 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

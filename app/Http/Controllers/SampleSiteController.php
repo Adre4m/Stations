@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 
 use App\DataTables\SampleSiteDataTable;
 use App\Http\Requests\SampleSiteRequest;
-use App\ImportableController;
 use App\Models\SampleSite;
 use App\Models\Station;
 
 class SampleSiteController extends Controller
 {
-    use ImportableController;
 
     public function index(SampleSiteDataTable $dataTable)
     {

@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use App\DataTables\StationDataTable;
 use App\Http\Requests;
 use App\Http\Requests\StationRequest;
-use App\ImportableController;
 use App\Models\Contributor;
 use App\Models\NetworkStation;
 use App\Models\SampleSite;
 use App\Models\Station;
+use Mail;
 
 class StationController extends Controller
 {
-    use ImportableController;
 
     /**
      * Display a listing of the resource.
@@ -51,7 +50,12 @@ class StationController extends Controller
         $station = $request->persist();
 
         if (is_array($station)) {
-            return view('stations.temp')->with('messages', $station);
+            $user = auth()->user();
+            Mail::send('stations.temp', ['user' => $user, 'messages' => $station], function ($message) use ($user) {
+                $message->from('no-reply-import-result@service.com', 'Import Result');
+                $message->to($user->email, $user->name)->subject('Import Result');
+            });
+            return redirect()->route('stations.index');
         }
         if ($station->exists) {
             return redirect()->route('stations.index');

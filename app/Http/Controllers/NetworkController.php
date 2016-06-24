@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 
 use App\DataTables\NetworkDataTable;
 use App\Http\Requests\NetworkRequest;
-use App\ImportableController;
 use App\Models\Network;
 use App\Models\Station;
 
 class NetworkController extends Controller
 {
-    use ImportableController;
 
     public function index(NetworkDataTable $dataTable)
     {
