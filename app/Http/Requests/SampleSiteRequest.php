@@ -9,6 +9,7 @@
 namespace App\Http\Requests;
 
 
+use App\Importable;
 use App\Interpreter\CSVInterpreter;
 use App\Models\SampleSite;
 use Illuminate\Foundation\Http\FormRequest;
@@ -37,7 +38,7 @@ class SampleSiteRequest extends FormRequest
                 ->forFile($this->file('sample_site-file'))
                 ->forClass(SampleSite::class)
                 ->getContent();
-            return $sample_site->validateCollection($res);
+            return Importable::validateCollection($res);
         } else {
             $sample_site->code = $this->input('sample_site-code');
             $sample_site->name = $this->input('sample_site-name');

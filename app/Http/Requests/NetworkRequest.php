@@ -9,6 +9,7 @@
 namespace App\Http\Requests;
 
 
+use App\Importable;
 use App\Interpreter\CSVInterpreter;
 use App\Models\Network;
 use Illuminate\Foundation\Http\FormRequest;
@@ -37,7 +38,8 @@ class NetworkRequest extends FormRequest
                 ->forFile($this->file('network-file'))
                 ->forClass(Network::class)
                 ->getContent();
-            return $network->validateCollection($res);
+
+            return Importable::validateCollection($res);
         } else {
             $network->code = $this->input('network-code');
             $network->name = $this->input('network-name');

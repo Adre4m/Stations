@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 
+use App\Importable;
 use App\Interpreter\CSVInterpreter;
 use App\Models\Contributor;
 use Illuminate\Foundation\Http\FormRequest;
@@ -42,7 +43,7 @@ class ContributorRequest extends FormRequest
                 ->forFile($this->file('contributor-file'))
                 ->forClass(Contributor::class)
                 ->getContent();
-            return $contributor->validateCollection($res);
+            return Importable::validateCollection($res);
         } else {
             $on = $this->input('contributor-siret') == 'on';
             $contributor->code = $this->input('contributor-code');

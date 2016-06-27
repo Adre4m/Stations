@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 trait Importable
 {
 
-    public function validateCollection(array $collection)
+    public static function validateCollection(array $collection)
     {
         $messages = [];
         $models = $collection['models'];

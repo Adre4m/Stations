@@ -8,6 +8,7 @@
 
 namespace App\Http\Requests;
 
+use App\Importable;
 use App\Interpreter\CSVInterpreter;
 use App\Models\Station;
 use Illuminate\Foundation\Http\FormRequest;
@@ -45,12 +46,13 @@ class StationRequest extends FormRequest
             $station = new Station;
         }
         if ($this->hasFile('station-file')) {
+//            return $this->file('station-file');
             $interpreter = new CSVInterpreter();
             $res = $interpreter
                 ->forFile($this->file('station-file'))
                 ->forClass(Station::class)
                 ->getContent();
-            return $station->validateCollection($res);
+            return Importable::validateCollection($res);
         } else {
             $station->code = $this->input('station-code');
             $station->name = $this->input('station-name');
