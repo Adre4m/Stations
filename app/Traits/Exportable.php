@@ -25,6 +25,7 @@ trait Exportable
         foreach ($models as $model) {
             $lines[] = $model->array;
         }
+        /** @var array $lines */
         foreach ($lines as $line) {
             $header = null;
             $values = null;

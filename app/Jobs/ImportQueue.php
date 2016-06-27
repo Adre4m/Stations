@@ -44,8 +44,11 @@ class ImportQueue extends Job implements ShouldQueue
             ->getContent();
         $models = Importable::validateCollection($res);
         $user = $this->user;
+        $class = $this->className;
+        $plural = (isset($class::$plural)) ? $class::$plural : 2;
+        $view_name = snake_case(str_plural(substr(static::class, strlen('App\\Models\\')), $plural));
         /** @var User $user */
-        Mail::send('contributors.temp', ['user' => $user, 'messages' => $models],
+        Mail::send("$view_name.temp", ['user' => $user, 'messages' => $models],
             function ($message) use ($user) {
                 /** @var Message $message */
                 $message->from('no-reply-import-result@service.com', 'Import Result');
