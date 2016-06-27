@@ -18,31 +18,28 @@ class ImportQueue extends Job implements ShouldQueue
 
     protected $user;
     protected $className;
-    protected $file;
 
     /**
      * Create a new job instance.
      * @param User $user
      * @param $className
-     * @param File $file
      */
-    public function __construct(User $user, $className, File $file)
+    public function __construct(User $user, $className)
     {
         $this->user = $user;
         $this->className = $className;
-        $this->file = $file;
     }
 
     /**
      * Execute the job.
      *
-     * @return array
+     * @param File $file
      */
-    public function handle()
+    public function handle(File $file)
     {
         $interpreter = new CSVInterpreter();
         $res = $interpreter
-            ->forFile($this->file)
+            ->forFile($file)
             ->forClass($this->className)
             ->getContent();
         $models = Importable::validateCollection($res);
@@ -54,6 +51,5 @@ class ImportQueue extends Job implements ShouldQueue
                 $message->from('no-reply-import-result@service.com', 'Import Result');
                 $message->to($user->email, $user->name)->subject('Import Result');
             });
-        return $models;
     }
 }
