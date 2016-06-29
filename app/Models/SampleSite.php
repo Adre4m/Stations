@@ -8,6 +8,7 @@ use App\GenerateUuid;
 use App\HasBusinessKey;
 use App\Importable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 /**
  * App\Models\SampleSite
@@ -24,15 +25,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property \App\Models\Station $station
  * @property-read mixed $position
  * @property-read mixed $business_key
- * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereUuid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereCode($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereX($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereY($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereStationId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\SampleSite whereUpdatedAt($value)
+ * @method static Builder|SampleSite whereId($value)
+ * @method static Builder|SampleSite whereUuid($value)
+ * @method static Builder|SampleSite whereCode($value)
+ * @method static Builder|SampleSite whereName($value)
+ * @method static Builder|SampleSite whereX($value)
+ * @method static Builder|SampleSite whereY($value)
+ * @method static Builder|SampleSite whereStationId($value)
+ * @method static Builder|SampleSite whereCreatedAt($value)
+ * @method static Builder|SampleSite whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class SampleSite extends Model
@@ -96,9 +97,9 @@ class SampleSite extends Model
 
     public function setStationAttribute($value)
     {
+        /** @var Station $station */
         $station = Station::whereCode($value)->firstOrNew([]);
         if ($station->exists) {
-            /** @var Station $station */
             $this->station_id = $station->id;
         } else {
             $this->station_id = -1;

@@ -59,12 +59,8 @@ class StationController extends Controller
                     $message->from('no-reply-import-result@service.com', 'Import Result');
                     $message->to($user->email, $user->name)->subject('Import Result');
                 });
-            return redirect()->route('stations.index');
         }
-        if ($station->exists) {
-            return redirect()->route('stations.index');
-        }
-        return redirect()->back()->with('station', $station);
+        return redirect()->route('stations.index');
     }
 
     /**

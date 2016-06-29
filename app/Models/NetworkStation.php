@@ -15,6 +15,7 @@ use App\HasBusinessComposedKey;
 use App\Importable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 /**
  * App\Models\NetworkStation
@@ -32,14 +33,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $begin
  * @property-read mixed $end
  * @property-read mixed $business_key
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereUuid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereStationId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereNetworkId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereBeganAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\NetworkStation whereEndAt($value)
+ * @method static Builder|NetworkStation whereId($value)
+ * @method static Builder|NetworkStation whereUuid($value)
+ * @method static Builder|NetworkStation whereStationId($value)
+ * @method static Builder|NetworkStation whereNetworkId($value)
+ * @method static Builder|NetworkStation whereCreatedAt($value)
+ * @method static Builder|NetworkStation whereUpdatedAt($value)
+ * @method static Builder|NetworkStation whereBeganAt($value)
+ * @method static Builder|NetworkStation whereEndAt($value)
  * @mixin \Eloquent
  */
 class NetworkStation extends Model
@@ -136,6 +137,7 @@ class NetworkStation extends Model
 
     public function setStationAttribute($value)
     {
+        /** @var Station $station */
         $station = Station::whereCode($value)->firstOrNew([]);
         if ($station->exists) {
             $this->station_id = $station->id;
@@ -146,6 +148,7 @@ class NetworkStation extends Model
 
     public function setNetworkAttribute($value)
     {
+        /** @var Network $network */
         $network = Network::whereCode($value)->firstOrNew([]);
         if ($network->exists) {
             $this->network_id = $network->id;

@@ -7,6 +7,7 @@ use App\GenerateUuid;
 use App\HasBusinessKey;
 use App\Importable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 /**
  * App\Models\Contributor
@@ -20,12 +21,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $fullname
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Station[] $stations
  * @property-read mixed $business_key
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereUuid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereCode($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereLastName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Contributor whereScheme($value)
+ * @method static Builder|Contributor whereId($value)
+ * @method static Builder|Contributor whereUuid($value)
+ * @method static Builder|Contributor whereCode($value)
+ * @method static Builder|Contributor whereName($value)
+ * @method static Builder|Contributor whereLastName($value)
+ * @method static Builder|Contributor whereScheme($value)
  * @mixin \Eloquent
  */
 class Contributor extends Model

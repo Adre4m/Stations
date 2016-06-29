@@ -8,6 +8,7 @@ use App\GenerateUuid;
 use App\HasBusinessKey;
 use App\Importable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 /**
  * App\Models\Station
@@ -28,16 +29,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Network[] $networks
  * @property-read mixed $position
  * @property-read mixed $business_key
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUuid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCode($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereX($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereY($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereManagerId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Station whereOwnerId($value)
+ * @method static Builder|Station whereId($value)
+ * @method static Builder|Station whereUuid($value)
+ * @method static Builder|Station whereCode($value)
+ * @method static Builder|Station whereName($value)
+ * @method static Builder|Station whereX($value)
+ * @method static Builder|Station whereY($value)
+ * @method static Builder|Station whereCreatedAt($value)
+ * @method static Builder|Station whereUpdatedAt($value)
+ * @method static Builder|Station whereManagerId($value)
+ * @method static Builder|Station whereOwnerId($value)
  * @mixin \Eloquent
  */
 class Station extends Model
@@ -171,6 +172,7 @@ class Station extends Model
 
     public function setManagerAttribute($value)
     {
+        /** @var Contributor $manager */
         $manager = Contributor::whereCode($value)->firstOrNew([]);
         if ($manager->exists) {
             $this->manager_id = $manager->id;
@@ -181,6 +183,7 @@ class Station extends Model
 
     public function setOwnerAttribute($value)
     {
+        /** @var Contributor $owner */
         $owner = Contributor::whereCode($value)->firstOrNew([]);
         if ($owner->exists) {
             $this->owner_id = $owner->id;
